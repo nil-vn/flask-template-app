@@ -1,3 +1,5 @@
 log
 instance
 *.env*
+.idea
+*__pycache__*
