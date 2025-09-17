@@ -30,10 +30,10 @@ def create_app(env: Optional[Union[str, object]]) -> Flask:
         db.create_all()
 
     # Register blueprints
-    from app.admin import routes as ra
-    from app.homepage import routes as rh
+    from app.admin import Admin
+    from app.homepage import Homepage
 
-    _app.register_blueprint(ra)
-    _app.register_blueprint(rh)
+    Admin(_app).register()
+    Homepage(_app).register()
 
     return _app

@@ -1,10 +1,16 @@
-import os
+from abc import abstractmethod
 
-from flask import Blueprint
+from app.utils.register import Module
+from flask import Flask
 
-routes = Blueprint(
-    "homepage_routes",
-    __name__,
-    template_folder=os.path.join('..', '..', 'templates', 'homepage'),
-    static_folder=os.path.join('..', '..', 'static', 'homepage'),
-    url_prefix="/")
+
+class Homepage(Module):
+    def __init__(self, flask_app: Flask):
+        self.flask_app = flask_app
+
+    def register(self):
+        from app.homepage.controllers.main import routes as homepage_routes
+        from app.homepage.controllers.api import routes as api_routes
+
+        self.flask_app.register_blueprint(homepage_routes)
+        self.flask_app.register_blueprint(api_routes)
