@@ -1,7 +1,4 @@
-# Other modules
-from datetime import datetime
-
-from app.utils import db
+from app.utils.db import db
 
 
 class Configuration(db.Model):

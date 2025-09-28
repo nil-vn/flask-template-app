@@ -1,0 +1,270 @@
+{% extends "_base.html" %}
+
+{% block breadcrumb %}
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="mb-0">{{ _('Detail') }}</h5>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/admin">{{ _('Home') }}</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/customer">{{ _('Customer') }}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0)">{{ _('Detail') }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- [ sample-page ] start -->
+    <div class="col-lg-4">
+        <div class="card user-card user-card-1">
+            <div class="card-body pb-0">
+                <div class="d-flex user-about-block align-items-center mt-0 mb-3">
+                    <div class="flex-shrink-0">
+                        <div class="position-relative d-inline-block">
+                            <img class="img-radius img-fluid wid-60"
+                                 src="{{ url_for('static', filename='admin/images/user/avatar-1.svg') }}"
+                                 alt="{{ customer.name }}"/>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="mb-1">{{ customer.name }}</h6>
+                        <span class="badge bg-light-danger">{{ customer.status }}</span>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <span class="f-w-500"><i class="ti ti-brand-facebook m-r-10"></i>{{ _('Facebook') }}</span>
+                    <span class="float-end text-body">{{ customer.facebook }}</span>
+                </li>
+                <li class="list-group-item">
+                    <span class="f-w-500"><i class="ph ph-phone-call m-r-10"></i>{{ _('Phone') }}</span>
+                    <span class="float-end text-body">{{ customer.phone }}</span>
+                </li>
+                <li class="list-group-item border-bottom-0">
+                    <span class="f-w-500"><i class="ph ph-map-pin-line m-r-10"></i>{{ _('Address') }}</span>
+                    <span class="float-end text-body">{{ customer.address }}</span>
+                </li>
+            </ul>
+            <div
+                    class="nav flex-column nav-pills list-group list-group-flush list-pills"
+                    id="user-set-tab"
+                    role="tablist"
+                    aria-orientation="vertical"
+            >
+                <a
+                        class="nav-link list-group-item list-group-item-action active"
+                        id="customer-information-tab"
+                        data-bs-toggle="pill"
+                        href="#customer-information"
+                        role="tab"
+                        aria-controls="customer-information"
+                        aria-selected="false"
+                >
+                  <span class="f-w-500 d-inline-flex align-items-center"
+                  ><i class="mb-0 ph ph-user m-r-10 h5"></i>{{ _('Customer information') }}</span
+                  >
+                    <span class="float-end"><i class="ph ph-caret-right"></i></span>
+                </a>
+                <a
+                        class="nav-link list-group-item list-group-item-action"
+                        id="customer-purchased-list-tab"
+                        data-bs-toggle="pill"
+                        href="#customer-purchased-list"
+                        role="tab"
+                        aria-controls="customer-purchased-list"
+                        aria-selected="true"
+                >
+                    <span class="f-w-500 d-inline-flex align-items-center"><i
+                            class="mb-0 ph ph-list-heart m-r-10 h5"></i>{{ _('Purchased List') }}</span>
+                    <span class="float-end"><i class="ph ph-caret-right"></i></span>
+                </a>
+                <a
+                        class="nav-link list-group-item list-group-item-action"
+                        id="customer-add-transaction-tab"
+                        data-bs-toggle="pill"
+                        href="#customer-add-transaction"
+                        role="tab"
+                        aria-controls="customer-add-transaction"
+                        aria-selected="false"
+                >
+                    <span class="f-w-500 d-inline-flex align-items-center"><i
+                            class="mb-0 ti ti-transaction-yen m-r-10 h5"></i>{{ _('Add New Transaction') }}</span>
+                    <span class="float-end"><i class="ph ph-caret-right"></i></span>
+                </a>
+
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h5>Hello card</h5>
+            </div>
+            <div class="card-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="tab-content" id="user-set-tabContent">
+            <div class="tab-pane fade show active" id="customer-information" role="tabpanel"
+                 aria-labelledby="customer-information-tab">
+                <div class="card">
+                    <form name="customer_form" action="/admin/customer/detail/{{ customer.id }}" method="POST"
+                          enctype="multipart/form-data">
+                        {{ form.csrf_token }}
+                        <div id="sticky-action" class="sticky-action">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-6">
+                                        <h5><i class="ph ph-user align-text-bottom text-primary f-20"></i><span
+                                                class="p-l-5">{{ _('Customer information') }}</span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
+                                        <button type="submit" class="btn btn-success">{{ _('Update') }}</button>
+                                        <button type="reset" class="btn btn-light-secondary">{{ _('Reset') }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="name">{{ _('Name') }}<span
+                                                class="text-danger">*</span></label>
+                                        <input id="name" name="name" type="text"
+                                               class="form-control {% if form.name.errors %}is-invalid{% endif %}"
+                                               value="{{ customer.name }}"/>
+                                        {% if form.name.errors %}
+                                        <div class="invalid-feedback">{{ form.name.errors[0] }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="status">{{ _('Gender') }}</label>
+                                        <select class="form-control" data-trigger name="gender" id="gender">
+                                            <option value="unknown">{{ _('Unknown') }}</option>
+                                            <option value="male"
+                                                    {% if customer.gender==
+                                            'male' %}selected="selected"{% endif %}>{{ _('Male') }}</option>
+                                            <option value="female"
+                                                    {% if customer.gender==
+                                            'female' %}selected="selected"{% endif %}>{{ _('Female') }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="address">{{ _('Address') }}</label>
+                                        <input id="address" name="address" type="text" value="{{ customer.address }}"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="phone">{{ _('Phone') }}</label>
+                                        <input id="phone" name="phone" type="text" value="{{ customer.phone or '' }}"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="birth_day">{{ _('Birthday') }}</label>
+                                        <div class="input-group date">
+                                            <input name="birth_day" type="text"
+                                                   class="form-control datepicker-input"
+                                                   value="{{ customer.birth_day }}" id="birth_day">
+                                            <span class="input-group-text"><i class="ph ph-calendar-blank"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="facebook">{{ _('Facebook') }}</label>
+                                        <input id="facebook" name="facebook" type="text"
+                                               class="form-control" value="{{ customer.facebook }}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="lead_source">{{ _('Lead Source') }}</label>
+                                        <input id="lead_source" name="lead_source" type="text"
+                                               value="{{ customer.lead_source }}"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="status">{{ _('Status') }}</label>
+                                        <select class="form-control" data-trigger name="status" id="status">
+                                            <option value="">{{ _('Customer status') }}</option>
+                                            <option value="paid"
+                                                    {% if customer.status==
+                                            'paid' %}selected="selected"{% endif %}>{{ _('Paid') }}</option>
+                                            <option value="wait2pay"
+                                                    {% if customer.status==
+                                            'wait2pay' %}selected="selected"{% endif %}>{{ _('Wait to pay') }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="note">{{ _('Note') }}</label>
+                                        <textarea class="form-control" id="note" name="note" rows="3">{{ customer.note|safe }}</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="customer-purchased-list" role="tabpanel"
+                 aria-labelledby="customer-purchased-list-tab">
+                <div class="card">
+                </div>
+            </div>
+            <div class="tab-pane fade" id="customer-add-transaction" role="tabpanel"
+                 aria-labelledby="customer-add-transaction-tab">
+                <div class="card">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ sample-page ] end -->
+</div>
+{% endblock %}
+
+{% block css %}
+<!-- [Page specific CSS] start -->
+<link rel="stylesheet" href="{{ url_for('static', filename='admin/css/plugins/datepicker-bs5.min.css') }}"/>
+<!-- [Page specific CSS] end -->
+{% endblock %}
+
+{% block js %}
+<!-- bootstrap-datepicker -->
+<script src="{{ url_for('static', filename='admin/js/plugins/datepicker-full.min.js') }}"></script>
+<script>
+    // datetime pickers
+    var dtp = ['#imported_date', '#inspection_from', '#inspection_to'];
+    dtp.forEach((selector) => {
+        new Datepicker(document.querySelector(selector), {
+            buttonClass: 'btn',
+            todayBtn: true,
+            clearBtn: true,
+            orientation: 'bottom left'
+        });
+    });
+</script>
+{% endblock %}

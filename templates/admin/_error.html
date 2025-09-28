@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<!-- [Head] start -->
+
+<head>
+    <title>Admin Dashboard</title>
+    <!-- [Meta] -->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui"/>
+    <meta name="description" content="Admin Dashboard"/>
+    <meta name="keywords" content="Admin Dashboard"/>
+    <meta name="author" content="github.com/nil-vn"/>
+    <meta name="theme-color" content="#1e293b"/>
+    <meta name="color-scheme" content="dark light"/>
+
+    <!-- [Favicon] icons -->
+    <link rel="icon" href="{{ url_for('static', filename='admin/images/favicon.svg') }}" type="image/svg+xml"/>
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='admin/images/apple-touch-icon.png') }}"/>
+    <link rel="manifest" href="{{ url_for('static', filename='admin/images/site.webmanifest.txt') }}"/>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/css/plugins/style.css') }}"/>
+    <!-- [Font] Family -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <!-- [phosphor Icons] https://phosphoricons.com/ -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/css/plugins/phosphor-icons.css') }}"/>
+    <!-- [Tabler Icons] https://tablericons.com -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/css/plugins/tabler-icons.min.css') }}"/>
+    <!-- [Template CSS Files] -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/css/style.css') }}" id="main-style-link"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin/css/style-preset.css') }}"/>
+
+    {% block css %}
+    {% endblock %}
+
+</head>
+<!-- [Head] end -->
+<!-- [Body] Start -->
+
+{% import '_macros.html' as macros %}
+
+<body data-pc-preset="preset-1" data-pc-sidebar-caption="true" data-pc-direction="ltr" data-pc-theme="light">
+<!-- [ Pre-loader ] start -->
+<div class="loader-bg">
+    <div class="loader-track">
+        <div class="loader-fill"></div>
+    </div>
+</div>
+<!-- [ Pre-loader ] End -->
+
+<!-- [ Main Content ] start -->
+{% block content %}
+{% endblock %}
+
+<!-- [ Main Content ] end -->
+<!-- Required JS -->
+<script src="{{ url_for('static', filename='admin/js/plugins/popper.min.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/js/plugins/simplebar.min.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/js/plugins/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/js/plugins/i18next.min.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/js/plugins/i18nextHttpBackend.min.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/js/script.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/js/theme.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/js/multi-lang.js') }}"></script>
+
+<!-- Theme Configuration Scripts (hardcoded based on vite.config.js values) -->
+<script>
+    layout_change('dark');
+    change_box_container('false'); // false=full-width content
+    layout_caption_change('true'); // true=sidebar grouping
+    layout_rtl_change('false');
+    preset_change('preset-1'); // preset color
+    layout_theme_sidebar_change('false');
+</script>
+
+<!-- [Page Specific JS] start -->
+{% block js %}
+{% endblock %}
+<!-- [Page Specific JS] end -->
+
+{{ macros.theme_customize() }}
+
+</body>
+<!-- [Body] end -->
+</html>

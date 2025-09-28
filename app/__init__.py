@@ -1,6 +1,7 @@
 from typing import Optional, Union
 
-from flask import Flask
+from flask import Flask, request, render_template
+from flask_babel import Babel
 
 
 def create_app(env: Optional[Union[str, object]]) -> Flask:
@@ -22,6 +23,11 @@ def create_app(env: Optional[Union[str, object]]) -> Flask:
     bcrypt.init_app(_app)
     login_manager.init_app(_app)
 
+    def get_locale():
+        return request.cookies.get("locale") or _app.config["BABEL_DEFAULT_LOCALE"]
+
+    Babel(_app, locale_selector=get_locale)
+
     # Create database tables
     import app.admin.models
     import app.homepage.models
@@ -35,5 +41,15 @@ def create_app(env: Optional[Union[str, object]]) -> Flask:
 
     Admin(_app).register()
     Homepage(_app).register()
+
+    # error handler
+    @_app.errorhandler(404)
+    def page_not_found(e):
+        # note that we set the 404 status explicitly
+        return render_template("404.html"), 404
+
+    @_app.errorhandler(500)
+    def internal_server_error(e):
+        return render_template("404.html"), 500
 
     return _app

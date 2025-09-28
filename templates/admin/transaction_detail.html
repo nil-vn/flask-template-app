@@ -1,0 +1,466 @@
+
+
+
+{% extends "_base.html" %}
+
+{% block breadcrumb %}
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="mb-0">{{ _('Detail') }}</h5>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/admin">{{ _('Home') }}</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/customer">{{ _('Inventory') }}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0)">{{ _('Detail') }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- [ sample-page ] start -->
+    <div class="col-lg-4">
+        <div class="card user-card user-card-1">
+            <div class="card-body pb-0">
+                <div class="d-flex user-about-block align-items-center mt-0 mb-3">
+                    <div class="flex-shrink-0">
+                        <div class="position-relative d-inline-block">
+                            <img class="img-radius img-fluid wid-60" src="{{ url_for('static', filename='admin/images/branch/'+ car.branch|lower +'.svg') }}"
+                                 alt="{{ car.branch }}"/>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="mb-1">{{ car.name }}</h6>
+                        <span class="badge bg-light-danger">{{ car.status }}</span>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <span class="f-w-500"><i class="ph ph-envelope-simple m-r-10"></i>{{ _('Branch') }}</span>
+                    <span class="float-end text-body">{{ car.branch }}</span>
+                </li>
+                <li class="list-group-item">
+                    <span class="f-w-500"><i class="ph ph-phone-call m-r-10"></i>{{ _('Imported Date') }}</span>
+                    <span class="float-end text-body">{{ car.imported_date }}</span>
+                </li>
+                <li class="list-group-item border-bottom-0">
+                    <span class="f-w-500"><i class="ph ph-map-pin-line m-r-10"></i>{{ _('Year Of Manufacture') }}</span>
+                    <span class="float-end text-body">{{ car.year_of_manufacture }}</span>
+                </li>
+            </ul>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col">
+                        <h6 class="mb-1">{{ _('Color') }}</h6>
+                        <p class="mb-0">{{ car.color }}</p>
+                    </div>
+                    <div class="col border-start">
+                        <h6 class="mb-1">{{ _('Traded by') }}</h6>
+                        <p class="mb-0">{{ car.traded_company }}</p>
+                    </div>
+                </div>
+            </div>
+            <div
+                    class="nav flex-column nav-pills list-group list-group-flush list-pills"
+                    id="user-set-tab"
+                    role="tablist"
+                    aria-orientation="vertical"
+            >
+                <a
+                        class="nav-link list-group-item list-group-item-action active"
+                        id="user-set-profile-tab"
+                        data-bs-toggle="pill"
+                        href="#user-set-profile"
+                        role="tab"
+                        aria-controls="user-set-profile"
+                        aria-selected="true"
+                >
+                    <span class="f-w-500 d-inline-flex align-items-center"><i class="mb-0 ph ph-user m-r-10 h5"></i>{{ _('Profile Overview') }}</span>
+                    <span class="float-end"><i class="ph ph-caret-right"></i></span>
+                </a>
+                <a
+                        class="nav-link list-group-item list-group-item-action"
+                        id="user-set-information-tab"
+                        data-bs-toggle="pill"
+                        href="#user-set-information"
+                        role="tab"
+                        aria-controls="user-set-information"
+                        aria-selected="false"
+                >
+                  <span class="f-w-500 d-inline-flex align-items-center"
+                  ><i class="mb-0 ph ph-file-text m-r-10 h5"></i>Personal Information</span
+                  >
+                    <span class="float-end"><i class="ph ph-caret-right"></i></span>
+                </a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h5>Hello card</h5>
+            </div>
+            <div class="card-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="tab-content" id="user-set-tabContent">
+            <div class="tab-pane fade show active" id="user-set-profile" role="tabpanel"
+                 aria-labelledby="user-set-profile-tab">
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <h5 class="alert-heading"><i class="ph ph-warning-circle me-2"></i> Email Verification</h5>
+                    <p class="mb-0"
+                    >Your email is not confirmed. Please check your inbox. <a href="#!" class="text-danger"> Resend
+                        confirmation</a></p
+                    >
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="ph ph-user align-text-bottom text-primary f-20"></i><span
+                                class="p-l-5">About me</span></h5>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            Hello,I’m Akshay Handge Creative Graphic Designer &amp; User Experience Desiger based in
+                            Website, I create digital
+                            Products a more Beautiful and usable place. Morbi accumsan ipsum velit. Nam nec tellus a
+                            odio tincidunt.
+                        </p>
+                        <h5 class="mt-5 mb-3">Personal Details</h5>
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <tbody>
+                                <tr>
+                                    <td class="">Full Name</td>
+                                    <td class="">:</td>
+                                    <td class="">Akshay Handge</td>
+                                </tr>
+                                <tr>
+                                    <td class="">Father's Name</td>
+                                    <td class="">:</td>
+                                    <td class="">Mr. Deepak Handge</td>
+                                </tr>
+                                <tr>
+                                    <td class="">Address</td>
+                                    <td class="">:</td>
+                                    <td class="">Street 110-B Kalani Bag, Dewas, M.P. INDIA</td>
+                                </tr>
+                                <tr>
+                                    <td class="">Zip Code</td>
+                                    <td class="">:</td>
+                                    <td class="">12345</td>
+                                </tr>
+                                <tr>
+                                    <td class="">Phone</td>
+                                    <td class="">:</td>
+                                    <td class="">+0 123456789 , +0 123456789</td>
+                                </tr>
+                                <tr>
+                                    <td class="">Email</td>
+                                    <td class="">:</td>
+                                    <td class=""><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                    data-cfemail="43303633332c313703263b222e332f266d202c2e">[email&#160;protected]</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="">Website</td>
+                                    <td class="">:</td>
+                                    <td class="">http://example.com</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- Education -->
+                        <h5 class="mt-5 mb-4 pb-3 border-bottom">Education</h5>
+                        <div class="row align-items-center mb-3">
+                            <div class="col-sm-3"><h5>2014-2025</h5><span>Master Degree</span></div>
+                            <div class="col-sm-9 border-start">
+                                <h6>Master Degree in Computer Application</h6>
+                                <p>University of Oxford, England</p>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mb-3">
+                            <div class="col-sm-3"><h5>2011-2013</h5><span>Bechelor</span></div>
+                            <div class="col-sm-9 border-start">
+                                <h6>Bachelor Degree in Computer Engineering</h6>
+                                <p>Imperial College London</p>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mb-3">
+                            <div class="col-sm-3"><h5>2009-2011</h5><span>School</span></div>
+                            <div class="col-sm-9 border-start">
+                                <h6>Higher Secondry Education</h6>
+                                <p>School of London, England</p>
+                            </div>
+                        </div>
+                        <h5 class="mt-5 mb-4 pb-3 border-bottom">Employment</h5>
+                        <div class="row align-items-center mb-3">
+                            <div class="col-sm-3"><h5>Current</h5><span>Senior</span></div>
+                            <div class="col-sm-9 border-start">
+                                <h6>Senior UI/UX designer</h6>
+                                <p class="mb-1"
+                                >Perform task related to project manager with the 100+ team under my observation. Team
+                                    management is key role in
+                                    this company.</p
+                                >
+                                <span class="text-muted">Microsoft, TX, USA</span>
+                            </div>
+                        </div>
+                        <div class="row align-items-center mb-3">
+                            <div class="col-sm-3"><h5>2025-2025</h5><span>Junior</span></div>
+                            <div class="col-sm-9 border-start">
+                                <h6>Trainee cum Project Manager</h6>
+                                <span class="text-muted">Microsoft, TX, USA</span>
+                            </div>
+                        </div>
+                        <h5 class="mt-5 mb-4 pb-3 border-bottom">Skills</h5>
+                        <div class="row align-items-center mt-3">
+                            <div class="col-md-6 mb-3">
+                                <h6 class="m-b-10 text-muted">Web Designer</h6>
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="progress" style="height: 8px">
+                                            <div class="progress-bar bg-primary" style="width: 70%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h6 class="m-b-0">70%</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6 class="m-b-10 text-muted">Graphic Designer</h6>
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="progress" style="height: 8px">
+                                            <div class="progress-bar bg-success" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h6 class="m-b-0">80%</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6 class="m-b-10 text-muted">UX Researcher</h6>
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="progress" style="height: 8px">
+                                            <div class="progress-bar bg-success" style="width: 85%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h6 class="m-b-0">3.2</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6 class="m-b-10 text-muted">HTML</h6>
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="progress" style="height: 8px">
+                                            <div class="progress-bar bg-warning" style="width: 45%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h6 class="m-b-0">45%</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6 class="m-b-10 text-muted">Wordpress</h6>
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="progress" style="height: 8px">
+                                            <div class="progress-bar bg-danger" style="width: 25%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h6 class="m-b-0">25%</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6 class="m-b-10 text-muted">PHP</h6>
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <div class="progress" style="height: 8px">
+                                            <div class="progress-bar bg-primary" style="width: 65%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <h6 class="m-b-0">65%</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="user-set-information" role="tabpanel"
+                 aria-labelledby="user-set-information-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="ph ph-user align-text-bottom text-primary f-20"></i><span class="p-l-5">Personal Information</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="Ashoka Tano"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Location</label>
+                                    <select class="form-control">
+                                        <option>Washington</option>
+                                        <option>India</option>
+                                        <option>Africa</option>
+                                        <option>New York</option>
+                                        <option>Malesia</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Bio <span class="text-danger">*</span></label>
+                                    <textarea class="form-control">
+I consider myself as a creative, professional and a flexible person. I can adapt with any kind of brief and design style</textarea
+                                    >
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Experience<span class="text-danger">*</span></label>
+                                    <select class="form-control">
+                                        <option>Startup</option>
+                                        <option>2 year</option>
+                                        <option>3 year</option>
+                                        <option selected>4 year</option>
+                                        <option>5 year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Skills</label>
+                                    <div class="w-100">
+                                        <select class="form-control">
+                                            <option selected>admin template</option>
+                                            <option>bootstrap</option>
+                                            <option>css</option>
+                                            <option>html5</option>
+                                            <option>css3</option>
+                                            <option>ionic</option>
+                                            <option>framework</option>
+                                            <option>javascript</option>
+                                            <option>jquery</option>
+                                            <option>scss</option>
+                                            <option>uidesigner</option>
+                                            <option>web designe</option>
+                                            <option>webflow</option>
+                                            <option>javascript</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <h5
+                        ><i class="ph ph-share-network align-text-bottom text-primary f-20"></i
+                        ><span class="p-l-5">Social Information</span></h5
+                        >
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label">Facebook</label>
+                            <div class="input-group">
+                        <span class="input-group-text bg-primary text-white">
+                          <i class="ti ti-brand-facebook-filled"></i>
+                        </span>
+                                <input type="text" class="form-control" placeholder="Profile Url"/>
+                                <button class="btn text-white border-0 shadow-none bg-primary" type="button">Connect
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Twitter</label>
+                            <div class="input-group">
+                        <span class="input-group-text bg-dark text-white">
+                          <i class="ti ti-brand-x-filled"></i>
+                        </span>
+                                <input type="text" class="form-control" placeholder="Profile Url"/>
+                                <button class="btn text-white border-0 shadow-none bg-info" type="button">Connect
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Google Plus</label>
+                            <div class="input-group">
+                        <span class="input-group-text bg-danger text-white">
+                          <i class="ti ti-brand-google-filled"></i>
+                        </span>
+                                <input type="text" class="form-control" placeholder="Profile Url"/>
+                                <button class="btn text-white border-0 shadow-none bg-danger" type="button">Connect
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-header">
+                        <h5><i class="ph ph-map-pin align-text-bottom text-primary f-20"></i><span class="p-l-5">Contact Information</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Contact Phone</label>
+                                    <input type="text" class="form-control" value="(+99) 9999 999 999"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Email <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="demo@sample.com"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Portfolio Url</label>
+                                    <input type="text" class="form-control" value="https://demo.com"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Address</label>
+                                    <textarea
+                                            class="form-control">3379  Monroe Avenue, Fort Myers, Florida(33912)</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        <button class="btn btn-primary">Update Profile</button>
+                        <button class="btn btn-outline-dark ms-2">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ sample-page ] end -->
+</div>
+{% endblock %}

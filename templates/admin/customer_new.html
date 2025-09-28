@@ -1,0 +1,153 @@
+{% extends "_base.html" %}
+
+{% block breadcrumb %}
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="mb-0">{{ _('Customer') }}</h5>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/admin">{{ _('Home') }}</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/customer">{{ _('Customer') }}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0)">{{ _('Add new') }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- [ form-element ] start -->
+    <div class="col-lg-12">
+        <div class="card">
+            <form name="customer_form" action="/admin/customer/new" method="POST"
+                  enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                <div id="sticky-action" class="sticky-action">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-sm-6">
+                                <h5><i class="ph ph-user align-text-bottom text-primary f-20"></i><span
+                                        class="p-l-5">{{ _('Customer information') }}</span>
+                                </h5>
+                            </div>
+                            <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
+                                <button type="submit" class="btn btn-success">{{ _('Create') }}</button>
+                                <button type="reset" class="btn btn-light-secondary">{{ _('Cancel') }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">{{ _('Name') }}<span
+                                        class="text-danger">*</span></label>
+                                <input id="name" name="name" type="text"
+                                       class="form-control {% if form.name.errors %}is-invalid{% endif %}"/>
+                                {% if form.name.errors %}
+                                <div class="invalid-feedback">{{ form.name.errors[0] }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="status">{{ _('Gender') }}</label>
+                                <select class="form-control" data-trigger name="gender" id="gender">
+                                    <option value="unknown">{{ _('Unknown') }}</option>
+                                    <option value="male">{{ _('Male') }}</option>
+                                    <option value="female">{{ _('Female') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="address">{{ _('Address') }}</label>
+                                <input id="address" name="address" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="phone">{{ _('Phone') }}</label>
+                                <input id="phone" name="phone" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="birth_day">{{ _('Birthday') }}</label>
+                                <div class="input-group date">
+                                    <input name="birth_day" type="text"
+                                           class="form-control datepicker-input" id="birth_day">
+                                    <span class="input-group-text"><i class="ph ph-calendar-blank"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="facebook">{{ _('Facebook') }}</label>
+                                <input id="facebook" name="facebook" type="text"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="lead_source">{{ _('Lead Source') }}</label>
+                                <input id="lead_source" name="lead_source" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="status">{{ _('Status') }}</label>
+                                <select class="form-control" data-trigger name="status" id="status">
+                                    <option value="">{{ _('Customer status') }}</option>
+                                    <option value="paid">{{ _('Paid') }}</option>
+                                    <option value="wait2pay">{{ _('Wait to pay') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="note">{{ _('Note') }}</label>
+                                <textarea class="form-control" id="note" name="note"
+                                          rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- [ form-element ] end -->
+</div>
+{% endblock %}
+
+
+{% block css %}
+<!-- [Page specific CSS] start -->
+<link rel="stylesheet" href="{{ url_for('static', filename='admin/css/plugins/datepicker-bs5.min.css') }}"/>
+<!-- [Page specific CSS] end -->
+{% endblock %}
+
+{% block js %}
+<!-- bootstrap-datepicker -->
+<script src="{{ url_for('static', filename='admin/js/plugins/datepicker-full.min.js') }}"></script>
+<script>
+    // datetime pickers
+    var dtp = ['#birth_day'];
+    dtp.forEach((selector) => {
+        new Datepicker(document.querySelector(selector), {
+            buttonClass: 'btn',
+            todayBtn: true,
+            clearBtn: true,
+            orientation: 'bottom left'
+        });
+    });
+</script>
+{% endblock %}

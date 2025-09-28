@@ -1,0 +1,1803 @@
+{% extends "_base.html" %}
+
+{% block breadcrumb %}
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="mb-0">{{ _('Inventory') }}</h5>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/dashboard/index.html">{{ _('Home') }}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0)">{{ _('Inventory') }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xxl-8">
+        <div class="row g-3 mb-3">
+            <div class="col-md-6 col-lg-4">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="mb-2 d-flex align-items-center justify-content-between gap-1">
+                            <h6 class="mb-0">Total</h6>
+                            <p class="mb-0 text-muted d-flex align-items-center gap-1">
+                                <i class="ti ti-caret-up-filled text-success"></i>
+                                70.5%
+                            </p>
+                        </div>
+                        <div class="row g-2 align-items-center">
+                            <div class="col-6">
+                                <h5 class="mb-2 mt-3">$7,825</h5>
+                                <div class="d-flex align-items-center gap-1">
+                                    <h5 class="mb-0">9</h5>
+                                    <p class="mb-0 text-muted d-flex align-items-center gap-2">invoices</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div id="total-invoice-1-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="d-flex mb-2 align-items-center justify-content-between gap-1">
+                            <h6 class="mb-0">Paid</h6>
+                            <p class="mb-0 text-muted d-flex align-items-center gap-1">
+                                <i class="ti ti-caret-down-filled text-warning"></i>
+                                -8.73%
+                            </p>
+                        </div>
+                        <div class="row g-2 align-items-center">
+                            <div class="col-6">
+                                <h5 class="mb-2 mt-3">$5678.09</h5>
+                                <div class="d-flex align-items-center gap-1">
+                                    <h5 class="mb-0">5</h5>
+                                    <p class="mb-0 text-muted d-flex align-items-center gap-2">invoices</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div id="total-invoice-2-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+                <div class="card mb-0">
+                    <div class="card-body">
+                        <div class="mb-2 d-flex align-items-center justify-content-between gap-1">
+                            <h6 class="mb-0">Overdue</h6>
+                            <p class="mb-0 text-muted d-flex align-items-center gap-1">
+                                <i class="ti ti-caret-down-filled text-danger"></i>
+                                -4.73%
+                            </p>
+                        </div>
+                        <div class="row g-2 align-items-center">
+                            <div class="col-6">
+                                <h5 class="mb-2 mt-3">$5678.09</h5>
+                                <div class="d-flex align-items-center gap-1">
+                                    <h5 class="mb-0">5</h5>
+                                    <p class="mb-0 text-muted d-flex align-items-center gap-2">invoices</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div id="total-invoice-3-chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xxl-4">
+        <div class="card bg-primary">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0">
+                        <div class="avatar bg-white bg-opacity-10 text-white">
+                            <i class="ph ph-user-plus f-22"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <p class="text-white mb-1 d-flex align-items-center gap-2">Total Recievables <i
+                                class="ph ph-info align-middle"></i></p>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <p class="text-white mb-0 d-flex align-items-center gap-2">Current <span
+                                    class="fw-medium f-16">109.1k</span></p>
+                            <p class="text-white mb-0 d-flex align-items-center gap-2">Overdue <span
+                                    class="fw-medium f-16">62k</span></p>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="text-white mt-3 mb-1">$43,078</h4>
+                <div class="d-flex align-items-center">
+                    <div class="flex-grow-1 me-3">
+                        <div class="progress bg-light-warning" style="height: 7px">
+                            <div class="progress-bar bg-warning" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="flex-shrink-0 text-end wid-30">
+                        <p class="text-white mb-0">90%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-tabs invoice-tab mb-3" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button
+                                class="nav-link active"
+                                id="analytics-tab-1"
+                                data-bs-toggle="tab"
+                                data-bs-target="#analytics-tab-1-pane"
+                                type="button"
+                                role="tab"
+                                aria-controls="analytics-tab-1-pane"
+                                aria-selected="true"
+                        >
+                                <span class="d-flex align-items-center gap-2">All <span
+                                        class="avatar rounded-circle bg-light-primary">5</span></span>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                                class="nav-link"
+                                id="analytics-tab-2"
+                                data-bs-toggle="tab"
+                                data-bs-target="#analytics-tab-2-pane"
+                                type="button"
+                                role="tab"
+                                aria-controls="analytics-tab-2-pane"
+                                aria-selected="false"
+                        >
+                  <span class="d-flex align-items-center gap-2"
+                  >Paid <span class="avatar rounded-circle bg-light-success">2</span></span
+                  >
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                                class="nav-link"
+                                id="analytics-tab-3"
+                                data-bs-toggle="tab"
+                                data-bs-target="#analytics-tab-3-pane"
+                                type="button"
+                                role="tab"
+                                aria-controls="analytics-tab-3-pane"
+                                aria-selected="false"
+                        >
+                  <span class="d-flex align-items-center gap-2"
+                  >Unpaid <span class="avatar rounded-circle bg-light-warning">2</span></span
+                  >
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button
+                                class="nav-link"
+                                id="analytics-tab-4"
+                                data-bs-toggle="tab"
+                                data-bs-target="#analytics-tab-4-pane"
+                                type="button"
+                                role="tab"
+                                aria-controls="analytics-tab-4-pane"
+                                aria-selected="false"
+                        >
+                  <span class="d-flex align-items-center gap-2"
+                  >Cancelled <span class="avatar rounded-circle bg-light-danger">1</span></span
+                  >
+                        </button>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div
+                            class="tab-pane fade show active"
+                            id="analytics-tab-1-pane"
+                            role="tabpanel"
+                            aria-labelledby="analytics-tab-1"
+                            tabindex="0"
+                    >
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="pc-dt-simple-1">
+                                <thead>
+                                <tr>
+                                    <th>Invoice Id</th>
+                                    <th>User Name</th>
+                                    <th>Create Date</th>
+                                    <th>Due Date</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-5.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="1d70706e75692f2e5d7a707c7471337e7270">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-9.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-10.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="691d081a1a5b5a290e04080005470a0604">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-1.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="0f62627c677b3d3c4f68626e6663216c6062">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-2.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-3.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="dca8bdafafeeef9cbbb1bdb5b0f2bfb3b1">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-4.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="adc0c0dec5d99f9eedcac0ccc4c183cec2c0">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-7.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-8.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="394d584a4a0b0a795e54585055175a5654">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="analytics-tab-2-pane" role="tabpanel"
+                         aria-labelledby="analytics-tab-2" tabindex="0">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="pc-dt-simple-2">
+                                <thead>
+                                <tr>
+                                    <th>Invoice Id</th>
+                                    <th>User Name</th>
+                                    <th>Create Date</th>
+                                    <th>Due Date</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-2.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-3.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="493d283a3a7b7a092e24282025672a2624">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-5.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="3a575749524e08097a5d575b535614595557">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-9.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-10.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="fa8e9b8989c8c9ba9d979b9396d4999597">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-1.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="88e5e5fbe0fcbabbc8efe5e9e1e4a6ebe7e5">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-4.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="4c21213f24387e7f0c2b212d2520622f2321">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-7.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-8.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="3246534141000172555f535b5e1c515d5f">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="analytics-tab-3-pane" role="tabpanel"
+                         aria-labelledby="analytics-tab-3" tabindex="0">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="pc-dt-simple-3">
+                                <thead>
+                                <tr>
+                                    <th>Invoice Id</th>
+                                    <th>User Name</th>
+                                    <th>Create Date</th>
+                                    <th>Due Date</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-5.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="630e0e100b17515023040e020a0f4d000c0e">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-9.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-10.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="89fde8fafabbbac9eee4e8e0e5a7eae6e4">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-1.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="aac7c7d9c2de9899eacdc7cbc3c684c9c5c7">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-2.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-3.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="93e7f2e0e0a1a0d3f4fef2faffbdf0fcfe">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-4.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="5c31312f34286e6f1c3b313d3530723f3331">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-7.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-8.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="0d796c7e7e3f3e4d6a606c6461236e6260">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="analytics-tab-4-pane" role="tabpanel"
+                         aria-labelledby="analytics-tab-4" tabindex="0">
+                        <div class="table-responsive">
+                            <table class="table table-hover" id="pc-dt-simple-4">
+                                <thead>
+                                <tr>
+                                    <th>Invoice Id</th>
+                                    <th>User Name</th>
+                                    <th>Create Date</th>
+                                    <th>Due Date</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>5</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-2.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-3.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="83f7e2f0f0b1b0c3e4eee2eaefade0ecee">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-5.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="761b1b051e02444536111b171f1a5815191b">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-9.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-10.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="7307120000414033141e121a1f5d101c1e">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-1.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="b7dadac4dfc38584f7d0dad6dedb99d4d8da">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-4.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Mickie Melmoth</span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100"><span class="__cf_email__"
+                                                                                          data-cfemail="81ececf2e9f5b3b2c1e6ece0e8edafe2eeec">[email&#160;protected]</span></span></a>
+                                                </p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/5/2025</td>
+                                    <td>7/11/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-success">Paid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-7.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>7/6/2025</td>
+                                    <td>7/8/2025</td>
+                                    <td>3000</td>
+                                    <td><span class="badge bg-light-danger">Cancelled</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>
+                                        <div class="row align-items-center">
+                                            <div class="col-auto pe-0">
+                                                <img src="{{ url_for('static', filename='admin/images/user/avatar-8.svg') }}"
+                                                     alt="user-image" class="wid-40 hei-40 rounded-circle"/>
+                                            </div>
+                                            <div class="col">
+                                                <h6 class="mb-1"><span class="text-truncate w-100"><a
+                                                        href="/cdn-cgi/l/email-protection" class="__cf_email__"
+                                                        data-cfemail="2155405252131261464c40484d0f424e4c">[email&#160;protected]</a></span>
+                                                </h6>
+                                                <p class="f-12 mb-0"
+                                                ><a href="#!" class="text-muted"><span
+                                                        class="text-truncate w-100">Shelba Thews</span></a></p
+                                                >
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>07/01/2025</td>
+                                    <td>07/02/2025</td>
+                                    <td>1000</td>
+                                    <td><span class="badge bg-light-info">Unpaid</span></td>
+                                    <td class="text-end">
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                    class="ti ti-eye f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#"
+                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
+                                                    class="ti ti-edit f-20"></i></a
+                                            ></li>
+                                            <li class="list-inline-item"
+                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                    class="ti ti-trash f-20"></i></a
+                                            ></li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='admin/js/plugins/apexcharts.min.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/js/plugins/simple-datatables.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/js/admin/invoice-list.js') }}"></script>
+{% endblock %}

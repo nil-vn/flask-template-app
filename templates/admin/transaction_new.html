@@ -1,0 +1,165 @@
+{% extends "_base.html" %}
+
+{% block breadcrumb %}
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="mb-0">{{ _('Inventory') }}</h5>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/admin">{{ _('Home') }}</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/inventory">{{ _('Inventory') }}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0)">{{ _('Add new') }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- [ form-element ] start -->
+    <div class="col-lg-12">
+        <div class="card">
+            <form name="inventory_form" action="/admin/inventory/new" method="POST" enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                <div id="sticky-action" class="sticky-action">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-sm-6">
+                                <h5>{{ _('Add a new car') }}</h5>
+                            </div>
+                            <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
+                                <button type="submit" class="btn btn-success">{{ _('Submit') }}</button>
+                                <button type="reset" class="btn btn-light-secondary">{{ _('Cancel') }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="name">{{ _('Name/Model') }}</label>
+                                <input id="name" name="name" type="text"
+                                       class="form-control {% if form.name.errors %}is-invalid{% endif %}"/>
+                                {% if form.name.errors %}
+                                <div class="invalid-feedback">{{ form.name.errors[0] }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="year_of_manufacture">{{ _('Year Of Manufactoring') }}</label>
+                                <input id="year_of_manufacture" name="year_of_manufacture" type="text" class="form-control"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="vin">{{ _('Chassis No. (VIN)') }}</label>
+                                <input id="vin" name="vin" type="text" class="form-control"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="imported_date">{{ _('Imported date') }}</label>
+                                <div class="input-group date">
+                                    <input name="imported_date" type="text" class="form-control datepicker-input"
+                                           value="" id="imported_date">
+                                    <span class="input-group-text">
+                                      <i class="ph ph-calendar-blank"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="purchase_price">{{ _('Purchase Price') }}</label>
+                                <input id="purchase_price" name="purchase_price" type="text" class="form-control"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="inspection_from">{{ _('Inspection From') }}</label>
+                                <div class="input-group date">
+                                    <input name="inspection_from" type="text" class="form-control datepicker-input"
+                                           value="" id="inspection_from">
+                                    <span class="input-group-text">
+                                      <i class="ph ph-calendar-blank"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="status">{{ _('Status') }}</label>
+                                <select class="form-control" data-trigger name="status" id="status">
+                                    <option value="">{{ _('Product status') }}</option>
+                                    <option value="reserved">{{ _('Reserved') }}</option>
+                                    <option value="available">{{ _('Available') }}</option>
+                                    <option value="checked">{{ _('Checked') }}</option>
+                                    <option value="unchecked">{{ _('Unchecked') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="color">{{ _('Color') }}</label>
+                                <input id="color" name="color" type="text" class="form-control"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="branch">{{ _('Branch') }}</label>
+                                <input id="branch" name="branch" type="text" class="form-control"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="license_plate_no">{{ _('License Plate No.') }}</label>
+                                <input id="license_plate_no" name="license_plate_no" type="text" class="form-control"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="traded_company">{{ _('Traded Company') }}</label>
+                                <input id="traded_company" name="traded_company" type="text" class="form-control"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="selling_price">{{ _('Sale Price') }}</label>
+                                <input id="selling_price" name="selling_price" type="text" class="form-control"/>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="inspection_to">{{ _('Inspection To') }}</label>
+                                <div class="input-group date">
+                                    <input name="inspection_to" type="text" class="form-control datepicker-input"
+                                           value="" id="inspection_to">
+                                    <span class="input-group-text">
+                                      <i class="ph ph-calendar-blank"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="note">{{ _('Note') }}</label>
+                                <textarea class="form-control" id="note" name="note" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- [ form-element ] end -->
+</div>
+{% endblock %}
+
+{% block css %}
+<!-- [Page specific CSS] start -->
+<link rel="stylesheet" href="{{ url_for('static', filename='admin/css/plugins/datepicker-bs5.min.css') }}"/>
+<!-- [Page specific CSS] end -->
+{% endblock %}
+
+{% block js %}
+<!-- bootstrap-datepicker -->
+<script src="{{ url_for('static', filename='admin/js/plugins/datepicker-full.min.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/js/plugins/choices.min.js') }}"></script>
+<script>
+    // datetime pickers
+    var dtp = ['#imported_date', '#inspection_from', '#inspection_to'];
+    dtp.forEach((selector) => {
+        new Datepicker(document.querySelector(selector), {
+            buttonClass: 'btn',
+            todayBtn: true,
+            clearBtn: true,
+            orientation: 'bottom left'
+        });
+    });
+</script>
+{% endblock %}

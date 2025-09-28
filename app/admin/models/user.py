@@ -1,4 +1,3 @@
-# Flask modules
 from flask_login import UserMixin
 
 # Other modules
@@ -16,8 +15,3 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"<User {self.name}>"
-
-
-__all__ = [
-    User,
-]
