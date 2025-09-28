@@ -1,18 +1,18 @@
 from datetime import datetime
-from typing import Optional, List
+from typing import Optional
 
-from sqlalchemy import ForeignKey
 from sqlalchemy.orm import (
     Mapped,
     mapped_column,
-    relationship,
 )
 
+from sqlalchemy.orm import relationship
+from app.utils import db
+from .base import BaseModel
+from .transaction_car import transaction_car
 
-from app.utils.db import db
 
-
-class Car(db.Model):
+class Car(BaseModel):
     __tablename__ = "car"
     __table_args__ = {"sqlite_autoincrement": True}
     __except__cols = ["customer"]
@@ -35,14 +35,10 @@ class Car(db.Model):
     note: Mapped[Optional[str]]
     license_plate_no: Mapped[Optional[str]]
 
-    customer_id: Mapped[Optional[int]] = mapped_column(
-        ForeignKey("customer.id", ondelete="CASCADE"), nullable=True
+    # Nhiều transaction qua bảng trung gian
+    transactions = relationship(
+        "Transaction", secondary=transaction_car, back_populates="cars"
     )
-    customer: Mapped["Customer"] = relationship(back_populates="cars")
-    transaction_id: Mapped[Optional[int]] = mapped_column(
-        ForeignKey("transaction.id", ondelete="CASCADE"), nullable=True
-    )
-    transactions: Mapped["Transaction"] = relationship(back_populates="cars")
 
     created_at: Mapped[str] = mapped_column(default=datetime.utcnow)
 

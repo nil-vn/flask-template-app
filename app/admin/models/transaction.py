@@ -1,18 +1,18 @@
 from datetime import datetime
 from typing import Optional
 
-from sqlalchemy import ForeignKey
 from sqlalchemy.orm import (
     Mapped,
     mapped_column,
-    relationship,
 )
-
-from app.admin.models import Customer, Car
+from sqlalchemy import Column, Integer, ForeignKey
+from sqlalchemy.orm import relationship
 from app.utils import db
+from .base import BaseModel
+from .transaction_car import transaction_car
 
 
-class Transaction(db.Model):
+class Transaction(BaseModel):
     __tablename__ = "transaction"
     __table_args__ = {"sqlite_autoincrement": True}
 
@@ -23,14 +23,26 @@ class Transaction(db.Model):
     note: Mapped[Optional[str]]
     created_at: Mapped[str] = mapped_column(default=datetime.utcnow)
 
-    car_id: Mapped[Optional[int]] = mapped_column(
-        ForeignKey("car.id", ondelete="CASCADE"), nullable=True
-    )
-    cars: Mapped["Car"] = relationship(back_populates="transactions")
     customer_id: Mapped[Optional[int]] = mapped_column(
         ForeignKey("customer.id", ondelete="CASCADE"), nullable=True
     )
-    customer: Mapped["Customer"] = relationship(back_populates="transactions")
+
+    # Quan hệ với Customer
+    customer = relationship("Customer", back_populates="transactions")
+
+    # Quan hệ nhiều-nhiều với Car
+    cars = relationship("Car", secondary=transaction_car, back_populates="transactions")
 
     def __repr__(self):
         return f"<Transaction {self.name}>"
+
+    @classmethod
+    def field_names(cls):
+        """Return all column names for this model."""
+        return [c.name for c in cls.__table__.columns]
+
+    @classmethod
+    def from_form(cls, form):
+        """Create instance from a form, filtering only valid fields."""
+        data = {k: v for k, v in form.data.items() if k in cls.field_names()}
+        return cls(**data)

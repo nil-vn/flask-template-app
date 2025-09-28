@@ -26,17 +26,21 @@
     <!-- [ form-element ] start -->
     <div class="col-lg-12">
         <div class="card">
-            <form name="inventory_form" action="/admin/inventory/new" method="POST" enctype="multipart/form-data">
+            <form name="add_transaction" action="/admin/transaction/new" method="POST"
+                  enctype="multipart/form-data">
                 {{ form.csrf_token }}
-                <div id="sticky-action" class="sticky-action">
+                <div id="sticky-transaction" class="sticky-action">
                     <div class="card-header">
                         <div class="row align-items-center">
                             <div class="col-sm-6">
-                                <h5>{{ _('Add a new car') }}</h5>
+                                <h5><i class="ph ph-user align-text-bottom text-primary f-20"></i><span
+                                        class="p-l-5">{{ _('Add Customer Purchase') }}</span>
+                                </h5>
                             </div>
                             <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
-                                <button type="submit" class="btn btn-success">{{ _('Submit') }}</button>
-                                <button type="reset" class="btn btn-light-secondary">{{ _('Cancel') }}</button>
+                                <button type="submit" class="btn btn-success">{{ _('Add') }}</button>
+                                <button type="reset" class="btn btn-light-secondary">{{ _('Cancel') }}
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -45,90 +49,55 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label" for="name">{{ _('Name/Model') }}</label>
-                                <input id="name" name="name" type="text"
-                                       class="form-control {% if form.name.errors %}is-invalid{% endif %}"/>
-                                {% if form.name.errors %}
-                                <div class="invalid-feedback">{{ form.name.errors[0] }}</div>
-                                {% endif %}
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="year_of_manufacture">{{ _('Year Of Manufactoring') }}</label>
-                                <input id="year_of_manufacture" name="year_of_manufacture" type="text" class="form-control"/>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="vin">{{ _('Chassis No. (VIN)') }}</label>
-                                <input id="vin" name="vin" type="text" class="form-control"/>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="imported_date">{{ _('Imported date') }}</label>
-                                <div class="input-group date">
-                                    <input name="imported_date" type="text" class="form-control datepicker-input"
-                                           value="" id="imported_date">
-                                    <span class="input-group-text">
-                                      <i class="ph ph-calendar-blank"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="purchase_price">{{ _('Purchase Price') }}</label>
-                                <input id="purchase_price" name="purchase_price" type="text" class="form-control"/>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="inspection_from">{{ _('Inspection From') }}</label>
-                                <div class="input-group date">
-                                    <input name="inspection_from" type="text" class="form-control datepicker-input"
-                                           value="" id="inspection_from">
-                                    <span class="input-group-text">
-                                      <i class="ph ph-calendar-blank"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="status">{{ _('Status') }}</label>
-                                <select class="form-control" data-trigger name="status" id="status">
-                                    <option value="">{{ _('Product status') }}</option>
-                                    <option value="reserved">{{ _('Reserved') }}</option>
-                                    <option value="available">{{ _('Available') }}</option>
-                                    <option value="checked">{{ _('Checked') }}</option>
-                                    <option value="unchecked">{{ _('Unchecked') }}</option>
+                                <label class="form-label" for="customer">{{ _('Customer') }}<span
+                                        class="text-danger">*</span></label>
+                                <select id="customer" name="customer_id" class="form-control">
+                                    <option value="">{{ _('Select A Customer') }}</option>
+                                    {% for customer in customers %}
+                                    <option value="{{ customer.id }}">{{ customer.name }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label" for="color">{{ _('Color') }}</label>
-                                <input id="color" name="color" type="text" class="form-control"/>
+                                <input type="text" name="car_id" value="">
                             </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label" for="branch">{{ _('Branch') }}</label>
-                                <input id="branch" name="branch" type="text" class="form-control"/>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="license_plate_no">{{ _('License Plate No.') }}</label>
-                                <input id="license_plate_no" name="license_plate_no" type="text" class="form-control"/>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="traded_company">{{ _('Traded Company') }}</label>
-                                <input id="traded_company" name="traded_company" type="text" class="form-control"/>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="selling_price">{{ _('Sale Price') }}</label>
-                                <input id="selling_price" name="selling_price" type="text" class="form-control"/>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="inspection_to">{{ _('Inspection To') }}</label>
+                                <label class="form-label" for="purchase_date">{{ _('Purchase Date')
+                                    }}</label>
                                 <div class="input-group date">
-                                    <input name="inspection_to" type="text" class="form-control datepicker-input"
-                                           value="" id="inspection_to">
-                                    <span class="input-group-text">
-                                      <i class="ph ph-calendar-blank"></i>
-                                    </span>
+                                    <input name="purchase_date" type="text"
+                                           class="form-control datepicker-input" id="purchase_date">
+                                    <span class="input-group-text"><i
+                                            class="ph ph-calendar-blank"></i></span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="mb-3">
-                                <label class="form-label" for="note">{{ _('Note') }}</label>
-                                <textarea class="form-control" id="note" name="note" rows="3"></textarea>
+                                <label class="form-label" for="selling_price">{{ _('Unit Price') }}</label>
+                                <input id="selling_price" name="selling_price" type="text"
+                                       class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="trans_status">{{ _('Status') }}</label>
+                                <select class="form-control" name="status" id="trans_status">
+                                    <option value="">{{ _('Customer status') }}</option>
+                                    <option value="paid">{{ _('Paid') }}</option>
+                                    <option value="wait2pay">{{ _('Wait to pay') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="trans_note">{{ _('Note') }}</label>
+                                <textarea class="form-control" id="trans_note" name="note"
+                                          rows="3"></textarea>
                             </div>
                         </div>
                     </div>

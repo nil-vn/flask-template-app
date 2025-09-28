@@ -38,3 +38,12 @@ class CustomerForm(FlaskForm):
     lead_source = StringField("lead_source")
     status = StringField("status")
     note = StringField("note")
+
+class TransactionForm(FlaskForm):
+    id = StringField("id")
+    customer_id = StringField("customer_id")
+    purchase_time = StringField("purchase_time")
+    selling_price = StringField("selling_price", validators=[Optional()])
+    status = StringField("status")
+    note = StringField("note")
+    car_id = StringField("car_id")

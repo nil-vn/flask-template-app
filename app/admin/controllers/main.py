@@ -2,8 +2,8 @@ import os
 from flask import Blueprint, request, redirect
 from flask import render_template, flash, url_for
 
-from app.admin.models import Car, Customer
-from app.admin.services.forms import CarForm, CustomerForm
+from app.admin.models import Car, Customer, Transaction
+from app.admin.services.forms import CarForm, CustomerForm, TransactionForm
 from app.utils import login_manager
 from app.utils.db import db
 from flask_babel import gettext as _
@@ -80,12 +80,7 @@ def car_detail(car_id):
                 db.session.rollback()
                 flash(f"Error updating car: {e}", "danger")
     customers = Customer.get_all()
-    return render_template(
-        "car_detail.html",
-        car=car,
-        form=form,
-        customers=customers
-    )
+    return render_template("car_detail.html", car=car, form=form, customers=customers)
 
 
 @routes.route("/inventory/detail/<int:car_id>/delete", methods=["GET"])
@@ -195,20 +190,24 @@ def transaction():
 
 @routes.route("/transaction/new", methods=["GET", "POST"])
 def transaction_new():
-    form = CarForm()
+    form = TransactionForm()
     if request.method == "POST":
         if form.validate_on_submit():
             # Add to session and commit
-            new_car = Car.from_form(form)
+            new_transaction = Transaction.from_form(form)
+            car_id = int(form.car_id.data) if form.car_id.data else None
             try:
                 with db.session.begin():
-                    db.session.add(new_car)
+                    car = Car.get_by_id(car_id)
+                    new_transaction.cars.append(car)
+                    db.session.add(new_transaction)
+
                 # Nếu đến đây, commit đã thành công
                 flash("Car added successfully!", "success")
             except Exception as e:
                 flash(f"Error adding car: {e}", "danger")
                 raise e
-    return render_template("inventory_new.html", form=form)
+    return render_template("transaction_new.html", form=form)
 
 
 @routes.route("/transaction/detail/<car_id>", methods=["GET", "POST"])
