@@ -79,6 +79,6 @@ class Car(BaseModel):
                 cls.model.ilike(f"%{query}%"),
                 cls.color.ilike(f"%{query}%"),
                 cls.year_of_manufacture.ilike(f"%{query}%"),
-                Car.note.ilike(f"%{query}%")
+                Car.note.ilike(f"%{query}%"),
             )
         ).all()

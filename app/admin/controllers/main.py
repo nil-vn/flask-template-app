@@ -4,7 +4,13 @@ from flask import render_template, flash, url_for
 
 from app.admin.models import Car, Customer, Transaction, User
 from app.admin.services.create_or_updating import create_transaction_from_form
-from app.admin.services.forms import CarForm, CustomerForm, TransactionForm, LoginForm, RegisterForm
+from app.admin.services.forms import (
+    CarForm,
+    CustomerForm,
+    TransactionForm,
+    LoginForm,
+    RegisterForm,
+)
 from app.utils import login_manager
 from app.utils.db import db
 from flask_babel import gettext as _
@@ -23,6 +29,7 @@ routes = Blueprint(
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+
 @routes.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
@@ -40,12 +47,14 @@ def login():
             flash("Invalid username or password", "danger")
     return render_template("login.html", form=form)
 
+
 @routes.route("/logout")
 @login_required
 def logout():
     logout_user()
     flash("You have been logged out", "info")
     return redirect(url_for("admin_routes.login"))
+
 
 @routes.route("/")
 @routes.route("/dashboard")
@@ -152,7 +161,7 @@ def search():
         query=query,
         customers=customers,
         cars=cars,
-        transactions=transactions
+        transactions=transactions,
     )
 
 
@@ -317,7 +326,7 @@ def transaction_detail(transaction_id):
         transaction=transaction,
         form=form,
         customers=customers,
-        cars=cars
+        cars=cars,
     )
 
 
@@ -343,13 +352,13 @@ def delete_transaction(transaction_id):
 @routes.route("/user/new", methods=["GET", "POST"])
 def register():
     form = RegisterForm()
-    if form.validate_on_submit(): # Check if username/email đã tồn tại
-        existing_user = User.query.filter( (User.username == form.username.data) | (User.email == form.email.data) ).first()
+    if form.validate_on_submit():  # Check if username/email đã tồn tại
+        existing_user = User.find(username=form.username.data, email=form.email.data)
         if existing_user:
             flash("Username or email already exists", "danger")
             return render_template("user_new.html", form=form)
         # Tạo user mới
-        user = User( username=form.username.data, email=form.email.data )
+        user = User(username=form.username.data, email=form.email.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()

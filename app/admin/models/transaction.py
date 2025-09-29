@@ -59,8 +59,5 @@ class Transaction(BaseModel):
     @classmethod
     def search(cls, query):
         return cls.query.filter(
-            or_(
-                cls.status.ilike(f"%{query}%"),
-                cls.note.ilike(f"%{query}%")
-            )
+            or_(cls.status.ilike(f"%{query}%"), cls.note.ilike(f"%{query}%"))
         ).all()

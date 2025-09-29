@@ -24,3 +24,9 @@ class User(BaseModel, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    @classmethod
+    def find(cls, username, email):
+        return cls.query.filter(
+            (User.username == username) | (User.email == email)
+        ).first()

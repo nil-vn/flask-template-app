@@ -66,6 +66,6 @@ class Customer(BaseModel):
                 Customer.phone.ilike(f"%{query}%"),
                 Customer.address.ilike(f"%{query}%"),
                 Customer.status.ilike(f"%{query}%"),
-                Customer.note.ilike(f"%{query}%")
+                Customer.note.ilike(f"%{query}%"),
             )
         ).all()
