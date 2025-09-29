@@ -26,7 +26,8 @@
     <!-- [ sample-page ] start -->
     <div class="col-lg-12">
         <div class="card">
-            <form name="add_transaction" action="{{ url_for('admin_routes.transaction_detail', transaction_id=transaction.id) }}" method="POST"
+            <form name="add_transaction"
+                  action="{{ url_for('admin_routes.transaction_detail', transaction_id=transaction.id) }}" method="POST"
                   enctype="multipart/form-data">
                 {{ form.csrf_token }}
                 <div id="sticky-transaction" class="sticky-action">
@@ -54,9 +55,14 @@
                                 <select id="customer" name="customer_id" class="form-control">
                                     <option value="">{{ _('Select A Customer') }}</option>
                                     {% for customer in customers %}
-                                    <option value="{{ customer.id }}" {% if transaction.customer_id==customer.id %}selected="selected"{% endif %}>{{ customer.name }}</option>
+                                    <option value="{{ customer.id }}" {% if transaction.customer_id==customer.id
+                                            %}selected="selected" {% endif %}>{{ customer.name }}
+                                    </option>
                                     {% endfor %}
                                 </select>
+                                <small class="form-text text-muted">{{ _('For more detail about the customer') }} <a
+                                        href="{{ url_for('admin_routes.customer_detail', customer_id=transaction.customer_id) }}">{{
+                                    transaction.customer.name or '' }}</a></small>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -66,9 +72,14 @@
                                 <select id="car_id" name="car_id" class="form-control">
                                     <option value="">{{ _('Select A Car') }}</option>
                                     {% for car in cars %}
-                                    <option value="{{ car.id }}" {% if transaction.cars[0]==car.id %}selected="selected"{% endif %}>{{ car.name }}</option>
+                                    <option value="{{ car.id }}" {% if transaction.cars[0].id==car.id %}selected="selected"
+                                            {% endif %}>{{ car.name }}
+                                    </option>
                                     {% endfor %}
                                 </select>
+                                <small class="form-text text-muted">{{ _('For more detail about the car') }} <a
+                                        href="{{ url_for('admin_routes.car_detail', car_id=transaction.cars[0].id) }}">{{
+                                    transaction.cars[0].name or '' }}</a></small>
                             </div>
                         </div>
                         <div class="col-md-6">

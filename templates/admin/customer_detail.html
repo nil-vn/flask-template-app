@@ -153,7 +153,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="status">{{ _('Gender') }}</label>
-                                        <select class="form-control" data-trigger name="gender" id="gender">
+                                        <select class="form-control" name="gender" id="gender">
                                             <option value="unknown">{{ _('Unknown') }}</option>
                                             <option value="male"
                                                     {% if customer.gender=='male' %}
@@ -169,7 +169,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label" for="address">{{ _('Address') }}</label>
-                                        <input id="address" name="address" type="text" value="{{ customer.address }}"
+                                        <input id="address" name="address" type="text" value="{{ customer.address  or '' }}"
                                                class="form-control"/>
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@
                                         <div class="input-group date">
                                             <input name="birth_day" type="text"
                                                    class="form-control datepicker-input"
-                                                   value="{{ customer.birth_day }}" id="birth_day">
+                                                   value="{{ customer.birth_day or '' }}" id="birth_day">
                                             <span class="input-group-text"><i class="ph ph-calendar-blank"></i></span>
                                         </div>
                                     </div>
@@ -195,21 +195,21 @@
                                     <div class="mb-3">
                                         <label class="form-label" for="facebook">{{ _('Facebook') }}</label>
                                         <input id="facebook" name="facebook" type="text"
-                                               class="form-control" value="{{ customer.facebook }}"/>
+                                               class="form-control" value="{{ customer.facebook  or '' }}"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="lead_source">{{ _('Lead Source') }}</label>
                                         <input id="lead_source" name="lead_source" type="text"
-                                               value="{{ customer.lead_source }}"
+                                               value="{{ customer.lead_source  or '' }}"
                                                class="form-control"/>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label" for="status">{{ _('Status') }}</label>
-                                        <select class="form-control" data-trigger name="status" id="status">
+                                        <select class="form-control" name="status" id="status">
                                             <option value="">{{ _('Customer status') }}</option>
                                             <option value="paid"
                                                     {% if customer.status=='paid' %}
@@ -225,7 +225,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label" for="note">{{ _('Note') }}</label>
-                                        <textarea class="form-control" id="note" name="note" rows="3">{{ customer.note|safe }}</textarea>
+                                        <textarea class="form-control" id="note" name="note" rows="3">{{ (customer.note or '')|safe }}</textarea>
                                     </div>
                                 </div>
                             </div>

@@ -228,7 +228,7 @@ def transaction_new():
         try:
             create_transaction_from_form(form)
             flash("Transaction created successfully!", "success")
-            return redirect(url_for("admin_routes.transaction"))
+            return redirect(url_for("admin_routes.transactions"))
         except Exception as e:
             flash(f"Error creating transaction: {e}", "danger")
 
@@ -257,8 +257,14 @@ def transaction_detail(transaction_id):
             except Exception as e:
                 db.session.rollback()
                 flash(f"Error updating transaction: {e}", "danger")
+    customers = Customer.get_all()
+    cars = Car.get_all()
     return render_template(
-        "transaction_detail.html", transaction=transaction, form=form
+        "transaction_detail.html",
+        transaction=transaction,
+        form=form,
+        customers=customers,
+        cars=cars
     )
 
 
@@ -267,7 +273,7 @@ def delete_transaction(transaction_id):
     transaction = Transaction.get_by_id(transaction_id)
     if not transaction:
         flash("Transaction not found.", "danger")
-        return redirect(url_for("admin_routes.transaction"))
+        return redirect(url_for("admin_routes.transactions"))
 
     try:
         db.session.delete(transaction)
@@ -277,4 +283,4 @@ def delete_transaction(transaction_id):
         db.session.rollback()  # rollback nếu lỗi
         flash(f"Error deleting transaction: {e}", "danger")
 
-    return redirect(url_for("admin_routes.transaction"))
+    return redirect(url_for("admin_routes.transactions"))
