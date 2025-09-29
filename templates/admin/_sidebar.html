@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="pc-item pc-hasmenu">
-                <a href="/admin/customer" class="pc-link">
+                <a href="{{ url_for('admin_routes.cars') }}" class="pc-link">
                     <span class="pc-micon">
                       <i class="ti ti-car-garage"></i>
                     </span>
@@ -37,12 +37,12 @@
                     <span class="pc-arrow"><i class="ti ti-chevron-right"></i></span>
                 </a>
                 <ul class="pc-submenu">
-                    <li class="pc-item"><a class="pc-link" href="/admin/inventory" >{{ _('Car List') }}</a></li>
-                    <li class="pc-item"><a class="pc-link" href="/admin/inventory/new">{{ _('Add New Car') }}</a></li>
+                    <li class="pc-item"><a class="pc-link" href="{{ url_for('admin_routes.cars') }}" >{{ _('Car List') }}</a></li>
+                    <li class="pc-item"><a class="pc-link" href="{{ url_for('admin_routes.car_new') }}">{{ _('Add New Car') }}</a></li>
                 </ul>
             </li>
             <li class="pc-item pc-hasmenu">
-                <a href="/admin/customer" class="pc-link">
+                <a href="{{ url_for('admin_routes.customers') }}" class="pc-link">
                     <span class="pc-micon">
                       <i class="ti ti-user-dollar"></i>
                     </span>
@@ -50,12 +50,12 @@
                     <span class="pc-arrow"><i class="ti ti-chevron-right"></i></span>
                 </a>
                 <ul class="pc-submenu">
-                    <li class="pc-item"><a class="pc-link" href="/admin/customer" >{{ _('Customers') }}</a></li>
-                    <li class="pc-item"><a class="pc-link" href="/admin/customer/new">{{ _('Add New Customer') }}</a></li>
+                    <li class="pc-item"><a class="pc-link" href="{{ url_for('admin_routes.customers') }}" >{{ _('Customers') }}</a></li>
+                    <li class="pc-item"><a class="pc-link" href="{{ url_for('admin_routes.customer_new') }}">{{ _('Add New Customer') }}</a></li>
                 </ul>
             </li>
             <li class="pc-item pc-hasmenu">
-                <a href="/admin/customer" class="pc-link">
+                <a href="{{ url_for('admin_routes.transactions') }}" class="pc-link">
                     <span class="pc-micon">
                       <i class="ti ti-transaction-yen"></i>
                     </span>
@@ -63,8 +63,8 @@
                     <span class="pc-arrow"><i class="ti ti-chevron-right"></i></span>
                 </a>
                 <ul class="pc-submenu">
-                    <li class="pc-item"><a class="pc-link" href="/admin/transaction" >{{ _('Transactions') }}</a></li>
-                    <li class="pc-item"><a class="pc-link" href="/admin/transaction/new">{{ _('Add Transaction') }}</a></li>
+                    <li class="pc-item"><a class="pc-link" href="{{ url_for('admin_routes.transactions') }}" >{{ _('Transactions') }}</a></li>
+                    <li class="pc-item"><a class="pc-link" href="{{ url_for('admin_routes.transaction_new') }}">{{ _('Add Transaction') }}</a></li>
                 </ul>
             </li>
             <li class="pc-item pc-caption">

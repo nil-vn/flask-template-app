@@ -15,6 +15,7 @@ class BaseModel(db.Model):
         data = {k: v for k, v in form.data.items() if k in cls.field_names()}
         return cls(**data)
 
+
 class Configuration(BaseModel):
     __tablename__ = "config"
     __table_args__ = {"sqlite_autoincrement": True}

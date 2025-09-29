@@ -29,23 +29,23 @@ def dashboard():
     return render_template("dashboard.html")
 
 
-@routes.route("/inventory")
-def inventory():
-    cars = Car.get_all()
+@routes.route("/cars")
+def cars():
+    all_cars = Car.get_all()
     reserved_cars = Car.get_by_status("reserved")
     available_cars = Car.get_by_status("available")
     unchecked_cars = Car.get_by_status("unchecked")
     return render_template(
-        "inventory.html",
-        cars=cars,
+        "cars.html",
+        cars=all_cars,
         reserved_cars=reserved_cars,
         available_cars=available_cars,
         unchecked_cars=unchecked_cars,
     )
 
 
-@routes.route("/inventory/new", methods=["GET", "POST"])
-def inventory_new():
+@routes.route("/car/new", methods=["GET", "POST"])
+def car_new():
     form = CarForm()
     if request.method == "POST":
         if form.validate_on_submit():
@@ -59,10 +59,10 @@ def inventory_new():
             except Exception as e:
                 flash(f"Error adding car: {e}", "danger")
                 raise e
-    return render_template("inventory_new.html", form=form)
+    return render_template("car_new.html", form=form)
 
 
-@routes.route("/inventory/detail/<car_id>", methods=["GET", "POST"])
+@routes.route("/car/<car_id>", methods=["GET", "POST"])
 def car_detail(car_id):
     form = CarForm()
     car = Car.get_by_id(car_id)
@@ -84,12 +84,12 @@ def car_detail(car_id):
     return render_template("car_detail.html", car=car, form=form, customers=customers)
 
 
-@routes.route("/inventory/detail/<int:car_id>/delete", methods=["GET"])
+@routes.route("/car/<int:car_id>/delete", methods=["GET"])
 def delete_car(car_id):
     car = Car.get_by_id(car_id)
-    if not customer:
+    if not car:
         flash("Car not found.", "danger")
-        return redirect(url_for("admin_routes.inventory"))
+        return redirect(url_for("admin_routes.cars"))
 
     try:
         db.session.delete(car)
@@ -99,7 +99,7 @@ def delete_car(car_id):
         db.session.rollback()
         flash(f"Error deleting car: {e}", "danger")
 
-    return redirect(url_for("admin_routes.inventory"))
+    return redirect(url_for("admin_routes.cars"))
 
 
 @routes.route("/login")
@@ -112,10 +112,10 @@ def search():
     return render_template("search.html")
 
 
-@routes.route("/customer")
-def customer():
-    customers = Customer.get_all()
-    return render_template("customer.html", customers=customers)
+@routes.route("/customers")
+def customers():
+    all_customers = Customer.get_all()
+    return render_template("customers.html", customers=all_customers)
 
 
 @routes.route("/customer/new", methods=["GET", "POST"])
@@ -154,7 +154,9 @@ def customer_detail(customer_id):
                 db.session.rollback()
                 flash(f"Error updating Customer: {e}", "danger")
     cars = Car.get_all()
-    return render_template("customer_detail.html", customer=customer, form=form, cars=cars)
+    return render_template(
+        "customer_detail.html", customer=customer, form=form, cars=cars
+    )
 
 
 @routes.route("/customer/<int:customer_id>/purchase/new", methods=["GET", "POST"])
@@ -204,13 +206,10 @@ def delete_customer(customer_id):
     return redirect(url_for("admin_routes.customer"))
 
 
-@routes.route("/transaction")
-def transaction():
-    transactions = Transaction.get_all()
-    return render_template(
-        "transaction.html",
-        transactions=transactions
-    )
+@routes.route("/transactions")
+def transactions():
+    all_transactions = Transaction.get_all()
+    return render_template("transactions.html", transactions=all_transactions)
 
 
 @routes.route("/transaction/new", methods=["GET", "POST"])
@@ -235,7 +234,9 @@ def transaction_new():
 
     cars = Car.get_all()
     customers = Customer.get_all()
-    return render_template("transaction_new.html", cars=cars, customers=customers, form=form)
+    return render_template(
+        "transaction_new.html", cars=cars, customers=customers, form=form
+    )
 
 
 @routes.route("/transaction/<transaction_id>", methods=["GET", "POST"])
@@ -256,7 +257,10 @@ def transaction_detail(transaction_id):
             except Exception as e:
                 db.session.rollback()
                 flash(f"Error updating transaction: {e}", "danger")
-    return render_template("transaction_detail.html", transaction=transaction, form=form)
+    return render_template(
+        "transaction_detail.html", transaction=transaction, form=form
+    )
+
 
 @routes.route("/transaction/<int:transaction_id>/delete", methods=["GET"])
 def delete_transaction(transaction_id):
