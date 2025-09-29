@@ -1,5 +1,6 @@
 from app.utils.db import db
 
+
 class BaseModel(db.Model):
     __abstract__ = True
 
@@ -13,7 +14,6 @@ class BaseModel(db.Model):
         """Create instance from a form, filtering only valid fields."""
         data = {k: v for k, v in form.data.items() if k in cls.field_names()}
         return cls(**data)
-
 
 class Configuration(BaseModel):
     __tablename__ = "config"

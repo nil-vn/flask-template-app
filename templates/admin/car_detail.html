@@ -320,7 +320,7 @@
                                                     <div class="col">
                                                         <h6 class="mb-1">
                                                             <span class="text-truncate w-100">
-                                                                <a href="/admin/customer/detail/{{ transaction.customer_id }}">{{ transaction.customer.name }}</a>
+                                                                <a href="/admin/customer/{{ transaction.customer_id }}">{{ transaction.customer.name }}</a>
                                                             </span>
                                                         </h6>
                                                     </div>
@@ -352,10 +352,10 @@
                 </div>
                 {% endif %}
                 <div class="card">
-                    <form name="add_transaction" action="/admin/transaction/new" method="POST"
+                    <form name="add_transaction" action="{{ url_for('admin_routes.add_car_purchase', car_id=car.id) }}"
+                          method="POST"
                           enctype="multipart/form-data">
                         {{ form.csrf_token }}
-                        <input type="hidden" name="car_id" value="{{ car.id }}">
                         <div id="sticky-transaction" class="sticky-action">
                             <div class="card-header">
                                 <div class="row align-items-center">

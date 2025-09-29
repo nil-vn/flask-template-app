@@ -118,7 +118,7 @@
             <div class="tab-pane fade show active" id="customer-information" role="tabpanel"
                  aria-labelledby="customer-information-tab">
                 <div class="card">
-                    <form name="customer_form" action="/admin/customer/detail/{{ customer.id }}" method="POST"
+                    <form name="customer_form" action="/admin/customer/{{ customer.id }}" method="POST"
                           enctype="multipart/form-data">
                         {{ form.csrf_token }}
                         <div id="sticky-action" class="sticky-action">
@@ -232,12 +232,137 @@
             <div class="tab-pane fade" id="customer-purchased-list" role="tabpanel"
                  aria-labelledby="customer-purchased-list-tab">
                 <div class="card">
+                    <div id="sticky-customer-list" class="sticky-action">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-sm-6">
+                                    <h5><i class="ph ph-car-profile align-text-bottom text-primary f-20"></i><span
+                                            class="p-l-5">{{ _('Purchased List') }}</span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover" id="pc-dt-simple-2">
+                                        <thead>
+                                        <tr>
+                                            <th>{{ _('Transaction No.') }}</th>
+                                            <th>{{ _('Car Name') }}</th>
+                                            <th>{{ _('Purchase date') }}</th>
+                                            <th>{{ _('Unit Price') }}</th>
+                                            <th>{{ _('Status') }}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for transaction in customer.transactions %}
+                                            {% for car in transaction.cars %}
+                                            <tr>
+                                                <td><a href="/admin/transaction/detail/{{ transaction.id }}">{{
+                                                    transaction.id }}</a></td>
+                                            <td>
+                                                <div class="row align-items-center">
+                                                    <div class="col">
+                                                        <h6 class="mb-1">
+                                                            <span class="text-truncate w-100">
+                                                                <a href="{{ url_for('admin_routes.car_detail', car_id=car.id) }}">{{ car.name }}</a>
+                                                            </span>
+                                                        </h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ transaction.purchase_time }}</td>
+                                            <td>{{ car.actual_selling_price or transaction.selling_price }}</td>
+                                            <td><span
+                                                    class="badge bg-light-success">{{ transaction.status }}</span>
+                                            </td>
+                                        </tr>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="tab-pane fade" id="customer-add-transaction" role="tabpanel"
                  aria-labelledby="customer-add-transaction-tab">
                 <div class="card">
-
+                    <form name="add_transaction"
+                          action="{{ url_for('admin_routes.add_customer_purchase', customer_id=customer.id) }}"
+                          method="POST"
+                          enctype="multipart/form-data">
+                        {{ form.csrf_token }}
+                        <div id="sticky-transaction" class="sticky-action">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-6">
+                                        <h5><i class="ph ph-user align-text-bottom text-primary f-20"></i><span
+                                                class="p-l-5">{{ _('Add Purchase') }}</span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
+                                        <button type="submit" class="btn btn-success">{{ _('Add') }}</button>
+                                        <button type="reset" class="btn btn-light-secondary">{{ _('Cancel') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="car_id">{{ _('Car') }}<span
+                                                class="text-danger">*</span></label>
+                                        <select id="car_id" name="car_id" class="form-control">
+                                            <option value="">{{ _('Select A Car') }}</option>
+                                            {% for car in cars %}
+                                            <option value="{{ car.id }}">{{ car.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="purchase_date">{{ _('Purchase Date')
+                                            }}</label>
+                                        <div class="input-group date">
+                                            <input name="purchase_date" type="text"
+                                                   class="form-control datepicker-input" id="purchase_date">
+                                            <span class="input-group-text"><i
+                                                    class="ph ph-calendar-blank"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="selling_price">{{ _('Unit Price') }}</label>
+                                        <input id="selling_price" name="selling_price" type="text"
+                                               class="form-control"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="trans_status">{{ _('Status') }}</label>
+                                        <select class="form-control" name="status" id="trans_status">
+                                            <option value="">{{ _('Customer status') }}</option>
+                                            <option value="paid">{{ _('Paid') }}</option>
+                                            <option value="wait2pay">{{ _('Wait to pay') }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="trans_note">{{ _('Note') }}</label>
+                                        <textarea class="form-control" id="trans_note" name="note"
+                                                  rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

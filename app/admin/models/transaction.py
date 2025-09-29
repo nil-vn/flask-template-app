@@ -46,3 +46,11 @@ class Transaction(BaseModel):
         """Create instance from a form, filtering only valid fields."""
         data = {k: v for k, v in form.data.items() if k in cls.field_names()}
         return cls(**data)
+
+    @classmethod
+    def get_all(cls):
+        return cls.query.all()
+
+    @classmethod
+    def get_by_id(cls, qid):
+        return cls.query.get(qid)

@@ -3,6 +3,7 @@ from flask import Blueprint, request, redirect
 from flask import render_template, flash, url_for
 
 from app.admin.models import Car, Customer, Transaction
+from app.admin.services.create_or_updating import create_transaction_from_form
 from app.admin.services.forms import CarForm, CustomerForm, TransactionForm
 from app.utils import login_manager
 from app.utils.db import db
@@ -134,7 +135,7 @@ def customer_new():
     return render_template("customer_new.html", form=form)
 
 
-@routes.route("/customer/detail/<int:customer_id>", methods=["GET", "POST"])
+@routes.route("/customer/<int:customer_id>", methods=["GET", "POST"])
 def customer_detail(customer_id):
     form = CustomerForm()
     customer = Customer.get_by_id(customer_id)
@@ -152,10 +153,40 @@ def customer_detail(customer_id):
             except Exception as e:
                 db.session.rollback()
                 flash(f"Error updating Customer: {e}", "danger")
-    return render_template("customer_detail.html", customer=customer, form=form)
+    cars = Car.get_all()
+    return render_template("customer_detail.html", customer=customer, form=form, cars=cars)
 
 
-@routes.route("/customer/detail/<int:customer_id>/delete", methods=["GET"])
+@routes.route("/customer/<int:customer_id>/purchase/new", methods=["GET", "POST"])
+def add_customer_purchase(customer_id):
+    form = TransactionForm()
+    form.customer_id.data = int(customer_id)
+    # Prefill customer_id
+    if request.method == "POST" and form.validate_on_submit():
+        try:
+            create_transaction_from_form(form)
+            flash("Purchase added for customer successfully!", "success")
+        except Exception as e:
+            flash(f"Error creating transaction: {e}", "danger")
+    return redirect(url_for("admin_routes.customer_detail", customer_id=customer_id))
+
+
+@routes.route("/car/<int:car_id>/purchase/new", methods=["GET", "POST"])
+def add_car_purchase(car_id):
+    form = TransactionForm()
+    customers = Customer.get_all()
+    car = Car.get_by_id(car_id)
+    form.car_id.data = int(car_id)  # Prefill car_id
+    if request.method == "POST" and form.validate_on_submit():
+        try:
+            create_transaction_from_form(form)
+            flash("Purchase added for car successfully!", "success")
+        except Exception as e:
+            flash(f"Error creating transaction: {e}", "danger")
+    return redirect(url_for("admin_routes.car_detail", car_id=car.id))
+
+
+@routes.route("/customer/<int:customer_id>/delete", methods=["GET"])
 def delete_customer(customer_id):
     customer = Customer.get_by_id(customer_id)
     if not customer:
@@ -190,27 +221,61 @@ def transaction():
 
 @routes.route("/transaction/new", methods=["GET", "POST"])
 def transaction_new():
-    form = TransactionForm()
-    if request.method == "POST":
-        if form.validate_on_submit():
-            # Add to session and commit
-            new_transaction = Transaction.from_form(form)
-            car_id = int(form.car_id.data) if form.car_id.data else None
-            try:
-                with db.session.begin():
-                    car = Car.get_by_id(car_id)
-                    new_transaction.cars.append(car)
-                    db.session.add(new_transaction)
+    customer_id = request.args.get("customer_id")
+    car_id = request.args.get("car_id")
 
-                # Nếu đến đây, commit đã thành công
-                flash("Car added successfully!", "success")
-            except Exception as e:
-                flash(f"Error adding car: {e}", "danger")
-                raise e
+    form = TransactionForm()
+
+    # Prefill nếu có từ query param
+    if customer_id:
+        form.customer_id.data = customer_id
+    if car_id:
+        form.car_id.data = car_id
+
+    if request.method == "POST" and form.validate_on_submit():
+        try:
+            create_transaction_from_form(form)
+            flash("Transaction created successfully!", "success")
+            return redirect(url_for("admin_routes.transaction"))
+        except Exception as e:
+            flash(f"Error creating transaction: {e}", "danger")
+
     return render_template("transaction_new.html", form=form)
 
 
-@routes.route("/transaction/detail/<car_id>", methods=["GET", "POST"])
-def transaction_detail(car_id):
-    car = Car.get_by_id(car_id)
-    return render_template("transaction_detail.html", car=car)
+# @routes.route("/transaction/<transaction_id>", methods=["GET", "POST"])
+# def transaction_detail(transaction_id):
+#     form = TransactionForm()
+#     transaction = Transaction.get_by_id(transaction_id)
+#     if not transaction:
+#         flash("Transaction not found.", "danger")
+#         return render_template("404.html"), 404
+#
+#     if request.method == "POST":
+#         form = TransactionForm(obj=transaction)
+#         if form.validate_on_submit():
+#             try:
+#                 form.populate_obj(transaction)
+#                 db.session.commit()
+#                 flash("Transaction updated successfully!", "success")
+#             except Exception as e:
+#                 db.session.rollback()
+#                 flash(f"Error updating transaction: {e}", "danger")
+#     return render_template("transaction_detail.html", transaction=transaction, form=form)
+
+@routes.route("/transaction/<int:transaction_id>/delete", methods=["GET"])
+def delete_transaction(transaction_id):
+    transaction = Transaction.get_by_id(transaction_id)
+    if not transaction:
+        flash("Transaction not found.", "danger")
+        return redirect(url_for("admin_routes.transaction"))
+
+    try:
+        db.session.delete(transaction)
+        db.session.commit()
+        flash("Transaction deleted successfully!", "success")
+    except Exception as e:
+        db.session.rollback()  # rollback nếu lỗi
+        flash(f"Error deleting transaction: {e}", "danger")
+
+    return redirect(url_for("admin_routes.transaction"))

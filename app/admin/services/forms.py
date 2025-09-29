@@ -39,6 +39,7 @@ class CustomerForm(FlaskForm):
     status = StringField("status")
     note = StringField("note")
 
+
 class TransactionForm(FlaskForm):
     id = StringField("id")
     customer_id = StringField("customer_id")
