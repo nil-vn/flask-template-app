@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired, Optional
 
 
 class CarForm(FlaskForm):
-    id = StringField("id")
+    id = IntegerField("id")
     name = StringField("name", validators=[DataRequired()])
     vin = StringField("vin")
     model = StringField("model")
@@ -26,7 +26,7 @@ class CarForm(FlaskForm):
 
 
 class CustomerForm(FlaskForm):
-    id = StringField("id")
+    id = IntegerField("id")
     name = StringField("name", validators=[DataRequired()])
     gender = StringField("gender")
     birth_day = StringField("birth_day")
@@ -41,10 +41,10 @@ class CustomerForm(FlaskForm):
 
 
 class TransactionForm(FlaskForm):
-    id = StringField("id")
+    id = IntegerField("id")
     customer_id = StringField("customer_id")
-    purchase_time = StringField("purchase_time")
-    selling_price = StringField("selling_price", validators=[Optional()])
+    purchase_date = StringField("purchase_date")
+    selling_price = IntegerField("selling_price", validators=[Optional()])
     status = StringField("status")
     note = StringField("note")
     car_id = StringField("car_id")

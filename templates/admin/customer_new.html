@@ -142,7 +142,9 @@
     // datetime pickers
     var dtp = ['#birth_day'];
     dtp.forEach((selector) => {
-        new Datepicker(document.querySelector(selector), {
+        var querySelector = document.querySelector(selector);
+        if (!querySelector) return;
+        new Datepicker(querySelector, {
             buttonClass: 'btn',
             todayBtn: true,
             clearBtn: true,

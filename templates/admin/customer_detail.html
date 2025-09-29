@@ -156,11 +156,13 @@
                                         <select class="form-control" data-trigger name="gender" id="gender">
                                             <option value="unknown">{{ _('Unknown') }}</option>
                                             <option value="male"
-                                                    {% if customer.gender==
-                                            'male' %}selected="selected"{% endif %}>{{ _('Male') }}</option>
+                                                    {% if customer.gender=='male' %}
+                                                    selected="selected"
+                                                    {% endif %}>{{ _('Male') }}</option>
                                             <option value="female"
-                                                    {% if customer.gender==
-                                            'female' %}selected="selected"{% endif %}>{{ _('Female') }}</option>
+                                                    {% if customer.gender=='female' %}
+                                                    selected="selected"
+                                                    {% endif %}>{{ _('Female') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -210,11 +212,13 @@
                                         <select class="form-control" data-trigger name="status" id="status">
                                             <option value="">{{ _('Customer status') }}</option>
                                             <option value="paid"
-                                                    {% if customer.status==
-                                            'paid' %}selected="selected"{% endif %}>{{ _('Paid') }}</option>
+                                                    {% if customer.status=='paid' %}
+                                                    selected="selected"
+                                                    {% endif %}>{{ _('Paid') }}</option>
                                             <option value="wait2pay"
-                                                    {% if customer.status==
-                                            'wait2pay' %}selected="selected"{% endif %}>{{ _('Wait to pay') }}</option>
+                                                    {% if customer.status=='wait2pay' %}
+                                                    selected="selected"
+                                                    {% endif %}>{{ _('Wait to pay') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -270,8 +274,8 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>{{ transaction.purchase_time }}</td>
-                                            <td>{{ car.actual_selling_price or transaction.selling_price }}</td>
+                                            <td>{{ transaction.purchase_date or '-' }}</td>
+                                            <td>{{ car.actual_selling_price or transaction.selling_price or '-' }}</td>
                                             <td><span
                                                     class="badge bg-light-success">{{ transaction.status }}</span>
                                             </td>
@@ -384,7 +388,9 @@
     // datetime pickers
     var dtp = ['#imported_date', '#inspection_from', '#inspection_to'];
     dtp.forEach((selector) => {
-        new Datepicker(document.querySelector(selector), {
+        var querySelector = document.querySelector(selector);
+        if (!querySelector) return;
+        new Datepicker(querySelector, {
             buttonClass: 'btn',
             todayBtn: true,
             clearBtn: true,

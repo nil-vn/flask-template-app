@@ -206,25 +206,18 @@ def delete_customer(customer_id):
 
 @routes.route("/transaction")
 def transaction():
-    cars = Car.get_all()
-    reserved_cars = Car.get_by_status("reserved")
-    available_cars = Car.get_by_status("available")
-    unchecked_cars = Car.get_by_status("unchecked")
+    transactions = Transaction.get_all()
     return render_template(
         "transaction.html",
-        cars=cars,
-        reserved_cars=reserved_cars,
-        available_cars=available_cars,
-        unchecked_cars=unchecked_cars,
+        transactions=transactions
     )
 
 
 @routes.route("/transaction/new", methods=["GET", "POST"])
 def transaction_new():
+    form = TransactionForm()
     customer_id = request.args.get("customer_id")
     car_id = request.args.get("car_id")
-
-    form = TransactionForm()
 
     # Prefill nếu có từ query param
     if customer_id:
@@ -240,28 +233,30 @@ def transaction_new():
         except Exception as e:
             flash(f"Error creating transaction: {e}", "danger")
 
-    return render_template("transaction_new.html", form=form)
+    cars = Car.get_all()
+    customers = Customer.get_all()
+    return render_template("transaction_new.html", cars=cars, customers=customers, form=form)
 
 
-# @routes.route("/transaction/<transaction_id>", methods=["GET", "POST"])
-# def transaction_detail(transaction_id):
-#     form = TransactionForm()
-#     transaction = Transaction.get_by_id(transaction_id)
-#     if not transaction:
-#         flash("Transaction not found.", "danger")
-#         return render_template("404.html"), 404
-#
-#     if request.method == "POST":
-#         form = TransactionForm(obj=transaction)
-#         if form.validate_on_submit():
-#             try:
-#                 form.populate_obj(transaction)
-#                 db.session.commit()
-#                 flash("Transaction updated successfully!", "success")
-#             except Exception as e:
-#                 db.session.rollback()
-#                 flash(f"Error updating transaction: {e}", "danger")
-#     return render_template("transaction_detail.html", transaction=transaction, form=form)
+@routes.route("/transaction/<transaction_id>", methods=["GET", "POST"])
+def transaction_detail(transaction_id):
+    form = TransactionForm()
+    transaction = Transaction.get_by_id(transaction_id)
+    if not transaction:
+        flash("Transaction not found.", "danger")
+        return render_template("404.html"), 404
+
+    if request.method == "POST":
+        form = TransactionForm(obj=transaction)
+        if form.validate_on_submit():
+            try:
+                form.populate_obj(transaction)
+                db.session.commit()
+                flash("Transaction updated successfully!", "success")
+            except Exception as e:
+                db.session.rollback()
+                flash(f"Error updating transaction: {e}", "danger")
+    return render_template("transaction_detail.html", transaction=transaction, form=form)
 
 @routes.route("/transaction/<int:transaction_id>/delete", methods=["GET"])
 def delete_transaction(transaction_id):

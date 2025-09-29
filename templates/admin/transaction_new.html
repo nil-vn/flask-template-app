@@ -34,7 +34,7 @@
                         <div class="row align-items-center">
                             <div class="col-sm-6">
                                 <h5><i class="ph ph-user align-text-bottom text-primary f-20"></i><span
-                                        class="p-l-5">{{ _('Add Customer Purchase') }}</span>
+                                        class="p-l-5">{{ _('Add Transaction') }}</span>
                                 </h5>
                             </div>
                             <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
@@ -61,7 +61,14 @@
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <input type="text" name="car_id" value="">
+                                <label class="form-label" for="car_id">{{ _('Car') }}<span
+                                        class="text-danger">*</span></label>
+                                <select id="car_id" name="car_id" class="form-control">
+                                    <option value="">{{ _('Select A Car') }}</option>
+                                    {% for car in cars %}
+                                    <option value="{{ car.id }}">{{ car.name }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -121,9 +128,11 @@
 <script src="{{ url_for('static', filename='admin/js/plugins/choices.min.js') }}"></script>
 <script>
     // datetime pickers
-    var dtp = ['#imported_date', '#inspection_from', '#inspection_to'];
+    var dtp = ['#imported_date', '#inspection_from', '#inspection_to', '#purchase_date'];
     dtp.forEach((selector) => {
-        new Datepicker(document.querySelector(selector), {
+        var querySelector = document.querySelector(selector);
+        if (!querySelector) return;
+        new Datepicker(querySelector, {
             buttonClass: 'btn',
             todayBtn: true,
             clearBtn: true,

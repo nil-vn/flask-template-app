@@ -6,14 +6,13 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="page-header-title">
-                    <h5 class="mb-0">{{ _('Inventory') }}</h5>
+                    <h5 class="mb-0">{{ _('Sales') }}</h5>
                 </div>
             </div>
             <div class="col-md-12">
                 <ul class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="/admin">{{ _('Home') }}</a></li>
-                    <li class="breadcrumb-item"><a href="/admin/inventory">{{ _('Inventory') }}</a></li>
-                    <li class="breadcrumb-item"><a href="javascript: void(0)">{{ _('General') }}</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/inventory">{{ _('Sales') }}</a></li>
                 </ul>
             </div>
         </div>
@@ -54,7 +53,8 @@
                                 aria-selected="false"
                         >
                   <span class="d-flex align-items-center gap-2"
-                  >{{_('Reserved')}} <span class="avatar rounded-circle bg-light-success">{{ reserved_cars|length }}</span></span
+                  >{{_('Reserved')}} <span
+                          class="avatar rounded-circle bg-light-success">{{ reserved_cars|length }}</span></span
                   >
                         </button>
                     </li>
@@ -70,7 +70,8 @@
                                 aria-selected="false"
                         >
                   <span class="d-flex align-items-center gap-2"
-                  >{{_('Available')}} <span class="avatar rounded-circle bg-light-warning">{{ available_cars|length }}</span></span
+                  >{{_('Available')}} <span
+                          class="avatar rounded-circle bg-light-warning">{{ available_cars|length }}</span></span
                   >
                         </button>
                     </li>
@@ -86,7 +87,8 @@
                                 aria-selected="false"
                         >
                   <span class="d-flex align-items-center gap-2"
-                  >{{_('Unchecked')}} <span class="avatar rounded-circle bg-light-danger">{{ unchecked_cars|length }}</span></span
+                  >{{_('Unchecked')}} <span
+                          class="avatar rounded-circle bg-light-danger">{{ unchecked_cars|length }}</span></span
                   >
                         </button>
                     </li>
@@ -100,58 +102,64 @@
                             tabindex="0"
                     >
                         <div class="table-responsive">
-                            <table class="table table-hover" id="pc-dt-simple-1">
+                            <table class="table table-hover" id="pc-dt-simple-2">
                                 <thead>
                                 <tr>
                                     <th>{{ _('No.') }}</th>
-                                    <th>{{ _('Name/Model') }}</th>
-                                    <th>{{ _('Branch') }}</th>
-                                    <th>{{ _('Imported Date') }}</th>
+                                    <th>{{ _('Customer Name') }}</th>
+                                    <th>{{ _('Car Name') }}</th>
+                                    <th>{{ _('Purchase Date') }}</th>
                                     <th>{{ _('Selling Price') }}</th>
                                     <th>{{ _('Status') }}</th>
                                     <th class="text-end">{{ _('Actions') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for car in cars %}
+                                {% for transaction in transactions %}
+                                {% for car in transaction.cars %}
                                 <tr>
-                                    <td>{{ car.id }}</td>
+                                    <td>{{ transaction.id }}</td>
                                     <td>
                                         <div class="row align-items-center">
                                             <div class="col">
-                                                <h6 class="mb-1"><span
-                                                        class="text-truncate w-100">{{ car.name }}</span>
+                                                <h6 class="mb-1"><a
+                                                        href="{{ url_for('admin_routes.customer_detail', customer_id=transaction.customer.id) }}"
+                                                        class="text-truncate w-100">{{ transaction.customer.name }}</a>
                                                 </h6>
                                             </div>
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="col-auto pe-0">
-                                            <img src="{{ url_for('static', filename='admin/images/branch/'+ car.branch|lower +'.svg') }}"
-                                                 alt="{{ car.branch }}" class="wid-40 hei-40 rounded-circle"/>
+                                        <div class="row align-items-center">
+                                            <div class="col">
+                                                <h6 class="mb-1"><a
+                                                        href="{{ url_for('admin_routes.car_detail', car_id=car.id) }}"
+                                                        class="text-truncate w-100">{{ car.name }}</a>
+                                                </h6>
+                                            </div>
                                         </div>
                                     </td>
-                                    <td>{{ car.imported_date }}</td>
-                                    <td>{{ car.actual_selling_price }}</td>
-                                    <td><span class="badge bg-light-success">{{ car.status }}</span></td>
+                                    <td>{{ transaction.purchase_date or '-' }}</td>
+                                    <td>{{ car.actual_selling_price or transaction.selling_price or '-' }}</td>
+                                    <td><span class="badge bg-light-success">{{ transaction.status or '' }}</span></td>
                                     <td class="text-end">
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
-                                                    class="ti ti-eye f-20"></i></a
-                                            ></li>
+                                            >
+                                                <a href="{{ url_for('admin_routes.transaction_detail', transaction_id=transaction.id) }}"
+                                                   class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                                        class="ti ti-eye f-20"></i></a
+                                                ></li>
                                             <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}#user-set-information"
-                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
-                                                    class="ti ti-edit f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
-                                                    class="ti ti-trash f-20"></i></a
-                                            ></li>
+                                            >
+                                                <a href="{{ url_for('admin_routes.delete_transaction', transaction_id=transaction.id) }}"
+                                                   class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                                        class="ti ti-trash f-20"></i></a
+                                                ></li>
                                         </ul>
                                     </td>
                                 </tr>
+                                {% endfor %}
                                 {% endfor %}
                                 </tbody>
                             </table>
@@ -160,180 +168,16 @@
                     <div class="tab-pane fade" id="analytics-tab-2-pane" role="tabpanel"
                          aria-labelledby="analytics-tab-2" tabindex="0">
                         <div class="table-responsive">
-                            <table class="table table-hover" id="pc-dt-simple-2">
-                                <thead>
-                                <tr>
-                                    <th>{{ _('No.') }}</th>
-                                    <th>{{ _('Name/Model') }}</th>
-                                    <th>{{ _('Branch') }}</th>
-                                    <th>{{ _('Imported Date') }}</th>
-                                    <th>{{ _('Selling Price') }}</th>
-                                    <th>{{ _('Status') }}</th>
-                                    <th class="text-end">{{ _('Actions') }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for car in reserved_cars %}
-                                <tr>
-                                    <td>{{ car.id }}</td>
-                                    <td>
-                                        <div class="row align-items-center">
-                                            <div class="col">
-                                                <h6 class="mb-1"><span
-                                                        class="text-truncate w-100">{{ car.name }}</span>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-auto pe-0">
-                                            <img src="{{ url_for('static', filename='admin/images/branch/'+ car.branch|lower +'.svg') }}"
-                                                 alt="{{ car.branch }}" class="wid-40 hei-40 rounded-circle"/>
-                                        </div>
-                                    </td>
-                                    <td>{{ car.imported_date }}</td>
-                                    <td>{{ car.actual_selling_price }}</td>
-                                    <td><span class="badge bg-light-success">{{ car.status }}</span></td>
-                                    <td class="text-end">
-                                        <ul class="list-inline mb-0">
-                                            <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
-                                                    class="ti ti-eye f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}#user-set-information"
-                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
-                                                    class="ti ti-edit f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
-                                                    class="ti ti-trash f-20"></i></a
-                                            ></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="analytics-tab-3-pane" role="tabpanel"
                          aria-labelledby="analytics-tab-3" tabindex="0">
                         <div class="table-responsive">
-                            <table class="table table-hover" id="pc-dt-simple-3">
-                                <thead>
-                                <tr>
-                                    <th>{{ _('No.') }}</th>
-                                    <th>{{ _('Name/Model') }}</th>
-                                    <th>{{ _('Branch') }}</th>
-                                    <th>{{ _('Imported Date') }}</th>
-                                    <th>{{ _('Selling Price') }}</th>
-                                    <th>{{ _('Status') }}</th>
-                                    <th class="text-end">{{ _('Actions') }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for car in available_cars %}
-                                <tr>
-                                    <td>{{ car.id }}</td>
-                                    <td>
-                                        <div class="row align-items-center">
-                                            <div class="col">
-                                                <h6 class="mb-1"><span
-                                                        class="text-truncate w-100">{{ car.name }}</span>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-auto pe-0">
-                                            <img src="{{ url_for('static', filename='admin/images/branch/'+ car.branch|lower +'.svg') }}"
-                                                 alt="{{ car.branch }}" class="wid-40 hei-40 rounded-circle"/>
-                                        </div>
-                                    </td>
-                                    <td>{{ car.imported_date }}</td>
-                                    <td>{{ car.actual_selling_price }}</td>
-                                    <td><span class="badge bg-light-success">{{ car.status }}</span></td>
-                                    <td class="text-end">
-                                        <ul class="list-inline mb-0">
-                                            <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
-                                                    class="ti ti-eye f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}#user-set-information"
-                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
-                                                    class="ti ti-edit f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
-                                                    class="ti ti-trash f-20"></i></a
-                                            ></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                     <div class="tab-pane fade" id="analytics-tab-4-pane" role="tabpanel"
                          aria-labelledby="analytics-tab-4" tabindex="0">
                         <div class="table-responsive">
-                            <table class="table table-hover" id="pc-dt-simple-4">
-                                <thead>
-                                <tr>
-                                    <th>{{ _('No.') }}</th>
-                                    <th>{{ _('Name/Model') }}</th>
-                                    <th>{{ _('Branch') }}</th>
-                                    <th>{{ _('Imported Date') }}</th>
-                                    <th>{{ _('Selling Price') }}</th>
-                                    <th>{{ _('Status') }}</th>
-                                    <th class="text-end">{{ _('Actions') }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                {% for car in unchecked_cars %}
-                                <tr>
-                                    <td>{{ car.id }}</td>
-                                    <td>
-                                        <div class="row align-items-center">
-                                            <div class="col">
-                                                <h6 class="mb-1"><span
-                                                        class="text-truncate w-100">{{ car.name }}</span>
-                                                </h6>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="col-auto pe-0">
-                                            <img src="{{ url_for('static', filename='admin/images/branch/'+ car.branch|lower +'.svg') }}"
-                                                 alt="{{ car.branch }}" class="wid-40 hei-40 rounded-circle"/>
-                                        </div>
-                                    </td>
-                                    <td>{{ car.imported_date }}</td>
-                                    <td>{{ car.actual_selling_price }}</td>
-                                    <td><span class="badge bg-light-success">{{ car.status }}</span></td>
-                                    <td class="text-end">
-                                        <ul class="list-inline mb-0">
-                                            <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
-                                                    class="ti ti-eye f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}#user-set-information"
-                                                class="avatar avatar-s btn-link-success btn-pc-default"><i class="ti ti-edit f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
-                                                    class="ti ti-trash f-20"></i></a
-                                            ></li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
                         </div>
                     </div>
                 </div>

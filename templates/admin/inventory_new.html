@@ -162,7 +162,9 @@
     // datetime pickers
     var dtp = ['#imported_date', '#inspection_from', '#inspection_to'];
     dtp.forEach((selector) => {
-        new Datepicker(document.querySelector(selector), {
+        var querySelector = document.querySelector(selector);
+        if (!querySelector) return;
+        new Datepicker(querySelector, {
             buttonClass: 'btn',
             todayBtn: true,
             clearBtn: true,

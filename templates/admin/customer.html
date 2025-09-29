@@ -78,21 +78,16 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{{ customer.birth_day }}</td>
-                                    <td>{{ customer.facebook }}</td>
-                                    <td>{{ customer.phone }}</td>
-                                    <td>{{ customer.address }}</td>
-                                    <td><span class="badge bg-light-success">{{ customer.status }}</span></td>
+                                    <td>{{ customer.birth_day or '-' }}</td>
+                                    <td>{{ customer.facebook or '-' }}</td>
+                                    <td>{{ customer.phone or '-'  }}</td>
+                                    <td>{{ customer.address or '-'  }}</td>
+                                    <td><span class="badge bg-light-success">{{ customer.status or ''  }}</span></td>
                                     <td class="text-end">
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item"
-                                            ><a href="/admin/customer/{{ customer.id }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                            ><a href="{{ url_for('admin_routes.customer_detail', customer_id=customer.id) }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
                                                     class="ti ti-eye f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="/admin/customer/{{ customer.id }}#user-set-information"
-                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
-                                                    class="ti ti-edit f-20"></i></a
                                             ></li>
                                             <li class="list-inline-item"
                                             ><a href="{{ url_for('admin_routes.delete_customer', customer_id=customer.id) }}" class="avatar avatar-s btn-link-danger btn-pc-default"><i

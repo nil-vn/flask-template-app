@@ -17,7 +17,7 @@ class Transaction(BaseModel):
     __table_args__ = {"sqlite_autoincrement": True}
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    purchase_time: Mapped[Optional[str]]
+    purchase_date: Mapped[Optional[str]]
     selling_price: Mapped[Optional[float]]
     status: Mapped[Optional[str]]
     note: Mapped[Optional[str]]

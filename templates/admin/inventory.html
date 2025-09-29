@@ -131,19 +131,14 @@
                                                  alt="{{ car.branch }}" class="wid-40 hei-40 rounded-circle"/>
                                         </div>
                                     </td>
-                                    <td>{{ car.imported_date }}</td>
-                                    <td>{{ car.expected_selling_price }}</td>
-                                    <td><span class="badge bg-light-success">{{ car.status }}</span></td>
+                                    <td>{{ car.imported_date or '-'  }}</td>
+                                    <td>{{ car.expected_selling_price or '-'  }}</td>
+                                    <td><span class="badge bg-light-success">{{ car.status or ''  }}</span></td>
                                     <td class="text-end">
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                            ><a href="{{ url_for('admin_routes.car_detail', car_id=car.id) }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
                                                     class="ti ti-eye f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}#user-set-information"
-                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
-                                                    class="ti ti-edit f-20"></i></a
                                             ></li>
                                             <li class="list-inline-item"
                                             ><a href="{{ url_for('admin_routes.delete_car', car_id=car.id) }}" class="avatar avatar-s btn-link-danger btn-pc-default"><i
@@ -191,22 +186,17 @@
                                                  alt="{{ car.branch }}" class="wid-40 hei-40 rounded-circle"/>
                                         </div>
                                     </td>
-                                    <td>{{ car.imported_date }}</td>
-                                    <td>{{ car.expected_selling_price }}</td>
-                                    <td><span class="badge bg-light-success">{{ car.status }}</span></td>
+                                    <td>{{ car.imported_date or '-'  }}</td>
+                                    <td>{{ car.expected_selling_price or '-'  }}</td>
+                                    <td><span class="badge bg-light-success">{{ car.status or ''  }}</span></td>
                                     <td class="text-end">
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                            ><a href="{{ url_for('admin_routes.car_detail', car_id=car.id) }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
                                                     class="ti ti-eye f-20"></i></a
                                             ></li>
                                             <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}#user-set-information"
-                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
-                                                    class="ti ti-edit f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                            ><a href="{{ url_for('admin_routes.delete_car', car_id=car.id) }}" class="avatar avatar-s btn-link-danger btn-pc-default"><i
                                                     class="ti ti-trash f-20"></i></a
                                             ></li>
                                         </ul>
@@ -251,22 +241,17 @@
                                                  alt="{{ car.branch }}" class="wid-40 hei-40 rounded-circle"/>
                                         </div>
                                     </td>
-                                    <td>{{ car.imported_date }}</td>
-                                    <td>{{ car.expected_selling_price }}</td>
-                                    <td><span class="badge bg-light-success">{{ car.status }}</span></td>
+                                    <td>{{ car.imported_date or '-'  }}</td>
+                                    <td>{{ car.expected_selling_price or '-'  }}</td>
+                                    <td><span class="badge bg-light-success">{{ car.status or ''  }}</span></td>
                                     <td class="text-end">
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                            ><a href="{{ url_for('admin_routes.car_detail', car_id=car.id) }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
                                                     class="ti ti-eye f-20"></i></a
                                             ></li>
                                             <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}#user-set-information"
-                                                class="avatar avatar-s btn-link-success btn-pc-default"><i
-                                                    class="ti ti-edit f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                            ><a href="{{ url_for('admin_routes.delete_car', car_id=car.id) }}" class="avatar avatar-s btn-link-danger btn-pc-default"><i
                                                     class="ti ti-trash f-20"></i></a
                                             ></li>
                                         </ul>
@@ -311,21 +296,17 @@
                                                  alt="{{ car.branch }}" class="wid-40 hei-40 rounded-circle"/>
                                         </div>
                                     </td>
-                                    <td>{{ car.imported_date }}</td>
-                                    <td>{{ car.expected_selling_price }}</td>
-                                    <td><span class="badge bg-light-success">{{ car.status }}</span></td>
+                                    <td>{{ car.imported_date or '-'  }}</td>
+                                    <td>{{ car.expected_selling_price or '-'  }}</td>
+                                    <td><span class="badge bg-light-success">{{ car.status or ''  }}</span></td>
                                     <td class="text-end">
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                            ><a href="{{ url_for('admin_routes.car_detail', car_id=car.id) }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
                                                     class="ti ti-eye f-20"></i></a
                                             ></li>
                                             <li class="list-inline-item"
-                                            ><a href="/admin/inventory/detail/{{ car.id }}#user-set-information"
-                                                class="avatar avatar-s btn-link-success btn-pc-default"><i class="ti ti-edit f-20"></i></a
-                                            ></li>
-                                            <li class="list-inline-item"
-                                            ><a href="#" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                            ><a href="{{ url_for('admin_routes.delete_car', car_id=car.id) }}" class="avatar avatar-s btn-link-danger btn-pc-default"><i
                                                     class="ti ti-trash f-20"></i></a
                                             ></li>
                                         </ul>
