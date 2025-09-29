@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField
-from wtforms.validators import DataRequired, Optional
+from wtforms import StringField, IntegerField, PasswordField
+from wtforms.validators import DataRequired, Optional, Email, Length, EqualTo
 
 
 class CarForm(FlaskForm):
@@ -48,3 +48,15 @@ class TransactionForm(FlaskForm):
     status = StringField("status")
     note = StringField("note")
     car_id = StringField("car_id")
+
+
+class LoginForm(FlaskForm):
+    username = StringField("username", validators=[DataRequired()])
+    password = PasswordField("password", validators=[DataRequired()])
+
+
+class RegisterForm(FlaskForm):
+    username = StringField("username", validators=[DataRequired(), Length(min=3, max=80)])
+    email = StringField("email", validators=[DataRequired(), Email()])
+    password = PasswordField("password", validators=[DataRequired(), Length(min=6)])
+    confirm_password = PasswordField("confirm password", validators=[DataRequired(), EqualTo("password")])

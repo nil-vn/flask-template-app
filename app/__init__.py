@@ -22,6 +22,7 @@ def create_app(env: Optional[Union[str, object]]) -> Flask:
     csrf.init_app(_app)
     bcrypt.init_app(_app)
     login_manager.init_app(_app)
+    login_manager.login_view = "admin_routes.login"  # redirect nếu chưa login
 
     def get_locale():
         return request.cookies.get("locale") or _app.config["BABEL_DEFAULT_LOCALE"]

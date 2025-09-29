@@ -2,12 +2,13 @@ import os
 from flask import Blueprint, request, redirect
 from flask import render_template, flash, url_for
 
-from app.admin.models import Car, Customer, Transaction
+from app.admin.models import Car, Customer, Transaction, User
 from app.admin.services.create_or_updating import create_transaction_from_form
-from app.admin.services.forms import CarForm, CustomerForm, TransactionForm
+from app.admin.services.forms import CarForm, CustomerForm, TransactionForm, LoginForm, RegisterForm
 from app.utils import login_manager
 from app.utils.db import db
 from flask_babel import gettext as _
+from flask_login import login_user, logout_user, login_required, current_user
 
 routes = Blueprint(
     "admin_routes",
@@ -19,17 +20,42 @@ routes = Blueprint(
 
 
 @login_manager.user_loader
-def load_user():
-    return True
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
+@routes.route("/login", methods=["GET", "POST"])
+def login():
+    if current_user.is_authenticated:
+        return redirect(url_for("admin_routes.dashboard"))
+
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user and user.check_password(form.password.data):
+            login_user(user)  # <-- dùng Flask-Login
+            flash("Logged in successfully!", "success")
+            next_url = request.args.get("next") or url_for("admin_routes.dashboard")
+            return redirect(next_url)
+        else:
+            flash("Invalid username or password", "danger")
+    return render_template("login.html", form=form)
+
+@routes.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    flash("You have been logged out", "info")
+    return redirect(url_for("admin_routes.login"))
 
 @routes.route("/")
 @routes.route("/dashboard")
+@login_required
 def dashboard():
     return render_template("dashboard.html")
 
 
 @routes.route("/cars")
+@login_required
 def cars():
     all_cars = Car.get_all()
     reserved_cars = Car.get_by_status("reserved")
@@ -45,6 +71,7 @@ def cars():
 
 
 @routes.route("/car/new", methods=["GET", "POST"])
+@login_required
 def car_new():
     form = CarForm()
     if request.method == "POST":
@@ -63,6 +90,7 @@ def car_new():
 
 
 @routes.route("/car/<car_id>", methods=["GET", "POST"])
+@login_required
 def car_detail(car_id):
     form = CarForm()
     car = Car.get_by_id(car_id)
@@ -85,6 +113,7 @@ def car_detail(car_id):
 
 
 @routes.route("/car/<int:car_id>/delete", methods=["GET"])
+@login_required
 def delete_car(car_id):
     car = Car.get_by_id(car_id)
     if not car:
@@ -102,12 +131,8 @@ def delete_car(car_id):
     return redirect(url_for("admin_routes.cars"))
 
 
-@routes.route("/login")
-def login():
-    return render_template("login.html")
-
-
 @routes.route("/search", methods=["GET", "POST"])
+@login_required
 def search():
     query = request.args.get("q", "").strip()
     customers, cars, transactions = [], [], []
@@ -132,12 +157,14 @@ def search():
 
 
 @routes.route("/customers")
+@login_required
 def customers():
     all_customers = Customer.get_all()
     return render_template("customers.html", customers=all_customers)
 
 
 @routes.route("/customer/new", methods=["GET", "POST"])
+@login_required
 def customer_new():
     form = CustomerForm()
     if request.method == "POST":
@@ -155,6 +182,7 @@ def customer_new():
 
 
 @routes.route("/customer/<int:customer_id>", methods=["GET", "POST"])
+@login_required
 def customer_detail(customer_id):
     form = CustomerForm()
     customer = Customer.get_by_id(customer_id)
@@ -179,6 +207,7 @@ def customer_detail(customer_id):
 
 
 @routes.route("/customer/<int:customer_id>/purchase/new", methods=["GET", "POST"])
+@login_required
 def add_customer_purchase(customer_id):
     form = TransactionForm()
     form.customer_id.data = int(customer_id)
@@ -193,6 +222,7 @@ def add_customer_purchase(customer_id):
 
 
 @routes.route("/car/<int:car_id>/purchase/new", methods=["GET", "POST"])
+@login_required
 def add_car_purchase(car_id):
     form = TransactionForm()
     customers = Customer.get_all()
@@ -208,6 +238,7 @@ def add_car_purchase(car_id):
 
 
 @routes.route("/customer/<int:customer_id>/delete", methods=["GET"])
+@login_required
 def delete_customer(customer_id):
     customer = Customer.get_by_id(customer_id)
     if not customer:
@@ -226,12 +257,14 @@ def delete_customer(customer_id):
 
 
 @routes.route("/transactions")
+@login_required
 def transactions():
     all_transactions = Transaction.get_all()
     return render_template("transactions.html", transactions=all_transactions)
 
 
 @routes.route("/transaction/new", methods=["GET", "POST"])
+@login_required
 def transaction_new():
     form = TransactionForm()
     customer_id = request.args.get("customer_id")
@@ -259,6 +292,7 @@ def transaction_new():
 
 
 @routes.route("/transaction/<transaction_id>", methods=["GET", "POST"])
+@login_required
 def transaction_detail(transaction_id):
     form = TransactionForm()
     transaction = Transaction.get_by_id(transaction_id)
@@ -288,6 +322,7 @@ def transaction_detail(transaction_id):
 
 
 @routes.route("/transaction/<int:transaction_id>/delete", methods=["GET"])
+@login_required
 def delete_transaction(transaction_id):
     transaction = Transaction.get_by_id(transaction_id)
     if not transaction:
@@ -303,3 +338,22 @@ def delete_transaction(transaction_id):
         flash(f"Error deleting transaction: {e}", "danger")
 
     return redirect(url_for("admin_routes.transactions"))
+
+
+@routes.route("/user/new", methods=["GET", "POST"])
+def register():
+    form = RegisterForm()
+    if form.validate_on_submit(): # Check if username/email đã tồn tại
+        existing_user = User.query.filter( (User.username == form.username.data) | (User.email == form.email.data) ).first()
+        if existing_user:
+            flash("Username or email already exists", "danger")
+            return render_template("user_new.html", form=form)
+        # Tạo user mới
+        user = User( username=form.username.data, email=form.email.data )
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        # Login luôn sau khi tạo account
+        login_user(user)
+        flash("Account created successfully!", "success")
+    return render_template("user_new.html", form=form)
