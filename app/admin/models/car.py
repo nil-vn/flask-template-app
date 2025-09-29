@@ -10,6 +10,7 @@ from sqlalchemy.orm import relationship
 from app.utils import db
 from .base import BaseModel
 from .transaction_car import transaction_car
+from sqlalchemy import or_
 
 
 class Car(BaseModel):
@@ -67,3 +68,17 @@ class Car(BaseModel):
     @classmethod
     def get_by_id(cls, qid):
         return cls.query.get(qid)
+
+    @classmethod
+    def search(cls, query):
+        return cls.query.filter(
+            or_(
+                cls.name.ilike(f"%{query}%"),
+                cls.vin.ilike(f"%{query}%"),
+                cls.branch.ilike(f"%{query}%"),
+                cls.model.ilike(f"%{query}%"),
+                cls.color.ilike(f"%{query}%"),
+                cls.year_of_manufacture.ilike(f"%{query}%"),
+                Car.note.ilike(f"%{query}%")
+            )
+        ).all()

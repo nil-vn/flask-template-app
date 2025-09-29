@@ -10,6 +10,7 @@ from sqlalchemy.orm import relationship
 
 from app.admin.models.base import BaseModel
 from app.utils import db
+from sqlalchemy import or_
 
 
 class Customer(BaseModel):
@@ -55,3 +56,16 @@ class Customer(BaseModel):
     @classmethod
     def get_by_id(cls, qid):
         return cls.query.get(qid)
+
+    @classmethod
+    def search(cls, query):
+        return cls.query.filter(
+            or_(
+                Customer.name.ilike(f"%{query}%"),
+                Customer.facebook.ilike(f"%{query}%"),
+                Customer.phone.ilike(f"%{query}%"),
+                Customer.address.ilike(f"%{query}%"),
+                Customer.status.ilike(f"%{query}%"),
+                Customer.note.ilike(f"%{query}%")
+            )
+        ).all()

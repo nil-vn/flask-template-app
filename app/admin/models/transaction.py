@@ -10,6 +10,7 @@ from sqlalchemy.orm import relationship
 from app.utils import db
 from .base import BaseModel
 from .transaction_car import transaction_car
+from sqlalchemy import or_
 
 
 class Transaction(BaseModel):
@@ -54,3 +55,12 @@ class Transaction(BaseModel):
     @classmethod
     def get_by_id(cls, qid):
         return cls.query.get(qid)
+
+    @classmethod
+    def search(cls, query):
+        return cls.query.filter(
+            or_(
+                cls.status.ilike(f"%{query}%"),
+                cls.note.ilike(f"%{query}%")
+            )
+        ).all()

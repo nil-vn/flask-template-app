@@ -1,6 +1,6 @@
 <div class="navbar-wrapper">
     <div class="m-header">
-        <a href="/admin" class="b-brand text-primary">
+        <a href="{{ url_for('admin_routes.dashboard') }}" class="b-brand text-primary">
             <!-- ========   Change your logo from here   ============ -->
             <img src="{{ url_for('static', filename='admin/images/logo-white.png') }}" class="img-fluid logo-lg"
                  alt="logo"/>
@@ -12,7 +12,7 @@
                 <label data-i18n="Navigation">{{ _('Navigation') }}</label>
             </li>
             <li class="pc-item">
-                <a href="/admin/search" class="pc-link">
+                <a href="{{ url_for('admin_routes.search') }}" class="pc-link">
                     <span class="pc-micon">
                       <i class="ti ti-input-search"></i>
                     </span>
@@ -20,7 +20,7 @@
                 </a>
             </li>
             <li class="pc-item">
-                <a href="/admin" class="pc-link">
+                <a href="{{ url_for('admin_routes.dashboard') }}" class="pc-link">
                     <span class="pc-micon">
                       <i class="ti ti-brand-google-analytics"></i>
                     </span>
@@ -29,7 +29,7 @@
                 </a>
             </li>
             <li class="pc-item pc-hasmenu">
-                <a href="{{ url_for('admin_routes.cars') }}" class="pc-link">
+                <a href="#!" class="pc-link">
                     <span class="pc-micon">
                       <i class="ti ti-car-garage"></i>
                     </span>
@@ -42,7 +42,7 @@
                 </ul>
             </li>
             <li class="pc-item pc-hasmenu">
-                <a href="{{ url_for('admin_routes.customers') }}" class="pc-link">
+                <a href="#!" class="pc-link">
                     <span class="pc-micon">
                       <i class="ti ti-user-dollar"></i>
                     </span>
@@ -55,7 +55,7 @@
                 </ul>
             </li>
             <li class="pc-item pc-hasmenu">
-                <a href="{{ url_for('admin_routes.transactions') }}" class="pc-link">
+                <a href="#!" class="pc-link">
                     <span class="pc-micon">
                       <i class="ti ti-transaction-yen"></i>
                     </span>
@@ -72,7 +72,7 @@
                 <i class="ph ph-book-open-text"></i>
             </li>
             <li class="pc-item">
-                <a href="/admin/setting/user" class="pc-link">
+                <a href="{{ url_for('admin_routes.dashboard') }}" class="pc-link">
                     <span class="pc-micon">
                       <i class="ti ti-user-cog"></i>
                     </span>
@@ -80,7 +80,7 @@
                 </a>
             </li>
             <li class="pc-item">
-                <a href="/admin/setting/system" class="pc-link">
+                <a href="{{ url_for('admin_routes.dashboard') }}" class="pc-link">
                     <span class="pc-micon">
                       <i class="ti ti-settings-cog"></i>
                     </span>

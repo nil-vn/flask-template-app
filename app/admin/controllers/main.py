@@ -107,9 +107,28 @@ def login():
     return render_template("login.html")
 
 
-@routes.route("/search")
+@routes.route("/search", methods=["GET", "POST"])
 def search():
-    return render_template("search.html")
+    query = request.args.get("q", "").strip()
+    customers, cars, transactions = [], [], []
+
+    if query:
+        # Search Customers
+        customers = Customer.search(query)
+
+        # Search Cars
+        cars = Car.search(query)
+
+        # Search Transactions
+        transactions = Transaction.search(query)
+
+    return render_template(
+        "search.html",
+        query=query,
+        customers=customers,
+        cars=cars,
+        transactions=transactions
+    )
 
 
 @routes.route("/customers")

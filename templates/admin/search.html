@@ -26,9 +26,19 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5>Hello card</h5>
+                <h5>{{ _('Search for') }}: {{ (query or '')|safe }}</h5>
             </div>
-            <div class="card-body"></div>
+            <div class="card-body">
+                {% for customer in  customers %}
+                <p>Customer: <a href="{{ url_for('admin_routes.customer_detail', customer_id=customer.id) }}">{{ (customer.name or '')|safe }}...</a></p>
+                {% endfor %}
+                {% for car in  cars %}
+                <p>Car item: <a href="{{ url_for('admin_routes.car_detail', car_id=car.id) }}">{{ (car.name or '')|safe }}...</a></p>
+                {% endfor %}
+                {% for transaction in  transactions %}
+                <p>Transaction: <a href="{{ url_for('admin_routes.transaction_detail', transaction_id=transaction.id) }}">{{ (transaction.status or transaction.note or '')|safe }}...</a></p>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <!-- [ sample-page ] end -->
