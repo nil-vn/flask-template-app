@@ -2,6 +2,9 @@ from typing import Optional, Union
 
 from flask import Flask, request, render_template
 from flask_babel import Babel
+import logging
+
+from app.utils.logger import setup_logger
 
 
 def create_app(env: Optional[Union[str, object]]) -> Flask:
@@ -14,6 +17,9 @@ def create_app(env: Optional[Union[str, object]]) -> Flask:
     )
 
     _app.config.from_object(env)
+
+    # logger setting up
+    setup_logger(_app)
 
     # Initialize extensions
     from app.utils import db, csrf, bcrypt, login_manager
