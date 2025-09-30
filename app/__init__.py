@@ -4,6 +4,7 @@ from flask import Flask, request, render_template
 from flask_babel import Babel
 import logging
 
+from app.utils.db import migrate
 from app.utils.logger import setup_logger
 
 
@@ -25,6 +26,7 @@ def create_app(env: Optional[Union[str, object]]) -> Flask:
     from app.utils import db, csrf, bcrypt, login_manager
 
     db.init_app(_app)
+    migrate.init_app(_app, db)
     csrf.init_app(_app)
     bcrypt.init_app(_app)
     login_manager.init_app(_app)
@@ -38,9 +40,6 @@ def create_app(env: Optional[Union[str, object]]) -> Flask:
     # Create database tables
     import app.admin.models
     import app.homepage.models
-
-    with _app.app_context():
-        db.create_all()
 
     # Register blueprints
     from app.admin import Admin
