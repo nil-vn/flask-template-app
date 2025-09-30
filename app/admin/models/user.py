@@ -14,8 +14,10 @@ class User(BaseModel, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True, unique=True, nullable=False)
     username = db.Column(db.String(80), nullable=False)
+    role = db.Column(db.String, nullable=True)
     email = db.Column(db.String(255), unique=True, nullable=True)
     password_hash = db.Column(db.String, nullable=False)
+    status = db.Column(db.String, nullable=True)
     created_date = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
@@ -43,3 +45,7 @@ class User(BaseModel, UserMixin):
         return cls.query.filter(
             (User.username == username) | (User.email == email)
         ).first()
+
+    @classmethod
+    def get_all(cls):
+        return cls.query.all()

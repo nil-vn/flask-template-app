@@ -388,3 +388,9 @@ def register():
             for e in err_content:
                 flash(f'{err_code}: {e}', "danger")
     return render_template("user_new.html", form=form)
+
+@routes.route("/users")
+@login_required
+def users():
+    all_users = User.get_all()
+    return render_template("users.html", users=all_users)
