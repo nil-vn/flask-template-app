@@ -51,7 +51,7 @@ function getBasePath() {
     //    return './';
     //  }
     //  return '../'.repeat(depth);
-    return '/admin/';
+    return '/';
 }
 document.addEventListener('DOMContentLoaded', function () {
   // remove pre-loader start
@@ -536,7 +536,7 @@ var tc = document.querySelectorAll('.auth-main.v2 .img-brand');
 // Loop through each selected element
 for (var t = 0; t < tc.length; t++) {
   // Change the 'src' attribute to the new logo path
-  tc[t].setAttribute('src', getBasePath() + 'images/logo-white.png');
+  tc[t].setAttribute('src', getBasePath() + 'img/logo.jpg');
 }
 
 // =======================================================

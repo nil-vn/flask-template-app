@@ -48,7 +48,7 @@ function getBasePath() {
     //    return './';
     //  }
     //  return '../'.repeat(depth);
-    return '/admin/';
+    return '/';
 }
 
 const DEFAULT_OPTIONS = {

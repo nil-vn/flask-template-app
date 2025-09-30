@@ -153,7 +153,7 @@ function layout_theme_sidebar_change(value) {
   // Select the sidebar logo and update its source based on the selected theme
   const logo = document.querySelector('.pc-sidebar .m-header .logo-lg');
   if (logo) {
-    const logoSrc = value === 'true' ? getBasePath() + 'assets/images/logo-dark.png' : getBasePath() + 'assets/images/logo-white.png';
+    const logoSrc = value === 'true' ? getBasePath() + 'common/img/logo-dark.png' : getBasePath() + 'common/img/logo-white.png';
     logo.setAttribute('src', logoSrc);
   }
 
@@ -330,7 +330,7 @@ function layout_change(layout) {
   dark_flag = layout === 'dark'; // Set the dark mode flag
 
   // Define the correct logo path based on the selected layout
-  const logoPath = getBasePath() + `assets/images/logo-${layout === 'dark' ? 'white' : 'dark'}.svg`;
+  const logoPath = getBasePath() + `common/img/logo-${layout === 'dark' ? 'white' : 'dark'}.svg`;
 
   // Update logos across multiple locations
   updateLogo('.footer-top .footer-logo', logoPath);
@@ -433,12 +433,12 @@ function resetAllThemeSettings() {
   html.removeAttribute('lang');
   
   // Reset logos
-  updateLogo('.footer-top .footer-logo', getBasePath() + 'assets/images/logo-dark.png');
-  updateLogo('.brand-logo', getBasePath() + 'assets/images/logo-dark.png');
-  updateLogo('.invoice-logo', getBasePath() + 'assets/images/logo-dark.png');
-  updateLogo('.auth-wrapper:not(.v3) a>img', getBasePath() + 'assets/images/logo-dark.png');
-  updateLogo('[data-pc-layout="horizontal"] .pc-sidebar .m-header .logo-lg', getBasePath() + 'assets/images/logo-dark.png');
-  updateLogo('.pc-sidebar .m-header .logo-lg', getBasePath() + 'assets/images/logo-white.png');
+  updateLogo('.footer-top .footer-logo', getBasePath() + 'common/img/logo-dark.png');
+  updateLogo('.brand-logo', getBasePath() + 'common/img/logo-dark.png');
+  updateLogo('.invoice-logo', getBasePath() + 'common/img/logo-dark.png');
+  updateLogo('.auth-wrapper:not(.v3) a>img', getBasePath() + 'common/img/logo-dark.png');
+  updateLogo('[data-pc-layout="horizontal"] .pc-sidebar .m-header .logo-lg', getBasePath() + 'common/img/logo-dark.png');
+  updateLogo('.pc-sidebar .m-header .logo-lg', getBasePath() + 'common/img/logo-white.png');
   
   // Reset box container to full width
   const pcContent = document.querySelector('.pc-content');

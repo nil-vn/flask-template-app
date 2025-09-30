@@ -15,9 +15,6 @@
                     <div class="card-body">
                         <form action="{{ url_for('admin_routes.login') }}" method="POST">
                             {{ form.csrf_token }}
-                            <div class="text-center">
-                                <a href="#"><img src="../assets/images/logo-dark.png" alt="img"/></a>
-                            </div>
                             <h4 class="text-center f-w-500 mt-4 mb-3">Login</h4>
                             <div class="mb-3">
                                 <input name="username" type="text" class="form-control" id="username" placeholder="Username"/>
