@@ -6,3 +6,4 @@ flask_login
 Flask-APScheduler
 APScheduler
 Flask-Babel
+jsonify
