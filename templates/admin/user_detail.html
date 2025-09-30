@@ -1,0 +1,156 @@
+{% extends "_base.html" %}
+
+{% block breadcrumb %}
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="mb-0">{{ _('Detail') }}</h5>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/admin">{{ _('Home') }}</a></li>
+                    <li class="breadcrumb-item"><a href="/admin/users">{{ _('User Management') }}</a></li>
+                    <li class="breadcrumb-item"><a href="javascript: void(0)">{{ _('Detail') }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- [ sample-page ] start -->
+    <div class="col-lg-4">
+        <div class="card user-card user-card-1">
+            <div class="card-body pb-0">
+                <div class="d-flex user-about-block align-items-center mt-0 mb-3">
+                    <div class="flex-shrink-0">
+                        <div class="position-relative d-inline-block">
+                            <img class="img-radius img-fluid wid-60"
+                                 src="{{ url_for('static', filename='common/img/user/avatar-1.svg') }}"
+                                 alt="{{ user.username }}"/>
+                        </div>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                        <h6 class="mb-1">{{ user.username }}</h6>
+                        <span class="badge bg-light-danger">{{ user.role or '' }}</span>
+                    </div>
+                </div>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <span class="f-w-500"><i class="ph ph-envelope-simple m-r-10"></i>{{ _('Email') }}</span>
+                    <span class="float-end text-body">{{ user.email }}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="tab-content" id="user-set-tabContent">
+            <div class="tab-pane fade show active" id="car-information" role="tabpanel"
+                 aria-labelledby="car-information-tab">
+                <div class="card">
+                    <form name="inventory_form" action="{{ url_for('admin_routes.user_detail', user_id=user.id) }}" method="POST"
+                          enctype="multipart/form-data">
+                        {{ form.csrf_token }}
+                        <div id="sticky-action" class="sticky-action">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-6">
+                                        <h5><i class="ph ph-car-profile align-text-bottom text-primary f-20"></i><span
+                                                class="p-l-5">{{ _('User information') }}</span>
+                                        </h5>
+                                    </div>
+                                    <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
+                                        <button type="submit" class="btn btn-success">{{ _('Update') }}</button>
+                                        <button type="reset" class="btn btn-light-secondary">{{ _('Reset') }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="username">{{ _('Username') }}<span
+                                                class="text-danger">*</span></label>
+                                        <input id="username" name="username" type="text"
+                                               class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+                                               value="{{ user.username }}"/>
+                                        {% if form.username.errors %}
+                                        <div class="invalid-feedback">{{ form.username.errors[0] }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="email">{{ _('Email') }}</label>
+                                        <input id="email" name="email" type="text" class="form-control"
+                                               value="{{ user.email or '' }}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="password">{{ _('Password') }}</label>
+                                        <input id="password" name="password" type="text"
+                                               class="form-control" value="" placeholder="******"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="status">{{ _('Status') }}</label>
+                                        <input id="status" name="status" type="text"
+                                               class="form-control" value="{{ user.status or '' }}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="role">{{ _('Role') }}</label>
+                                        <select class="form-control" name="role" id="role">
+                                            <option value="guest">{{ _('Guest') }}</option>
+                                            <option value="admin"
+                                                    {% if user.role=='admin' %}selected="selected" {% endif %}>{{
+                                                _('Admin') }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ sample-page ] end -->
+</div>
+{% endblock %}
+
+{% block css %}
+<!-- [Page specific CSS] start -->
+<link rel="stylesheet" href="{{ url_for('static', filename='admin/css/plugins/datepicker-bs5.min.css') }}"/>
+<!-- [Page specific CSS] end -->
+{% endblock %}
+
+{% block js %}
+<!-- bootstrap-datepicker -->
+<script src="{{ url_for('static', filename='admin/js/plugins/datepicker-full.min.js') }}"></script>
+<script>
+    // datetime pickers
+    var dtp = ['#imported_date', '#inspection_from', '#inspection_to', '#purchase_date'];
+    dtp.forEach((selector) => {
+        var querySelector = document.querySelector(selector);
+        if (!querySelector) return;
+        new Datepicker(querySelector, {
+            buttonClass: 'btn',
+            todayBtn: true,
+            clearBtn: true,
+            orientation: 'bottom left'
+        });
+    });
+</script>
+{% endblock %}

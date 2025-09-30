@@ -49,3 +49,7 @@ class User(BaseModel, UserMixin):
     @classmethod
     def get_all(cls):
         return cls.query.all()
+
+    @classmethod
+    def get_by_id(cls, qid):
+        return cls.query.get(qid)

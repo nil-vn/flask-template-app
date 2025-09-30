@@ -64,3 +64,13 @@ class RegisterForm(FlaskForm):
     confirm_password = PasswordField(
         "confirm password", validators=[DataRequired(), EqualTo("password")]
     )
+    role = StringField("role", validators=[Optional()])
+
+
+class UserUpdateForm(FlaskForm):
+    username = StringField(
+        "username", validators=[DataRequired(), Length(min=3, max=80)]
+    )
+    email = StringField("email", validators=[Optional(), Email()])
+    password = PasswordField("password", validators=[Optional(), Length(min=6)])
+    role = StringField("role", validators=[Optional()])

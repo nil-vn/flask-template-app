@@ -1,12 +1,9 @@
-import os
-
 import jsonify
-from flask import render_template, jsonify
+from flask import jsonify
 
 
-from flask import Blueprint, request
+from flask import Blueprint
 
-from app.admin.services.forms import CarForm
 
 routes = Blueprint("admin_api_routes", __name__, url_prefix="/api")
 

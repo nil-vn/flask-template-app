@@ -4,6 +4,7 @@ import sys
 from logging.handlers import TimedRotatingFileHandler
 from datetime import datetime
 
+
 def setup_logger(app):
     # --- setup logging global ---
     log_dir = os.path.join("log")
@@ -24,8 +25,7 @@ def setup_logger(app):
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(formatter)
 
-
-    log_level = logging.DEBUG if app.config.get('DEBUG') else logging.INFO
+    log_level = logging.DEBUG if app.config.get("DEBUG") else logging.INFO
     root_logger = logging.getLogger()
     root_logger.setLevel(log_level)
     root_logger.addHandler(handler)

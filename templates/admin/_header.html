@@ -305,7 +305,7 @@
                     <div class="dropdown-header">
                         <h6 class="mb-0">{{ current_user.username }}</h6>
                         <small class="text-muted">{{ current_user.email }}</small>
-                        <span class="badge bg-success-subtle text-success mt-1">{{ current_user.role }}</span>
+                        <span class="badge bg-success-subtle text-success mt-1">{{ current_user.role or '' }}</span>
                     </div>
 <!--                    <a href="#!" class="dropdown-item">-->
 <!--                        <i class="ph ph-user-circle"></i>-->

@@ -9,7 +9,7 @@ class Admin(Module):
         self.flask_app = flask_app
 
     def register(self):
-        from app.admin.controllers.main import routes as admin_routes
+        from app.admin.controllers import routes as admin_routes
         from app.admin.controllers.api import routes as api_routes
 
         self.flask_app.register_blueprint(admin_routes)

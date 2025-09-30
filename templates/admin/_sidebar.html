@@ -80,7 +80,7 @@
                     <span class="pc-arrow"><i class="ti ti-chevron-right"></i></span>
                 </a>
                 <ul class="pc-submenu">
-                    <li class="pc-item"><a class="pc-link" href="#" >{{ _('Users') }}</a></li>
+                    <li class="pc-item"><a class="pc-link" href="{{ url_for('admin_routes.users') }}" >{{ _('Users') }}</a></li>
                     <li class="pc-item"><a class="pc-link" href="{{ url_for('admin_routes.register') }}">{{ _('Add New User') }}</a></li>
                 </ul>
             </li>

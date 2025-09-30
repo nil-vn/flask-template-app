@@ -82,11 +82,11 @@
                                     <td class="text-end">
                                         <ul class="list-inline mb-0">
                                             <li class="list-inline-item"
-                                            ><a href="{{ url_for('admin_routes.dashboard') }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
+                                            ><a href="{{ url_for('admin_routes.user_detail', user_id=user.id) }}" class="avatar avatar-s btn-link-info btn-pc-default"><i
                                                     class="ti ti-eye f-20"></i></a
                                             ></li>
                                             <li class="list-inline-item"
-                                            ><a href="{{ url_for('admin_routes.dashboard') }}" class="avatar avatar-s btn-link-danger btn-pc-default"><i
+                                            ><a href="{{ url_for('admin_routes.delete_user', user_id=user.id) }}" class="avatar avatar-s btn-link-danger btn-pc-default"><i
                                                     class="ti ti-trash f-20"></i></a
                                             ></li>
                                         </ul>
@@ -222,7 +222,7 @@
 <script src="{{ url_for('static', filename='admin/js/plugins/simple-datatables.js') }}"></script>
 <script src="{{ url_for('static', filename='admin/js/admin/invoice-list.js') }}"></script>
 <script>
-    ['#pc-dt-simple-1', '#pc-dt-simple-2', '#pc-dt-simple-3', '#pc-dt-simple-4'].forEach((tb) => {
+    ['#pc-dt-simple-1'].forEach((tb) => {
         new simpleDatatables.DataTable(tb, { sortable: true });
     });
 </script>
