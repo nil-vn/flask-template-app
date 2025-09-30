@@ -8,3 +8,4 @@ APScheduler
 Flask-Babel
 jsonify
 flask-migrate
+wtforms[email]
