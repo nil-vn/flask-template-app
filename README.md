@@ -42,6 +42,13 @@ The applications will always running on http://localhost:5000.
 - Homepage (`/`): Homepage
 - Admin (`/admin`): Admin dashboard
 
+## Migration
+
+> flask --app main db init
+> flask --app main db migrate -m "comment"
+> flask --app main db upgrade
+
+
 ## TBD
 
 - [] Migration with sample models
