@@ -7,3 +7,4 @@ Flask-APScheduler
 APScheduler
 Flask-Babel
 jsonify
+flask-migrate
