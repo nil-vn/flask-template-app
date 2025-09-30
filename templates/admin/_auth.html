@@ -47,6 +47,8 @@
 {% block content %}
 {% endblock %}
 
+{{ macros.toasts() }}
+
 <!-- [ Main Content ] end -->
 <!-- Required JS -->
 <script src="{{ url_for('static', filename='admin/js/plugins/popper.min.js') }}"></script>
@@ -66,6 +68,15 @@
     layout_rtl_change('false');
     preset_change('preset-1'); // preset color
     layout_theme_sidebar_change('false');
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function(toastEl) {
+            return new bootstrap.Toast(toastEl)
+        })
+        toastList.forEach(toast => toast.show())
+    });
 </script>
 
 <!-- [Page Specific JS] start -->

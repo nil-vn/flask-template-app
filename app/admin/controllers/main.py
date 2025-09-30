@@ -1,3 +1,4 @@
+import logging
 import os
 from flask import Blueprint, request, redirect
 from flask import render_template, flash, url_for
@@ -13,8 +14,10 @@ from app.admin.services.forms import (
 )
 from app.utils import login_manager
 from app.utils.db import db
-from flask_babel import gettext as _
 from flask_login import login_user, logout_user, login_required, current_user
+from werkzeug.security import generate_password_hash
+
+logger = logging.getLogger(__name__)
 
 routes = Blueprint(
     "admin_routes",
@@ -45,6 +48,10 @@ def login():
             return redirect(next_url)
         else:
             flash("Invalid username or password", "danger")
+    elif form.errors:
+        for err_code, err_content in form.errors.items():
+            for e in err_content:
+                flash(f'{err_code}: {e}', "danger")
     return render_template("login.html", form=form)
 
 
@@ -58,6 +65,7 @@ def logout():
 
 @routes.route("/")
 @routes.route("/dashboard")
+@login_required
 def dashboard():
     return render_template("dashboard.html")
 
@@ -356,12 +364,27 @@ def register():
         if existing_user:
             flash("Username or email already exists", "danger")
             return render_template("user_new.html", form=form)
-        # Tạo user mới
-        user = User(username=form.username.data, email=form.email.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
-        # Login luôn sau khi tạo account
-        login_user(user)
-        flash("Account created successfully!", "success")
+
+        try:
+            password_hash = generate_password_hash(form.password.data)
+
+            # Tạo user mới
+            user = User(
+                username=form.username.data,
+                email=form.email.data,
+                password_hash=password_hash
+            )
+            db.session.add(user)
+            db.session.commit()
+            # Login luôn sau khi tạo account
+            login_user(user)
+            flash("Account created successfully!", "success")
+        except Exception as e:
+            db.session.rollback()
+            logger.exception(e)
+            flash("Could not create user", "error")
+    elif form.errors:
+        for err_code, err_content in form.errors.items():
+            for e in err_content:
+                flash(f'{err_code}: {e}', "danger")
     return render_template("user_new.html", form=form)

@@ -15,11 +15,6 @@ routes = Blueprint(
 )
 
 
-@login_manager.user_loader
-def load_user():
-    return True
-
-
 @routes.route("/")
 def index():
     return render_template("homepage_index.html")

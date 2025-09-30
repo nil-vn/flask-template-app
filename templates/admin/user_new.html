@@ -1,0 +1,117 @@
+{% extends "_base.html" %}
+
+{% block breadcrumb %}
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="mb-0">{{ _('Add New User') }}</h5>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ul class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="/admin">{{ _('Home') }}</a></li>
+                    <li class="breadcrumb-item"><a href="#!">{{ _('User Management') }}</a></li>
+                    <li class="breadcrumb-item"><a href="#!">{{ _('Add New User') }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- [ form-element ] start -->
+    <div class="col-lg-12">
+        <div class="card">
+            <form name="add_transaction" action="/admin/user/new" method="POST"
+                  enctype="multipart/form-data">
+                {{ form.csrf_token }}
+                <div id="sticky-transaction" class="sticky-action">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-sm-6">
+                                <h5><i class="ph ph-user align-text-bottom text-primary f-20"></i><span
+                                        class="p-l-5">{{ _('Add User') }}</span>
+                                </h5>
+                            </div>
+                            <div class="col-sm-6 text-sm-end mt-3 mt-sm-0">
+                                <button type="submit" class="btn btn-success">{{ _('Add') }}</button>
+                                <button type="reset" class="btn btn-light-secondary">{{ _('Cancel') }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">{{ _('Username') }}<span
+                                        class="text-danger">*</span></label>
+                                <input name="username" type="text" class="form-control" id="username">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="email">{{ _('Email') }}</label>
+                                <input name="email" type="email" class="form-control" id="email">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="password">{{ _('Password') }}</label>
+                                <input name="password" type="text" class="form-control" id="password">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="confirm_password">{{ _('Confirm Password') }}</label>
+                                <input name="confirm_password" type="text" class="form-control" id="confirm_password">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="role">{{ _('User Role') }}</label>
+                                <select class="form-control" name="role" id="role">
+                                    <option value="guest">{{ _('Guest') }}</option>
+                                    <option value="admin">{{ _('Admin') }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- [ form-element ] end -->
+</div>
+{% endblock %}
+
+{% block css %}
+<!-- [Page specific CSS] start -->
+<link rel="stylesheet" href="{{ url_for('static', filename='admin/css/plugins/datepicker-bs5.min.css') }}"/>
+<!-- [Page specific CSS] end -->
+{% endblock %}
+
+{% block js %}
+<!-- bootstrap-datepicker -->
+<script src="{{ url_for('static', filename='admin/js/plugins/datepicker-full.min.js') }}"></script>
+<script src="{{ url_for('static', filename='admin/js/plugins/choices.min.js') }}"></script>
+<script>
+    // datetime pickers
+    var dtp = ['#imported_date', '#inspection_from', '#inspection_to', '#purchase_date'];
+    dtp.forEach((selector) => {
+        var querySelector = document.querySelector(selector);
+        if (!querySelector) return;
+        new Datepicker(querySelector, {
+            buttonClass: 'btn',
+            todayBtn: true,
+            clearBtn: true,
+            orientation: 'bottom left'
+        });
+    });
+</script>
+{% endblock %}

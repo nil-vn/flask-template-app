@@ -303,10 +303,9 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
                     <div class="dropdown-header">
-                        <h6 class="mb-0">John Doe</h6>
-                        <small class="text-muted"><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                     data-cfemail="85efeaedebabe1eae0c5e4e6e8e0e6eaf7f5abe6eae8">[email&#160;protected]</a></small>
-                        <span class="badge bg-success-subtle text-success mt-1">Pro Plan</span>
+                        <h6 class="mb-0">{{ current_user.username }}</h6>
+                        <small class="text-muted">{{ current_user.email }}</small>
+                        <span class="badge bg-success-subtle text-success mt-1">{{ current_user.role }}</span>
                     </div>
 <!--                    <a href="#!" class="dropdown-item">-->
 <!--                        <i class="ph ph-user-circle"></i>-->
@@ -338,7 +337,7 @@
 <!--                        <span>Download Mobile App</span>-->
 <!--                    </a>-->
                     <div class="dropdown-divider"></div>
-                    <a href="#!" class="dropdown-item text-danger">
+                    <a href="{{ url_for('admin_routes.logout') }}" class="dropdown-item text-danger">
                         <i class="ph ph-sign-out"></i>
                         <span>Sign Out</span>
                     </a>
