@@ -35,7 +35,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user and user.check_password(form.password.data):
-            login_user(user)  # <-- dùng Flask-Login
+            login_user(user, remember=form.remember.data)  # <-- dùng Flask-Login
             flash("Logged in successfully!", "success")
             next_url = request.args.get("next") or url_for("admin_routes.dashboard")
             return redirect(next_url)

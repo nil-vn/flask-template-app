@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 basedir = os.getcwd()
 
@@ -11,3 +12,4 @@ class Config(object):
     BASE_DIR = basedir
     APP_DB_FILE = os.path.join(basedir, "instance", "db.sqlite3")
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + APP_DB_FILE
+    REMEMBER_COOKIE_DURATION = timedelta(days=30)

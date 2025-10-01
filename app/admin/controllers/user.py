@@ -45,7 +45,6 @@ def register():
 
 
 @routes.route("/users")
-@login_required
 def users():
     all_users = User.get_all()
     return render_template("users.html", users=all_users)
@@ -70,7 +69,6 @@ def delete_user(user_id):
     return redirect(url_for("admin_routes.users"))
 
 @routes.route("/user/<user_id>", methods=["GET", "POST"])
-@login_required
 def user_detail(user_id):
     user = User.query.get_or_404(user_id)
     form = UserUpdateForm(obj=user)  # populate form với dữ liệu hiện tại
