@@ -60,7 +60,7 @@ def logout():
 @login_required
 def search():
     query = request.args.get("q", "").strip()
-    customers, cars, transactions = [], [], []
+    customers, cars, transactions, users = [], [], [], []
 
     if query:
         # Search Customers
@@ -72,12 +72,15 @@ def search():
         # Search Transactions
         transactions = Transaction.search(query)
 
+        users = User.search(query)
+
     return render_template(
         "search.html",
         query=query,
         customers=customers,
         cars=cars,
         transactions=transactions,
+        users=users,
     )
 
 

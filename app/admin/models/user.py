@@ -6,6 +6,7 @@ from datetime import datetime
 from app.admin.models.base import BaseModel
 from app.utils import db
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import or_
 
 
 class User(BaseModel, UserMixin):
@@ -53,3 +54,13 @@ class User(BaseModel, UserMixin):
     @classmethod
     def get_by_id(cls, qid):
         return cls.query.get(qid)
+
+    @classmethod
+    def search(cls, query):
+        return cls.query.filter(
+            or_(
+                cls.username.ilike(f"%{query}%"),
+                cls.email.ilike(f"%{query}%"),
+                cls.status.ilike(f"%{query}%"),
+            )
+        ).all()

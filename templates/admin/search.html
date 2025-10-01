@@ -26,18 +26,49 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h5>{{ _('Search for') }}: {{ (query or '')|safe }}</h5>
+                <h5>{{ _('Search') }}</h5>
             </div>
             <div class="card-body">
-                {% for customer in  customers %}
-                <p>Customer: <a href="{{ url_for('admin_routes.customer_detail', customer_id=customer.id) }}">{{ (customer.name or '')|safe }}...</a></p>
+                <div class="mb-3">
+                    <form action="{{ url_for('admin_routes.search') }}" method="GET">
+                        <div class="input-group">
+                            <input name="q" type="search" class="form-control border-0 shadow-none"
+                                   placeholder="Search here. . ."/>
+                            <div class="md-1">
+                                <button type="submit" class="btn btn-primary"><i class="ti ti-search"></i> {{
+                                    _('Search') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h5>{{ _('Result for') }}: {{ (query or '')|safe }}</h5>
+            </div>
+            <div class="card-body">
+                {% for customer in customers %}
+                <p>Customer: <a href="{{ url_for('admin_routes.customer_detail', customer_id=customer.id) }}">{{
+                    (customer.name or '')|safe }}...</a></p>
                 {% endfor %}
-                {% for car in  cars %}
-                <p>Car item: <a href="{{ url_for('admin_routes.car_detail', car_id=car.id) }}">{{ (car.name or '')|safe }}...</a></p>
+                {% for car in cars %}
+                <p>Car item: <a href="{{ url_for('admin_routes.car_detail', car_id=car.id) }}">{{ (car.name or '')|safe
+                    }}...</a></p>
                 {% endfor %}
-                {% for transaction in  transactions %}
-                <p>Transaction: <a href="{{ url_for('admin_routes.transaction_detail', transaction_id=transaction.id) }}">{{ (transaction.status or transaction.note or '')|safe }}...</a></p>
+                {% for transaction in transactions %}
+                <p>Transaction: <a
+                        href="{{ url_for('admin_routes.transaction_detail', transaction_id=transaction.id) }}">{{
+                    (transaction.status or transaction.note or '')|safe }}...</a></p>
                 {% endfor %}
+                {% for user in users %}
+                <p>User: <a href="{{ url_for('admin_routes.user_detail', user_id=user.id) }}">{{ (user.username or
+                    user.status or user.email or '')|safe }}...</a></p>
+                {% endfor %}
+                {% if customers|length == 0 and transactions|length == 0 and cars|length == 0 and users|length == 0%}
+                <p>{{ _('No results found.') }}</p>
+                {% endif %}
             </div>
         </div>
     </div>

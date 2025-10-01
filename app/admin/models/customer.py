@@ -9,7 +9,6 @@ from sqlalchemy.orm import (
 from sqlalchemy.orm import relationship
 
 from app.admin.models.base import BaseModel
-from app.utils import db
 from sqlalchemy import or_
 
 
