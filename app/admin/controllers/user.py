@@ -37,10 +37,13 @@ def register():
             db.session.rollback()
             logger.exception(e)
             flash("Could not create user", "error")
+        finally:
+            return redirect(url_for('admin_routes.register'))
     elif form.errors:
         for err_code, err_content in form.errors.items():
             for e in err_content:
                 flash(f"{err_code}: {e}", "danger")
+        return redirect(url_for('admin_routes.register'))
     return render_template("user_new.html", form=form)
 
 

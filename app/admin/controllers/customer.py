@@ -32,8 +32,15 @@ def customer_new():
                 db.session.commit()
                 flash("Customer added successfully!", "success")
             except Exception as e:
+                db.session.rollback()
                 flash(f"Error adding car: {e}", "danger")
-                raise Exception(e)
+            finally:
+                return redirect(url_for('admin_routes.customer_new'))
+        elif form.errors:
+            for err_code, err_content in form.errors.items():
+                for e in err_content:
+                    flash(f"{err_code}: {e}", "danger")
+            return redirect(url_for('admin_routes.customer_new'))
     return render_template("customer_new.html", form=form)
 
 

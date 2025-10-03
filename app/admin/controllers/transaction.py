@@ -31,13 +31,22 @@ def transaction_new():
     if car_id:
         form.car_id.data = car_id
 
-    if request.method == "POST" and form.validate_on_submit():
-        try:
-            create_transaction_from_form(form)
-            flash("Transaction created successfully!", "success")
-            return redirect(url_for("admin_routes.transactions"))
-        except Exception as e:
-            flash(f"Error creating transaction: {e}", "danger")
+    if request.method == "POST":
+        if form.validate_on_submit():
+            try:
+                create_transaction_from_form(form)
+                flash("Transaction created successfully!", "success")
+                return redirect(url_for("admin_routes.transactions"))
+            except Exception as e:
+                db.session.rollback()
+                flash(f"Error creating transaction: {e}", "danger")
+            finally:
+                return redirect(url_for('admin_routes.transaction_new'))
+        elif form.errors:
+            for err_code, err_content in form.errors.items():
+                for e in err_content:
+                    flash(f"{err_code}: {e}", "danger")
+            return redirect(url_for('admin_routes.transaction_new'))
 
     cars = Car.get_all()
     customers = Customer.get_all()

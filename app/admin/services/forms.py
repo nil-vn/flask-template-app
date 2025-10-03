@@ -42,12 +42,12 @@ class CustomerForm(FlaskForm):
 
 class TransactionForm(FlaskForm):
     id = IntegerField("id")
-    customer_id = StringField("customer_id")
+    customer_id = StringField("customer_id", validators=[DataRequired()])
     purchase_date = StringField("purchase_date")
     selling_price = IntegerField("selling_price", validators=[Optional()])
     status = StringField("status")
     note = StringField("note")
-    car_id = StringField("car_id")
+    car_id = StringField("car_id", validators=[DataRequired()])
 
 
 class LoginForm(FlaskForm):
