@@ -33,7 +33,7 @@ def create_app(env: Optional[Union[str, object]]) -> Flask:
     login_manager.login_view = "admin_routes.login"  # redirect nếu chưa login
 
     def get_locale():
-        return request.cookies.get("locale") or _app.config["BABEL_DEFAULT_LOCALE"]
+        return request.cookies.get("lang") or _app.config["BABEL_DEFAULT_LOCALE"]
 
     Babel(_app, locale_selector=get_locale)
 

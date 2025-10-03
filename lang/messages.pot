@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-04 01:05+0900\n"
+"POT-Creation-Date: 2025-10-04 01:22+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: templates/admin/_header.html:342
+#: templates/admin/_auth.html:6 templates/admin/login.html:18
+#: templates/admin/login.html:33
+msgid "Login"
+msgstr ""
+
+#: templates/admin/_header.html:76
+msgid "Vietnamese"
+msgstr ""
+
+#: templates/admin/_header.html:79
+msgid "Japanese"
+msgstr ""
+
+#: templates/admin/_header.html:324
 msgid "Sign Out"
 msgstr ""
 
@@ -506,10 +519,6 @@ msgstr ""
 
 #: templates/admin/dashboard.html:57
 msgid "Total Cars"
-msgstr ""
-
-#: templates/admin/login.html:18 templates/admin/login.html:33
-msgid "Login"
 msgstr ""
 
 #: templates/admin/login.html:20 templates/admin/user_detail.html:79

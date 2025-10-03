@@ -60,44 +60,26 @@
                     </a>
                 </div>
             </li>
-<!--            <li class="dropdown pc-h-item d-none d-md-inline-flex">-->
-<!--                <a-->
-<!--                        class="pc-head-link head-link-primary dropdown-toggle arrow-none me-0"-->
-<!--                        data-bs-toggle="dropdown"-->
-<!--                        href="#"-->
-<!--                        role="button"-->
-<!--                        aria-haspopup="false"-->
-<!--                        aria-expanded="false"-->
-<!--                >-->
-<!--                    <i class="ph ph-translate"></i>-->
-<!--                </a>-->
-<!--                <div class="dropdown-menu dropdown-menu-end pc-h-dropdown lng-dropdown">-->
-<!--                    <a href="#!" class="dropdown-item" data-lng="en">-->
-<!--          <span>-->
-<!--            English-->
-<!--            <small>(UK)</small>-->
-<!--          </span>-->
-<!--                    </a>-->
-<!--                    <a href="#!" class="dropdown-item" data-lng="fr">-->
-<!--          <span>-->
-<!--            français-->
-<!--            <small>(French)</small>-->
-<!--          </span>-->
-<!--                    </a>-->
-<!--                    <a href="#!" class="dropdown-item" data-lng="ro">-->
-<!--          <span>-->
-<!--            Română-->
-<!--            <small>(Romanian)</small>-->
-<!--          </span>-->
-<!--                    </a>-->
-<!--                    <a href="#!" class="dropdown-item" data-lng="cn">-->
-<!--          <span>-->
-<!--            中国人-->
-<!--            <small>(Chinese)</small>-->
-<!--          </span>-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </li>-->
+            <li class="dropdown pc-h-item d-none d-md-inline-flex">
+                <a
+                        class="pc-head-link head-link-primary dropdown-toggle arrow-none me-0"
+                        data-bs-toggle="dropdown"
+                        href="#"
+                        role="button"
+                        aria-haspopup="false"
+                        aria-expanded="false"
+                >
+                    <i class="ph ph-translate"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end pc-h-dropdown lng-dropdown">
+                    <a href="#!" class="dropdown-item" onclick="setLanguage('vi')">
+                        <span>{{ _('Vietnamese') }}</span>
+                    </a>
+                    <a href="#!" class="dropdown-item" onclick="setLanguage('ja')">
+                        <span>{{ _('Japanese') }}</span>
+                    </a>
+                </div>
+            </li>
 <!--            <li class="dropdown pc-h-item">-->
 <!--                <a-->
 <!--                        class="pc-head-link dropdown-toggle arrow-none me-0"-->
