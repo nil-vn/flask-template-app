@@ -13,4 +13,4 @@ class Config(object):
     APP_DB_FILE = os.path.join(basedir, "instance", "db.sqlite3")
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + APP_DB_FILE
     REMEMBER_COOKIE_DURATION = timedelta(days=30)
-    BABEL_TRANSLATION_DIRECTORIES = os.path.join(basedir, "lang", "translation")
+    BABEL_TRANSLATION_DIRECTORIES = os.path.join(basedir, "lang", "translations")
