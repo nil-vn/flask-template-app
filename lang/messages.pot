@@ -179,11 +179,6 @@ msgstr ""
 msgid "Model"
 msgstr ""
 
-#: templates/admin/car_detail.html:171
-msgid ""
-"Year Of\n"
-"                                            Manufactoring"
-msgstr ""
 
 #: templates/admin/car_detail.html:177 templates/admin/car_new.html:69
 msgid "Chassis No. (VIN)"
@@ -249,14 +244,12 @@ msgstr ""
 
 #: templates/admin/car_detail.html:256
 msgid ""
-"Expected Selling\n"
-"                                            Price"
+"Expected Selling Price"
 msgstr ""
 
 #: templates/admin/car_detail.html:262
 msgid ""
-"Actual Selling\n"
-"                                            Price"
+"Actual Selling Price"
 msgstr ""
 
 #: templates/admin/car_detail.html:268 templates/admin/car_new.html:129
