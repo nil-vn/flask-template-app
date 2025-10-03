@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-09-17 22:45+0900\n"
-"PO-Revision-Date: 2025-09-17 22:47+0900\n"
+"POT-Creation-Date: 2025-10-04 00:16+0900\n"
+"PO-Revision-Date: 2025-10-04 00:17+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
 "Language-Team: ja <LL@li.org>\n"
@@ -17,4 +17,563 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
+
+#: templates/admin/_sidebar.html:12
+msgid "Navigation"
+msgstr ""
+
+#: templates/admin/_sidebar.html:19 templates/admin/search.html:9
+#: templates/admin/search.html:15 templates/admin/search.html:29
+#: templates/admin/search.html:39
+msgid "Search"
+msgstr ""
+
+#: templates/admin/_sidebar.html:27 templates/admin/dashboard.html:9
+#: templates/admin/dashboard.html:15
+msgid "Dashboard"
+msgstr ""
+
+#: templates/admin/_sidebar.html:36 templates/admin/car_detail.html:15
+#: templates/admin/car_new.html:15 templates/admin/cars.html:15
+msgid "Car Management"
+msgstr ""
+
+#: templates/admin/_sidebar.html:40 templates/admin/cars.html:9
+#: templates/admin/cars.html:16
+msgid "Car List"
+msgstr ""
+
+#: templates/admin/_sidebar.html:41 templates/admin/car_new.html:9
+#: templates/admin/car_new.html:16
+msgid "Add New Car"
+msgstr ""
+
+#: templates/admin/_sidebar.html:49 templates/admin/customer_new.html:15
+#: templates/admin/customers.html:15
+msgid "Customer Management"
+msgstr ""
+
+#: templates/admin/_sidebar.html:53 templates/admin/customers.html:9
+#: templates/admin/customers.html:16
+msgid "Customers"
+msgstr ""
+
+#: templates/admin/_sidebar.html:54 templates/admin/customer_new.html:9
+#: templates/admin/customer_new.html:16
+msgid "Add New Customer"
+msgstr ""
+
+#: templates/admin/_sidebar.html:62 templates/admin/transaction_detail.html:15
+#: templates/admin/transaction_new.html:15 templates/admin/transactions.html:15
+msgid "Sale Management"
+msgstr ""
+
+#: templates/admin/_sidebar.html:66 templates/admin/transactions.html:9
+#: templates/admin/transactions.html:16
+msgid "Transactions"
+msgstr ""
+
+#: templates/admin/_sidebar.html:67 templates/admin/transaction_new.html:37
+msgid "Add Transaction"
+msgstr ""
+
+#: templates/admin/_sidebar.html:71
+msgid "Setting"
+msgstr ""
+
+#: templates/admin/_sidebar.html:79 templates/admin/user_detail.html:15
+#: templates/admin/user_new.html:15 templates/admin/users.html:15
+msgid "User Management"
+msgstr ""
+
+#: templates/admin/_sidebar.html:83 templates/admin/users.html:9
+#: templates/admin/users.html:16
+msgid "Users"
+msgstr ""
+
+#: templates/admin/_sidebar.html:84 templates/admin/user_new.html:9
+#: templates/admin/user_new.html:16
+msgid "Add New User"
+msgstr ""
+
+#: templates/admin/_sidebar.html:92
+msgid "System"
+msgstr ""
+
+#: templates/admin/car_detail.html:9 templates/admin/car_detail.html:16
+#: templates/admin/customer_detail.html:9
+#: templates/admin/customer_detail.html:16
+#: templates/admin/transaction_detail.html:9
+#: templates/admin/transaction_detail.html:16
+#: templates/admin/user_detail.html:9 templates/admin/user_detail.html:16
+msgid "Detail"
+msgstr ""
+
+#: templates/admin/car_detail.html:14 templates/admin/car_new.html:14
+#: templates/admin/cars.html:14 templates/admin/customer_detail.html:14
+#: templates/admin/customer_new.html:14 templates/admin/customers.html:14
+#: templates/admin/dashboard.html:14 templates/admin/search.html:14
+#: templates/admin/transaction_detail.html:14
+#: templates/admin/transaction_new.html:14 templates/admin/transactions.html:14
+#: templates/admin/user_detail.html:14 templates/admin/user_new.html:14
+#: templates/admin/users.html:14
+msgid "Home"
+msgstr ""
+
+#: templates/admin/car_detail.html:46 templates/admin/car_detail.html:240
+#: templates/admin/car_new.html:113 templates/admin/cars.html:108
+#: templates/admin/cars.html:163 templates/admin/cars.html:218
+#: templates/admin/cars.html:273
+msgid "Branch"
+msgstr ""
+
+#: templates/admin/car_detail.html:50 templates/admin/cars.html:109
+#: templates/admin/cars.html:164 templates/admin/cars.html:219
+#: templates/admin/cars.html:274
+msgid "Imported Date"
+msgstr ""
+
+#: templates/admin/car_detail.html:54
+msgid "Year Of Manufacture"
+msgstr ""
+
+#: templates/admin/car_detail.html:61 templates/admin/car_detail.html:235
+#: templates/admin/car_new.html:109
+msgid "Color"
+msgstr ""
+
+#: templates/admin/car_detail.html:65
+msgid "Traded by"
+msgstr ""
+
+#: templates/admin/car_detail.html:86 templates/admin/car_detail.html:142
+msgid "Car information"
+msgstr ""
+
+#: templates/admin/car_detail.html:100 templates/admin/car_detail.html:297
+msgid "Customer List"
+msgstr ""
+
+#: templates/admin/car_detail.html:113 templates/admin/customer_detail.html:101
+#: templates/admin/transaction_new.html:9
+#: templates/admin/transaction_new.html:16
+msgid "Add New Transaction"
+msgstr ""
+
+#: templates/admin/car_detail.html:146 templates/admin/customer_detail.html:133
+#: templates/admin/user_detail.html:69
+msgid "Update"
+msgstr ""
+
+#: templates/admin/car_detail.html:147 templates/admin/customer_detail.html:134
+#: templates/admin/user_detail.html:70
+msgid "Reset"
+msgstr ""
+
+#: templates/admin/car_detail.html:156 templates/admin/car_new.html:50
+#: templates/admin/customer_detail.html:143
+#: templates/admin/customer_new.html:51 templates/admin/customers.html:59
+msgid "Name"
+msgstr ""
+
+#: templates/admin/car_detail.html:166 templates/admin/car_new.html:59
+msgid "Model"
+msgstr ""
+
+#: templates/admin/car_detail.html:171
+msgid ""
+"Year Of\n"
+"                                            Manufactoring"
+msgstr ""
+
+#: templates/admin/car_detail.html:177 templates/admin/car_new.html:69
+msgid "Chassis No. (VIN)"
+msgstr ""
+
+#: templates/admin/car_detail.html:182 templates/admin/car_new.html:73
+msgid "Imported date"
+msgstr ""
+
+#: templates/admin/car_detail.html:193 templates/admin/car_new.html:83
+msgid "Purchase Price"
+msgstr ""
+
+#: templates/admin/car_detail.html:199 templates/admin/car_new.html:87
+msgid "Inspection From"
+msgstr ""
+
+#: templates/admin/car_detail.html:211 templates/admin/car_detail.html:310
+#: templates/admin/car_detail.html:410 templates/admin/car_new.html:97
+#: templates/admin/cars.html:111 templates/admin/cars.html:166
+#: templates/admin/cars.html:221 templates/admin/cars.html:276
+#: templates/admin/customer_detail.html:211
+#: templates/admin/customer_detail.html:257
+#: templates/admin/customer_detail.html:352
+#: templates/admin/customer_new.html:107 templates/admin/customers.html:64
+#: templates/admin/transaction_detail.html:107
+#: templates/admin/transaction_new.html:95
+#: templates/admin/transactions.html:114 templates/admin/user_detail.html:105
+#: templates/admin/users.html:62
+msgid "Status"
+msgstr ""
+
+#: templates/admin/car_detail.html:213 templates/admin/car_new.html:99
+msgid "Product status"
+msgstr ""
+
+#: templates/admin/car_detail.html:216 templates/admin/car_new.html:100
+#: templates/admin/cars.html:57 templates/admin/transactions.html:57
+msgid "Reserved"
+msgstr ""
+
+#: templates/admin/car_detail.html:220 templates/admin/car_new.html:101
+#: templates/admin/cars.html:73 templates/admin/transactions.html:74
+msgid "Available"
+msgstr ""
+
+#: templates/admin/car_detail.html:224 templates/admin/car_new.html:102
+msgid "Checked"
+msgstr ""
+
+#: templates/admin/car_detail.html:228 templates/admin/car_new.html:103
+#: templates/admin/cars.html:89 templates/admin/transactions.html:91
+msgid "Unchecked"
+msgstr ""
+
+#: templates/admin/car_detail.html:245 templates/admin/car_new.html:117
+msgid "License Plate No."
+msgstr ""
+
+#: templates/admin/car_detail.html:251 templates/admin/car_new.html:121
+msgid "Traded Company"
+msgstr ""
+
+#: templates/admin/car_detail.html:256
+msgid ""
+"Expected Selling\n"
+"                                            Price"
+msgstr ""
+
+#: templates/admin/car_detail.html:262
+msgid ""
+"Actual Selling\n"
+"                                            Price"
+msgstr ""
+
+#: templates/admin/car_detail.html:268 templates/admin/car_new.html:129
+msgid "Inspection To"
+msgstr ""
+
+#: templates/admin/car_detail.html:279 templates/admin/car_detail.html:420
+#: templates/admin/car_new.html:139 templates/admin/customer_detail.html:227
+#: templates/admin/customer_detail.html:362
+#: templates/admin/customer_new.html:117
+#: templates/admin/transaction_detail.html:117
+#: templates/admin/transaction_new.html:105
+msgid "Note"
+msgstr ""
+
+#: templates/admin/car_detail.html:306 templates/admin/customer_detail.html:253
+msgid "Transaction No."
+msgstr ""
+
+#: templates/admin/car_detail.html:307
+#: templates/admin/transaction_detail.html:53
+#: templates/admin/transactions.html:110
+msgid "Customer Name"
+msgstr ""
+
+#: templates/admin/car_detail.html:308 templates/admin/customer_detail.html:255
+msgid "Purchase date"
+msgstr ""
+
+#: templates/admin/car_detail.html:309 templates/admin/car_detail.html:403
+#: templates/admin/customer_detail.html:256
+#: templates/admin/customer_detail.html:345
+#: templates/admin/transaction_detail.html:100
+#: templates/admin/transaction_new.html:88
+msgid "Unit Price"
+msgstr ""
+
+#: templates/admin/car_detail.html:349
+msgid "No customer found. Create a customer first."
+msgstr ""
+
+#: templates/admin/car_detail.html:351
+msgid "Create New Customer"
+msgstr ""
+
+#: templates/admin/car_detail.html:364
+msgid "Add Customer Purchase"
+msgstr ""
+
+#: templates/admin/car_detail.html:368 templates/admin/customer_detail.html:310
+#: templates/admin/transaction_detail.html:42
+#: templates/admin/transaction_new.html:41 templates/admin/user_new.html:41
+msgid "Add"
+msgstr ""
+
+#: templates/admin/car_detail.html:369 templates/admin/car_new.html:41
+#: templates/admin/customer_detail.html:311
+#: templates/admin/customer_new.html:42
+#: templates/admin/transaction_detail.html:43
+#: templates/admin/transaction_new.html:42 templates/admin/user_new.html:42
+msgid "Cancel"
+msgstr ""
+
+#: templates/admin/car_detail.html:379 templates/admin/customer_detail.html:15
+#: templates/admin/transaction_new.html:52
+msgid "Customer"
+msgstr ""
+
+#: templates/admin/car_detail.html:382
+#: templates/admin/transaction_detail.html:56
+#: templates/admin/transaction_new.html:55
+msgid "Select A Customer"
+msgstr ""
+
+#: templates/admin/car_detail.html:391 templates/admin/customer_detail.html:333
+#: templates/admin/transaction_detail.html:87
+#: templates/admin/transaction_new.html:76
+#: templates/admin/transactions.html:112
+msgid "Purchase Date"
+msgstr ""
+
+#: templates/admin/car_detail.html:412 templates/admin/customer_detail.html:213
+#: templates/admin/customer_detail.html:354
+#: templates/admin/customer_new.html:109
+#: templates/admin/transaction_detail.html:109
+#: templates/admin/transaction_new.html:97
+msgid "Customer status"
+msgstr ""
+
+#: templates/admin/car_detail.html:413 templates/admin/customer_detail.html:217
+#: templates/admin/customer_detail.html:355
+#: templates/admin/customer_new.html:110
+#: templates/admin/transaction_detail.html:110
+#: templates/admin/transaction_new.html:98
+msgid "Paid"
+msgstr ""
+
+#: templates/admin/car_detail.html:414 templates/admin/customer_detail.html:221
+#: templates/admin/customer_detail.html:356
+#: templates/admin/customer_new.html:111
+#: templates/admin/transaction_detail.html:111
+#: templates/admin/transaction_new.html:99
+msgid "Wait to pay"
+msgstr ""
+
+#: templates/admin/car_new.html:36
+msgid "Add a new car"
+msgstr ""
+
+#: templates/admin/car_new.html:40 templates/admin/customer_new.html:41
+msgid "Create"
+msgstr ""
+
+#: templates/admin/car_new.html:63
+msgid "Year Of Manufactoring"
+msgstr ""
+
+#: templates/admin/car_new.html:125
+msgid "Sale Price"
+msgstr ""
+
+#: templates/admin/cars.html:41 templates/admin/customers.html:41
+#: templates/admin/transactions.html:41 templates/admin/users.html:41
+msgid "All"
+msgstr ""
+
+#: templates/admin/cars.html:106 templates/admin/cars.html:161
+#: templates/admin/cars.html:216 templates/admin/cars.html:271
+#: templates/admin/customers.html:58 templates/admin/transactions.html:109
+#: templates/admin/users.html:58
+msgid "No."
+msgstr ""
+
+#: templates/admin/cars.html:107 templates/admin/cars.html:162
+#: templates/admin/cars.html:217 templates/admin/cars.html:272
+msgid "Name/Model"
+msgstr ""
+
+#: templates/admin/cars.html:110 templates/admin/cars.html:165
+#: templates/admin/cars.html:220 templates/admin/cars.html:275
+#: templates/admin/transactions.html:113
+msgid "Selling Price"
+msgstr ""
+
+#: templates/admin/cars.html:112 templates/admin/cars.html:167
+#: templates/admin/cars.html:222 templates/admin/cars.html:277
+#: templates/admin/customers.html:65 templates/admin/transactions.html:115
+#: templates/admin/users.html:63
+msgid "Actions"
+msgstr ""
+
+#: templates/admin/customer_detail.html:46
+#: templates/admin/customer_detail.html:196
+#: templates/admin/customer_new.html:94 templates/admin/customers.html:61
+msgid "Facebook"
+msgstr ""
+
+#: templates/admin/customer_detail.html:50
+#: templates/admin/customer_detail.html:178
+#: templates/admin/customer_new.html:78 templates/admin/customers.html:62
+msgid "Phone"
+msgstr ""
+
+#: templates/admin/customer_detail.html:54
+#: templates/admin/customer_detail.html:171
+#: templates/admin/customer_new.html:72 templates/admin/customers.html:63
+msgid "Address"
+msgstr ""
+
+#: templates/admin/customer_detail.html:74
+#: templates/admin/customer_detail.html:129
+#: templates/admin/customer_new.html:37
+msgid "Customer information"
+msgstr ""
+
+#: templates/admin/customer_detail.html:88
+#: templates/admin/customer_detail.html:244
+msgid "Purchased List"
+msgstr ""
+
+#: templates/admin/customer_detail.html:155
+#: templates/admin/customer_new.html:62
+msgid "Gender"
+msgstr ""
+
+#: templates/admin/customer_detail.html:157
+#: templates/admin/customer_new.html:64
+msgid "Unknown"
+msgstr ""
+
+#: templates/admin/customer_detail.html:161
+#: templates/admin/customer_new.html:65
+msgid "Male"
+msgstr ""
+
+#: templates/admin/customer_detail.html:165
+#: templates/admin/customer_new.html:66
+msgid "Female"
+msgstr ""
+
+#: templates/admin/customer_detail.html:185
+#: templates/admin/customer_new.html:84
+msgid "Birthday"
+msgstr ""
+
+#: templates/admin/customer_detail.html:203
+#: templates/admin/customer_new.html:101
+msgid "Lead Source"
+msgstr ""
+
+#: templates/admin/customer_detail.html:254
+#: templates/admin/transactions.html:111
+msgid "Car Name"
+msgstr ""
+
+#: templates/admin/customer_detail.html:306
+msgid "Add Purchase"
+msgstr ""
+
+#: templates/admin/customer_detail.html:321
+#: templates/admin/transaction_detail.html:70
+#: templates/admin/transaction_new.html:64
+msgid "Car"
+msgstr ""
+
+#: templates/admin/customer_detail.html:324
+#: templates/admin/transaction_detail.html:73
+#: templates/admin/transaction_new.html:67
+msgid "Select A Car"
+msgstr ""
+
+#: templates/admin/customers.html:60
+msgid "Birth Day"
+msgstr ""
+
+#: templates/admin/dashboard.html:29
+msgid "Total Customers"
+msgstr ""
+
+#: templates/admin/dashboard.html:29 templates/admin/dashboard.html:43
+#: templates/admin/dashboard.html:57
+msgid "This Month"
+msgstr ""
+
+#: templates/admin/dashboard.html:32 templates/admin/dashboard.html:46
+#: templates/admin/dashboard.html:60
+msgid "Monthly Increase"
+msgstr ""
+
+#: templates/admin/dashboard.html:43
+msgid "Total Transactions"
+msgstr ""
+
+#: templates/admin/dashboard.html:57
+msgid "Total Cars"
+msgstr ""
+
+#: templates/admin/search.html:49
+msgid "Result for"
+msgstr ""
+
+#: templates/admin/search.html:70
+msgid "No results found."
+msgstr ""
+
+#: templates/admin/transaction_detail.html:38
+msgid "Transaction Detail"
+msgstr ""
+
+#: templates/admin/transaction_detail.html:63
+msgid "For more detail about the customer"
+msgstr ""
+
+#: templates/admin/transaction_detail.html:80
+msgid "For more detail about the car"
+msgstr ""
+
+#: templates/admin/user_detail.html:46 templates/admin/user_detail.html:91
+#: templates/admin/user_new.html:59 templates/admin/users.html:60
+msgid "Email"
+msgstr ""
+
+#: templates/admin/user_detail.html:65
+msgid "User information"
+msgstr ""
+
+#: templates/admin/user_detail.html:79 templates/admin/user_new.html:52
+#: templates/admin/users.html:59
+msgid "Username"
+msgstr ""
+
+#: templates/admin/user_detail.html:98 templates/admin/user_new.html:65
+msgid "Password"
+msgstr ""
+
+#: templates/admin/user_detail.html:112 templates/admin/users.html:61
+msgid "Role"
+msgstr ""
+
+#: templates/admin/user_detail.html:114 templates/admin/user_new.html:79
+msgid "Guest"
+msgstr ""
+
+#: templates/admin/user_detail.html:117 templates/admin/user_new.html:80
+msgid "Admin"
+msgstr ""
+
+#: templates/admin/user_new.html:37
+msgid "Add User"
+msgstr ""
+
+#: templates/admin/user_new.html:71
+msgid "Confirm Password"
+msgstr ""
+
+#: templates/admin/user_new.html:77
+msgid "User Role"
+msgstr ""
 

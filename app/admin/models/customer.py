@@ -10,6 +10,7 @@ from sqlalchemy.orm import relationship
 
 from app.admin.models.base import BaseModel
 from sqlalchemy import or_
+from sqlalchemy import func
 
 
 class Customer(BaseModel):
@@ -51,6 +52,19 @@ class Customer(BaseModel):
     @classmethod
     def get_all(cls):
         return cls.query.all()
+
+    @classmethod
+    def current_count(cls, start_current_month):
+        return (cls.query
+                .filter(cls.created_at >= start_current_month)
+                .count())
+
+    @classmethod
+    def prev_count(cls, start_current_month, start_prev_month):
+        return (cls.query
+                .filter(cls.created_at >= start_prev_month,
+                        cls.created_at < start_current_month)
+                .count())
 
     @classmethod
     def get_by_id(cls, qid):

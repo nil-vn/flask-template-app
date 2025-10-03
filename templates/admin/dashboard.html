@@ -26,10 +26,10 @@
     <div class="col-md-12 col-xl-4">
         <div class="card user-card">
             <div class="card-body">
-                <h5 class="m-b-15">Register User</h5>
-                <h4 class="f-w-300 mb-3">1205</h4>
+                <h5 class="m-b-15">{{ _('Total Customers') }} ({{ _('This Month') }})</h5>
+                <h4 class="f-w-300 mb-3">{{ metric.customers.total or 0 }}</h4>
                 <span class="text-muted"
-                ><label class="badge me-2 bg-brand-color-1 text-white f-12 f-w-400">20%</label>Monthly Increase</span
+                ><label class="badge me-2 bg-brand-color-1 text-white f-12 f-w-400">{{ metric.customers.monthly_increase or 0 }}%</label>{{ _('Monthly Increase') }}</span
                 >
             </div>
         </div>
@@ -40,10 +40,10 @@
     <div class="col-md-6 col-xl-4">
         <div class="card user-card">
             <div class="card-body">
-                <h5 class="f-w-400 m-b-15">Daily User</h5>
-                <h4 class="f-w-300 mb-3">467</h4>
+                <h5 class="f-w-400 m-b-15">{{ _('Total Transactions') }} ({{ _('This Month') }})</h5>
+                <h4 class="f-w-300 mb-3">{{ metric.transactions.total or 0 }}</h4>
                 <span class="text-muted"
-                ><label class="badge me-2 bg-brand-color-1 text-white f-12 f-w-400">10%</label>Weekly Increase</span
+                ><label class="badge me-2 bg-brand-color-1 text-white f-12 f-w-400">{{ metric.transactions.monthly_increase or 0 }}%</label>{{ _('Monthly Increase') }}</span
                 >
             </div>
         </div>
@@ -54,10 +54,10 @@
     <div class="col-md-6 col-xl-4">
         <div class="card user-card">
             <div class="card-body">
-                <h5 class="f-w-400 m-b-15">Premium User</h5>
-                <h4 class="f-w-300 mb-3">346</h4>
+                <h5 class="f-w-400 m-b-15">{{ _('Total Cars') }} ({{ _('This Month') }})</h5>
+                <h4 class="f-w-300 mb-3">{{ metric.cars.total or 0 }}</h4>
                 <span class="text-muted"
-                ><label class="badge me-2 bg-brand-color-1 text-white f-12 f-w-400">50%</label>Yearly Increase</span
+                ><label class="badge me-2 bg-brand-color-1 text-white f-12 f-w-400">{{ metric.cars.monthly_increase or 0 }}%</label>{{ _('Monthly Increase') }}</span
                 >
             </div>
         </div>

@@ -15,6 +15,19 @@ class BaseModel(db.Model):
         data = {k: v for k, v in form.data.items() if k in cls.field_names()}
         return cls(**data)
 
+    @classmethod
+    def current_count(cls, start_current_month):
+        return (cls.query
+                .filter(cls.created_at >= start_current_month)
+                .count())
+
+    @classmethod
+    def prev_count(cls, start_current_month, start_prev_month):
+        return (cls.query
+                .filter(cls.created_at >= start_prev_month,
+                        cls.created_at < start_current_month)
+                .count())
+
 
 class Configuration(BaseModel):
     __tablename__ = "config"

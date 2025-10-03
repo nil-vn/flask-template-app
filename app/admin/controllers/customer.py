@@ -28,12 +28,12 @@ def customer_new():
             # Add to session and commit
             new_customer = Customer.from_form(form)
             try:
-                with db.session.begin():
-                    db.session.add(new_customer)
+                db.session.add(new_customer)
+                db.session.commit()
                 flash("Customer added successfully!", "success")
             except Exception as e:
                 flash(f"Error adding car: {e}", "danger")
-                raise e
+                raise Exception(e)
     return render_template("customer_new.html", form=form)
 
 
@@ -83,7 +83,7 @@ def delete_customer(customer_id):
     customer = Customer.get_by_id(customer_id)
     if not customer:
         flash("Customer not found.", "danger")
-        return redirect(url_for("admin_routes.customer"))
+        return redirect(url_for("admin_routes.customers"))
 
     try:
         db.session.delete(customer)
@@ -93,4 +93,4 @@ def delete_customer(customer_id):
         db.session.rollback()  # rollback nếu lỗi
         flash(f"Error deleting car: {e}", "danger")
 
-    return redirect(url_for("admin_routes.customer"))
+    return redirect(url_for("admin_routes.customers"))

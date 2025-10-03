@@ -37,8 +37,8 @@ def car_new():
             # Add to session and commit
             new_car = Car.from_form(form)
             try:
-                with db.session.begin():
-                    db.session.add(new_car)
+                db.session.add(new_car)
+                db.session.commit()
                 # Nếu đến đây, commit đã thành công
                 flash("Car added successfully!", "success")
             except Exception as e:
