@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-04 01:01+0900\n"
+"POT-Creation-Date: 2025-10-04 01:05+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -508,6 +508,24 @@ msgstr ""
 msgid "Total Cars"
 msgstr ""
 
+#: templates/admin/login.html:18 templates/admin/login.html:33
+msgid "Login"
+msgstr ""
+
+#: templates/admin/login.html:20 templates/admin/user_detail.html:79
+#: templates/admin/user_new.html:52 templates/admin/users.html:59
+msgid "Username"
+msgstr ""
+
+#: templates/admin/login.html:23 templates/admin/user_detail.html:98
+#: templates/admin/user_new.html:65
+msgid "Password"
+msgstr ""
+
+#: templates/admin/login.html:29
+msgid "Remember me"
+msgstr ""
+
 #: templates/admin/search.html:49
 msgid "Result for"
 msgstr ""
@@ -535,15 +553,6 @@ msgstr ""
 
 #: templates/admin/user_detail.html:65
 msgid "User information"
-msgstr ""
-
-#: templates/admin/user_detail.html:79 templates/admin/user_new.html:52
-#: templates/admin/users.html:59
-msgid "Username"
-msgstr ""
-
-#: templates/admin/user_detail.html:98 templates/admin/user_new.html:65
-msgid "Password"
 msgstr ""
 
 #: templates/admin/user_detail.html:112 templates/admin/users.html:61

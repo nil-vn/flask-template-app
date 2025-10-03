@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-10-04 00:16+0900\n"
+"POT-Creation-Date: 2025-10-04 01:05+0900\n"
 "PO-Revision-Date: 2025-10-04 00:17+0900\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: vi\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
+
+#: templates/admin/_header.html:342
+msgid "Sign Out"
+msgstr "Đăng Xuất"
 
 #: templates/admin/_sidebar.html:12
 msgid "Navigation"
@@ -120,7 +124,7 @@ msgstr "Chi tiết"
 msgid "Home"
 msgstr "Trang chủ"
 
-#: templates/admin/car_detail.html:46 templates/admin/car_detail.html:240
+#: templates/admin/car_detail.html:46 templates/admin/car_detail.html:239
 #: templates/admin/car_new.html:113 templates/admin/cars.html:108
 #: templates/admin/cars.html:163 templates/admin/cars.html:218
 #: templates/admin/cars.html:273
@@ -133,11 +137,11 @@ msgstr "Thương hiệu"
 msgid "Imported Date"
 msgstr "Ngày nhập"
 
-#: templates/admin/car_detail.html:54
+#: templates/admin/car_detail.html:54 templates/admin/car_detail.html:171
 msgid "Year Of Manufacture"
 msgstr "Năm sản xuất"
 
-#: templates/admin/car_detail.html:61 templates/admin/car_detail.html:235
+#: templates/admin/car_detail.html:61 templates/admin/car_detail.html:234
 #: templates/admin/car_new.html:109
 msgid "Color"
 msgstr "Màu sắc"
@@ -150,7 +154,7 @@ msgstr "Sàn giao dịch"
 msgid "Car information"
 msgstr "Thông tin xe"
 
-#: templates/admin/car_detail.html:100 templates/admin/car_detail.html:297
+#: templates/admin/car_detail.html:100 templates/admin/car_detail.html:296
 msgid "Customer List"
 msgstr "Danh sách khách hàng"
 
@@ -180,24 +184,24 @@ msgstr "Tên"
 msgid "Model"
 msgstr "Mẫu xe"
 
-#: templates/admin/car_detail.html:177 templates/admin/car_new.html:69
+#: templates/admin/car_detail.html:176 templates/admin/car_new.html:69
 msgid "Chassis No. (VIN)"
 msgstr "Số khung (VIN)"
 
-#: templates/admin/car_detail.html:182 templates/admin/car_new.html:73
+#: templates/admin/car_detail.html:181 templates/admin/car_new.html:73
 msgid "Imported date"
 msgstr "Ngày nhập"
 
-#: templates/admin/car_detail.html:193 templates/admin/car_new.html:83
+#: templates/admin/car_detail.html:192 templates/admin/car_new.html:83
 msgid "Purchase Price"
 msgstr "Giá mua"
 
-#: templates/admin/car_detail.html:199 templates/admin/car_new.html:87
+#: templates/admin/car_detail.html:198 templates/admin/car_new.html:87
 msgid "Inspection From"
 msgstr "Kiểm định (Shaken) từ"
 
-#: templates/admin/car_detail.html:211 templates/admin/car_detail.html:310
-#: templates/admin/car_detail.html:410 templates/admin/car_new.html:97
+#: templates/admin/car_detail.html:210 templates/admin/car_detail.html:309
+#: templates/admin/car_detail.html:409 templates/admin/car_new.html:97
 #: templates/admin/cars.html:111 templates/admin/cars.html:166
 #: templates/admin/cars.html:221 templates/admin/cars.html:276
 #: templates/admin/customer_detail.html:211
@@ -211,52 +215,50 @@ msgstr "Kiểm định (Shaken) từ"
 msgid "Status"
 msgstr "Trạng thái"
 
-#: templates/admin/car_detail.html:213 templates/admin/car_new.html:99
+#: templates/admin/car_detail.html:212 templates/admin/car_new.html:99
 msgid "Product status"
 msgstr "Trạng thái sản phẩm"
 
-#: templates/admin/car_detail.html:216 templates/admin/car_new.html:100
+#: templates/admin/car_detail.html:215 templates/admin/car_new.html:100
 #: templates/admin/cars.html:57 templates/admin/transactions.html:57
 msgid "Reserved"
 msgstr "Đã đặt"
 
-#: templates/admin/car_detail.html:220 templates/admin/car_new.html:101
+#: templates/admin/car_detail.html:219 templates/admin/car_new.html:101
 #: templates/admin/cars.html:73 templates/admin/transactions.html:74
 msgid "Available"
 msgstr "Có sẵn"
 
-#: templates/admin/car_detail.html:224 templates/admin/car_new.html:102
+#: templates/admin/car_detail.html:223 templates/admin/car_new.html:102
 msgid "Checked"
 msgstr "Đã kiểm tra"
 
-#: templates/admin/car_detail.html:228 templates/admin/car_new.html:103
+#: templates/admin/car_detail.html:227 templates/admin/car_new.html:103
 #: templates/admin/cars.html:89 templates/admin/transactions.html:91
 msgid "Unchecked"
 msgstr "Chưa kiểm tra"
 
-#: templates/admin/car_detail.html:245 templates/admin/car_new.html:117
+#: templates/admin/car_detail.html:244 templates/admin/car_new.html:117
 msgid "License Plate No."
 msgstr "Biển Số"
 
-#: templates/admin/car_detail.html:251 templates/admin/car_new.html:121
+#: templates/admin/car_detail.html:250 templates/admin/car_new.html:121
 msgid "Traded Company"
 msgstr "Công Ty Giao Dịch"
 
 #: templates/admin/car_detail.html:256
-msgid ""
-"Expected Selling Price"
+msgid "Expected Selling Price"
 msgstr "Giá Bán Dự Kiến"
 
 #: templates/admin/car_detail.html:262
-msgid ""
-"Actual Selling Price"
+msgid "Actual Selling Price"
 msgstr "Giá Bán Thực Tế"
 
-#: templates/admin/car_detail.html:268 templates/admin/car_new.html:129
+#: templates/admin/car_detail.html:267 templates/admin/car_new.html:129
 msgid "Inspection To"
 msgstr "Kiểm Tra (Shaken) Đến"
 
-#: templates/admin/car_detail.html:279 templates/admin/car_detail.html:420
+#: templates/admin/car_detail.html:278 templates/admin/car_detail.html:419
 #: templates/admin/car_new.html:139 templates/admin/customer_detail.html:227
 #: templates/admin/customer_detail.html:362
 #: templates/admin/customer_new.html:117
@@ -265,21 +267,21 @@ msgstr "Kiểm Tra (Shaken) Đến"
 msgid "Note"
 msgstr "Ghi Chú"
 
-#: templates/admin/car_detail.html:306 templates/admin/customer_detail.html:253
+#: templates/admin/car_detail.html:305 templates/admin/customer_detail.html:253
 msgid "Transaction No."
 msgstr "Số Giao Dịch"
 
-#: templates/admin/car_detail.html:307
+#: templates/admin/car_detail.html:306
 #: templates/admin/transaction_detail.html:53
 #: templates/admin/transactions.html:110
 msgid "Customer Name"
 msgstr "Tên Khách Hàng"
 
-#: templates/admin/car_detail.html:308 templates/admin/customer_detail.html:255
+#: templates/admin/car_detail.html:307 templates/admin/customer_detail.html:255
 msgid "Purchase date"
 msgstr "Ngày Mua"
 
-#: templates/admin/car_detail.html:309 templates/admin/car_detail.html:403
+#: templates/admin/car_detail.html:308 templates/admin/car_detail.html:402
 #: templates/admin/customer_detail.html:256
 #: templates/admin/customer_detail.html:345
 #: templates/admin/transaction_detail.html:100
@@ -287,25 +289,25 @@ msgstr "Ngày Mua"
 msgid "Unit Price"
 msgstr "Đơn Giá"
 
-#: templates/admin/car_detail.html:349
+#: templates/admin/car_detail.html:348
 msgid "No customer found. Create a customer first."
 msgstr "Không tìm thấy khách hàng. Vui lòng tạo khách hàng trước."
 
-#: templates/admin/car_detail.html:351
+#: templates/admin/car_detail.html:350
 msgid "Create New Customer"
 msgstr "Tạo Khách Hàng Mới"
 
-#: templates/admin/car_detail.html:364
+#: templates/admin/car_detail.html:363
 msgid "Add Customer Purchase"
 msgstr "Thêm Mua Hàng Khách Hàng"
 
-#: templates/admin/car_detail.html:368 templates/admin/customer_detail.html:310
+#: templates/admin/car_detail.html:367 templates/admin/customer_detail.html:310
 #: templates/admin/transaction_detail.html:42
 #: templates/admin/transaction_new.html:41 templates/admin/user_new.html:41
 msgid "Add"
 msgstr "Thêm"
 
-#: templates/admin/car_detail.html:369 templates/admin/car_new.html:41
+#: templates/admin/car_detail.html:368 templates/admin/car_new.html:41
 #: templates/admin/customer_detail.html:311
 #: templates/admin/customer_new.html:42
 #: templates/admin/transaction_detail.html:43
@@ -313,25 +315,25 @@ msgstr "Thêm"
 msgid "Cancel"
 msgstr "Hủy"
 
-#: templates/admin/car_detail.html:379 templates/admin/customer_detail.html:15
+#: templates/admin/car_detail.html:378 templates/admin/customer_detail.html:15
 #: templates/admin/transaction_new.html:52
 msgid "Customer"
 msgstr "Khách Hàng"
 
-#: templates/admin/car_detail.html:382
+#: templates/admin/car_detail.html:381
 #: templates/admin/transaction_detail.html:56
 #: templates/admin/transaction_new.html:55
 msgid "Select A Customer"
 msgstr "Chọn Khách Hàng"
 
-#: templates/admin/car_detail.html:391 templates/admin/customer_detail.html:333
+#: templates/admin/car_detail.html:390 templates/admin/customer_detail.html:333
 #: templates/admin/transaction_detail.html:87
 #: templates/admin/transaction_new.html:76
 #: templates/admin/transactions.html:112
 msgid "Purchase Date"
 msgstr "Ngày Mua"
 
-#: templates/admin/car_detail.html:412 templates/admin/customer_detail.html:213
+#: templates/admin/car_detail.html:411 templates/admin/customer_detail.html:213
 #: templates/admin/customer_detail.html:354
 #: templates/admin/customer_new.html:109
 #: templates/admin/transaction_detail.html:109
@@ -339,7 +341,7 @@ msgstr "Ngày Mua"
 msgid "Customer status"
 msgstr "Trạng Thái Khách Hàng"
 
-#: templates/admin/car_detail.html:413 templates/admin/customer_detail.html:217
+#: templates/admin/car_detail.html:412 templates/admin/customer_detail.html:217
 #: templates/admin/customer_detail.html:355
 #: templates/admin/customer_new.html:110
 #: templates/admin/transaction_detail.html:110
@@ -347,7 +349,7 @@ msgstr "Trạng Thái Khách Hàng"
 msgid "Paid"
 msgstr "Đã Thanh Toán"
 
-#: templates/admin/car_detail.html:414 templates/admin/customer_detail.html:221
+#: templates/admin/car_detail.html:413 templates/admin/customer_detail.html:221
 #: templates/admin/customer_detail.html:356
 #: templates/admin/customer_new.html:111
 #: templates/admin/transaction_detail.html:111
@@ -363,6 +365,10 @@ msgstr "Thêm Xe Mới"
 msgid "Create"
 msgstr "Tạo"
 
+#: templates/admin/car_new.html:63
+#, fuzzy
+msgid "Year Of Manufactoring"
+msgstr "Năm sản xuất"
 
 #: templates/admin/car_new.html:125
 msgid "Sale Price"
@@ -504,6 +510,24 @@ msgstr "Tổng Số Giao Dịch"
 msgid "Total Cars"
 msgstr "Tổng Số Xe"
 
+#: templates/admin/login.html:18 templates/admin/login.html:33
+msgid "Login"
+msgstr "Đăng Nhập"
+
+#: templates/admin/login.html:20 templates/admin/user_detail.html:79
+#: templates/admin/user_new.html:52 templates/admin/users.html:59
+msgid "Username"
+msgstr "Tên Đăng Nhập"
+
+#: templates/admin/login.html:23 templates/admin/user_detail.html:98
+#: templates/admin/user_new.html:65
+msgid "Password"
+msgstr "Mật Khẩu"
+
+#: templates/admin/login.html:29
+msgid "Remember me"
+msgstr "Ghi nhớ tài khoản"
+
 #: templates/admin/search.html:49
 msgid "Result for"
 msgstr "Kết Quả Tìm Kiếm Cho"
@@ -533,15 +557,6 @@ msgstr "Email"
 msgid "User information"
 msgstr "Thông Tin Người Dùng"
 
-#: templates/admin/user_detail.html:79 templates/admin/user_new.html:52
-#: templates/admin/users.html:59
-msgid "Username"
-msgstr "Tên Đăng Nhập"
-
-#: templates/admin/user_detail.html:98 templates/admin/user_new.html:65
-msgid "Password"
-msgstr "Mật Khẩu"
-
 #: templates/admin/user_detail.html:112 templates/admin/users.html:61
 msgid "Role"
 msgstr "Vai Trò"
@@ -565,3 +580,4 @@ msgstr "Xác Nhận Mật Khẩu"
 #: templates/admin/user_new.html:77
 msgid "User Role"
 msgstr "Vai Trò Người Dùng"
+
