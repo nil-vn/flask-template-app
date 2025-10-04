@@ -10,6 +10,7 @@ from app.utils.db import db
 from flask_login import login_required
 from . import routes
 from ..services.create_or_updating import create_transaction_from_form
+from ...utils.constants import CarStatus, CarBranches, CarSituation
 
 
 @routes.route("/cars")
@@ -32,6 +33,9 @@ def cars():
 @login_required
 def car_new():
     form = CarForm()
+    car_status = CarStatus
+    car_branches = CarBranches
+    car_situation = CarSituation
     if request.method == "POST":
         if form.validate_on_submit():
             # Add to session and commit
@@ -51,7 +55,13 @@ def car_new():
                 for e in err_content:
                     flash(f"{err_code}: {e}", "danger")
             return redirect(url_for('admin_routes.car_new'))
-    return render_template("car_new.html", form=form)
+    return render_template(
+        "car_new.html",
+        form=form,
+        car_status=car_status,
+        car_branches=car_branches,
+        car_situation=car_situation
+    )
 
 
 @routes.route("/car/<car_id>", methods=["GET", "POST"])
@@ -73,8 +83,26 @@ def car_detail(car_id):
             except Exception as e:
                 db.session.rollback()
                 flash(f"Error updating car: {e}", "danger")
+            finally:
+                return redirect(url_for('admin_routes.car_detail', car_id=car_id))
+        elif form.errors:
+            for err_code, err_content in form.errors.items():
+                for e in err_content:
+                    flash(f"{err_code}: {e}", "danger")
+            return redirect(url_for('admin_routes.car_detail', car_id=car_id))
     customers = Customer.get_all()
-    return render_template("car_detail.html", car=car, form=form, customers=customers)
+    car_status = CarStatus
+    car_branches = CarBranches
+    car_situation = CarSituation
+    return render_template(
+        "car_detail.html",
+        car=car,
+        form=form,
+        customers=customers,
+        car_status=car_status,
+        car_branches=car_branches,
+        car_situation=car_situation
+    )
 
 
 @routes.route("/car/<int:car_id>/delete", methods=["GET"])
@@ -103,10 +131,15 @@ def add_car_purchase(car_id):
     customers = Customer.get_all()
     car = Car.get_by_id(car_id)
     form.car_id.data = int(car_id)  # Prefill car_id
-    if request.method == "POST" and form.validate_on_submit():
-        try:
-            create_transaction_from_form(form)
-            flash("Purchase added for car successfully!", "success")
-        except Exception as e:
-            flash(f"Error creating transaction: {e}", "danger")
+    if request.method == "POST":
+        if form.validate_on_submit():
+            try:
+                create_transaction_from_form(form)
+                flash("Purchase added for car successfully!", "success")
+            except Exception as e:
+                flash(f"Error creating transaction: {e}", "danger")
+        elif form.errors:
+            for err_code, err_content in form.errors.items():
+                for e in err_content:
+                    flash(f"{err_code}: {e}", "danger")
     return redirect(url_for("admin_routes.car_detail", car_id=car.id))

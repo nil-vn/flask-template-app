@@ -16,13 +16,13 @@ class CarForm(FlaskForm):
     inspection_to = StringField("inspection_to")
     year_of_manufacture = StringField("year_of_manufacture")
     purchase_price = IntegerField("purchase_price", validators=[Optional()])
-    expected_selling_price = IntegerField(
-        "expected_selling_price", validators=[Optional()]
+    selling_price = IntegerField(
+        "selling_price", validators=[Optional()]
     )
-    actual_selling_price = IntegerField("actual_selling_price", validators=[Optional()])
     status = StringField("status")
     note = StringField("note")
     license_plate_no = StringField("license_plate_no")
+    car_situation = StringField("car_situation")
 
 
 class CustomerForm(FlaskForm):

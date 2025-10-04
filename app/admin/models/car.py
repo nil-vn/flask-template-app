@@ -20,6 +20,7 @@ class Car(BaseModel):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str]
+    car_situation = Mapped[Optional[str]]
     branch: Mapped[Optional[str]]
     model: Mapped[Optional[str]]
     vin: Mapped[Optional[str]]
@@ -29,9 +30,8 @@ class Car(BaseModel):
     inspection_from: Mapped[Optional[str]]
     inspection_to: Mapped[Optional[str]]
     year_of_manufacture: Mapped[Optional[str]]
-    purchase_price: Mapped[Optional[float]]
-    expected_selling_price: Mapped[Optional[int]]
-    actual_selling_price: Mapped[Optional[int]]
+    purchase_price: Mapped[Optional[int]]
+    selling_price: Mapped[Optional[int]]
     status: Mapped[Optional[str]]
     note: Mapped[Optional[str]]
     license_plate_no: Mapped[Optional[str]]

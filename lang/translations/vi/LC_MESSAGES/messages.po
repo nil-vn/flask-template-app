@@ -269,7 +269,7 @@ msgstr "Giá Bán Thực Tế"
 
 #: templates/admin/car_detail.html:267 templates/admin/car_new.html:129
 msgid "Inspection To"
-msgstr "Kiểm Tra (Shaken) Đến"
+msgstr "Kiểm định (Shaken) đến"
 
 #: templates/admin/car_detail.html:278 templates/admin/car_detail.html:419
 #: templates/admin/car_new.html:139 templates/admin/customer_detail.html:227

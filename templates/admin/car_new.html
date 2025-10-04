@@ -94,32 +94,45 @@
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label" for="status">{{ _('Status') }}</label>
-                                <select class="form-control" data-trigger name="status" id="status">
-                                    <option value="">{{ _('Product status') }}</option>
-                                    <option value="reserved">{{ _('Reserved') }}</option>
-                                    <option value="available">{{ _('Available') }}</option>
-                                    <option value="checked">{{ _('Checked') }}</option>
-                                    <option value="unchecked">{{ _('Unchecked') }}</option>
-                                </select>
+                                <label class="form-label" for="traded_company">{{ _('Traded Company') }}</label>
+                                <input id="traded_company" name="traded_company" type="text" class="form-control"/>
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" for="status">{{ _('Status') }}</label>
+                                <select class="form-control" name="status" id="status">
+                                    <option value="">{{ _('Product status') }}</option>
+                                    {% for status in car_status %}
+                                    <option value="{{ status.name }}">{{ status.value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="car_situation">{{ _('Situation') }}</label>
+                                <select class="form-control" name="car_situation" id="car_situation">
+                                    <option value="">{{ _('Select a situation') }}</option>
+                                    {% for situation in car_situation %}
+                                    <option value="{{ situation.name }}">{{ situation.value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                             <div class="mb-3">
                                 <label class="form-label" for="color">{{ _('Color') }}</label>
                                 <input id="color" name="color" type="text" class="form-control"/>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="branch">{{ _('Branch') }}</label>
-                                <input id="branch" name="branch" type="text" class="form-control"/>
+                                <select class="form-control" name="branch" id="branch">
+                                    <option value="">{{ _('Select a branch') }}</option>
+                                    {% for branch in car_branches %}
+                                    <option value="{{ branch.name }}">{{ branch.value }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="license_plate_no">{{ _('License Plate No.') }}</label>
                                 <input id="license_plate_no" name="license_plate_no" type="text" class="form-control"/>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label" for="traded_company">{{ _('Traded Company') }}</label>
-                                <input id="traded_company" name="traded_company" type="text" class="form-control"/>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label" for="selling_price">{{ _('Sale Price') }}</label>

@@ -19,7 +19,7 @@ class Transaction(BaseModel):
 
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     purchase_date: Mapped[Optional[str]]
-    selling_price: Mapped[Optional[float]]
+    selling_price: Mapped[Optional[int]]
     status: Mapped[Optional[str]]
     note: Mapped[Optional[str]]
     created_at: Mapped[str] = mapped_column(default=datetime.utcnow)

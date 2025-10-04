@@ -208,28 +208,24 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="status">{{ _('Status') }}</label>
-                                        <select class="form-control" data-trigger name="status" id="status">
+                                        <select class="form-control" name="status" id="status">
                                             <option value="">{{ _('Product status') }}</option>
-                                            <option value="reserved"
-                                                    {% if car.status=='reserved' %}selected="selected" {% endif %}>{{
-                                                _('Reserved') }}
-                                            </option>
-                                            <option value="available"
-                                                    {% if car.status=='available' %}selected="selected" {% endif %}>{{
-                                                _('Available') }}
-                                            </option>
-                                            <option value="checked"
-                                                    {% if car.status=='checked' %}selected="selected" {% endif %}>{{
-                                                _('Checked') }}
-                                            </option>
-                                            <option value="unchecked"
-                                                    {% if car.status=='unchecked' %}selected="selected" {% endif %}>{{
-                                                _('Unchecked') }}
-                                            </option>
+                                            {% for status in car_status %}
+                                            <option value="{{ status.name }}" {% if status.name == car.status %}selected="selected"{% endif %}>{{ status.value }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="car_situation">{{ _('Situation') }}{{ car.car_situation }}</label>
+                                        <select class="form-control" name="car_situation" id="car_situation">
+                                            <option value="">{{ _('Select a situation') }}</option>
+                                            {% for situation in car_situation %}
+                                            <option value="{{ situation.name }}" {% if situation.name == car.car_situation %}selected="selected"{% endif %}>{{ situation.value }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="color">{{ _('Color') }}</label>
                                         <input id="color" name="color" type="text" value="{{ car.color  or ''}}"
@@ -237,8 +233,12 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="branch">{{ _('Branch') }}</label>
-                                        <input id="branch" name="branch" type="text" value="{{ car.branch  or ''}}"
-                                               class="form-control"/>
+                                        <select class="form-control" name="branch" id="branch">
+                                            <option value="">{{ _('Select a branch') }}</option>
+                                            {% for branch in car_branches %}
+                                            <option value="{{ branch.name }}" {% if car.branch == branch.name %}selected="selected"{% endif %}>{{ branch.value }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="license_plate_no">{{ _('License Plate No.')
@@ -253,15 +253,9 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label"
-                                               for="expected_selling_price">{{ _('Expected Selling Price') }}</label>
-                                        <input id="expected_selling_price" name="expected_selling_price" type="text"
-                                               value="{{ car.expected_selling_price or ''}}" class="form-control"/>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label"
-                                               for="actual_selling_price">{{ _('Actual Selling Price') }}</label>
-                                        <input id="actual_selling_price" name="actual_selling_price" type="text"
-                                               value="{{ car.actual_selling_price or ''}}" class="form-control"/>
+                                               for="selling_price">{{ _('Expected Selling Price') }}</label>
+                                        <input id="selling_price" name="selling_price" type="text"
+                                               value="{{ car.selling_price or ''}}" class="form-control"/>
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label" for="inspection_to">{{ _('Inspection To') }}</label>

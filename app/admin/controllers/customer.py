@@ -75,12 +75,18 @@ def add_customer_purchase(customer_id):
     form = TransactionForm()
     form.customer_id.data = int(customer_id)
     # Prefill customer_id
-    if request.method == "POST" and form.validate_on_submit():
-        try:
-            create_transaction_from_form(form)
-            flash("Purchase added for customer successfully!", "success")
-        except Exception as e:
-            flash(f"Error creating transaction: {e}", "danger")
+    if request.method == "POST":
+        if form.validate_on_submit():
+            try:
+                create_transaction_from_form(form)
+                flash("Purchase added for customer successfully!", "success")
+            except Exception as e:
+                db.session.rollback()
+                flash(f"Error creating transaction: {e}", "danger")
+        elif form.errors:
+            for err_code, err_content in form.errors.items():
+                for e in err_content:
+                    flash(f"{err_code}: {e}", "danger")
     return redirect(url_for("admin_routes.customer_detail", customer_id=customer_id))
 
 

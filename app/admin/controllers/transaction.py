@@ -9,6 +9,7 @@ from app.admin.services.forms import (
 from app.utils.db import db
 from flask_login import login_required
 from . import routes
+from ...utils.constants import TransactionStatus
 
 
 @routes.route("/transactions")
@@ -76,12 +77,14 @@ def transaction_detail(transaction_id):
                 flash(f"Error updating transaction: {e}", "danger")
     customers = Customer.get_all()
     cars = Car.get_all()
+    transaction_status = TransactionStatus
     return render_template(
         "transaction_detail.html",
         transaction=transaction,
         form=form,
         customers=customers,
         cars=cars,
+        transaction_status=transaction_status
     )
 
 

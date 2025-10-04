@@ -99,7 +99,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="selling_price">{{ _('Unit Price') }}</label>
                                 <input id="selling_price" name="selling_price" type="text"
-                                       class="form-control"/>
+                                       class="form-control" value="{{ transaction.selling_price or '' }}"/>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -107,8 +107,9 @@
                                 <label class="form-label" for="trans_status">{{ _('Status') }}</label>
                                 <select class="form-control" name="status" id="trans_status">
                                     <option value="">{{ _('Customer status') }}</option>
-                                    <option value="paid">{{ _('Paid') }}</option>
-                                    <option value="wait2pay">{{ _('Wait to pay') }}</option>
+                                    {% for status in transaction_status %}
+                                    <option value="{{ status }}" {% if status==transaction.status %}selected="selected"{% endif %}>{{ status.value }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                         </div>
@@ -116,7 +117,7 @@
                             <div class="mb-3">
                                 <label class="form-label" for="trans_note">{{ _('Note') }}</label>
                                 <textarea class="form-control" id="trans_note" name="note"
-                                          rows="3"></textarea>
+                                          rows="3">{{ transaction.note or ''}}</textarea>
                             </div>
                         </div>
                     </div>

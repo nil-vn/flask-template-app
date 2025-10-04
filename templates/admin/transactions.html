@@ -141,7 +141,7 @@
                                         </div>
                                     </td>
                                     <td>{{ transaction.purchase_date or '-' }}</td>
-                                    <td>{{ car.actual_selling_price or transaction.selling_price or '-' }}</td>
+                                    <td>{{ transaction.selling_price or '-' }}</td>
                                     <td><span class="badge bg-light-success">{{ transaction.status or '' }}</span></td>
                                     <td class="text-end">
                                         <ul class="list-inline mb-0">

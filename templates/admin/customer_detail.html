@@ -152,7 +152,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label class="form-label" for="status">{{ _('Gender') }}</label>
+                                        <label class="form-label" for="gender">{{ _('Gender') }}</label>
                                         <select class="form-control" name="gender" id="gender">
                                             <option value="unknown">{{ _('Unknown') }}</option>
                                             <option value="male"
@@ -275,7 +275,7 @@
                                                 </div>
                                             </td>
                                             <td>{{ transaction.purchase_date or '-' }}</td>
-                                            <td>{{ car.actual_selling_price or transaction.selling_price or '-' }}</td>
+                                            <td>{{ transaction.selling_price or '-' }}</td>
                                             <td><span
                                                     class="badge bg-light-success">{{ transaction.status }}</span>
                                             </td>
