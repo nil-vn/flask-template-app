@@ -1,6 +1,6 @@
 @echo off
 REM -----------------------------------------
-REM 1️⃣ Tạo shortcut ra Desktop (chỉ tạo 1 lần)
+REM 1️. Tạo shortcut ra Desktop (chỉ tạo 1 lần)
 REM -----------------------------------------
 
 SET SHORTCUT_NAME=CRM.lnk
@@ -14,7 +14,7 @@ IF NOT EXIST "%DESKTOP%\%SHORTCUT_NAME%" (
 )
 
 REM -----------------------------------------
-REM 2️⃣ Chạy Flask App
+REM 2️. Chạy Flask App
 REM -----------------------------------------
 
 REM cd đến thư mục chứa app
